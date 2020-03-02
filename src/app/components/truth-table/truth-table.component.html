@@ -1,33 +1,54 @@
 <div id="container" fxLayout="row">
-    <div id="container-left" fxFlex="20%" fxLayoutAlign="end start">
+    <div id="container-left" fxFlex="20%" fxLayoutAlign="end">
+      <div fxLayout="column" fxLayoutAlign="space-between">
         <mat-action-list>
-            <h3 mat-subheader>Truth Table Generator</h3>
-            <mat-list-item routerLink="/truth-table-generator/boolean-algebra">
+          <h3 mat-subheader>Truth Table Generator</h3>
+          <mat-divider></mat-divider>
+          <mat-list-item routerLink="/truth-table-generator/boolean-algebra">
+            <mat-icon mat-list-icon>keyboard</mat-icon>
+            <h4 mat-line>Boolean Algebra</h4>
+            <p mat-line> A + B</p>
+          </mat-list-item>
+          <mat-list-item routerLink="/truth-table-generator/mathematical-logic">
               <mat-icon mat-list-icon>keyboard</mat-icon>
-              <h4 mat-line>Boolean Algebra</h4>
-              <p mat-line> A + B</p>
+              <h4 mat-line>Mathematical Logic</h4>
+              <p mat-line> a ˅ b</p>
             </mat-list-item>
-            <mat-list-item routerLink="/truth-table-generator/mathematical-logic">
-                <mat-icon mat-list-icon>keyboard</mat-icon>
-                <h4 mat-line>Mathematical Logic</h4>
-                <p mat-line> a → b</p>
-              </mat-list-item>
-              <mat-list-item routerLink="/truth-table-generator/set">
-                <mat-icon mat-list-icon>keyboard</mat-icon>
-                <h4 mat-line>Set</h4>
-                <p mat-line> A ⋃ B</p>
-              </mat-list-item>
-              <mat-divider></mat-divider>
-              <mat-list-item routerLink="/home">
-                <mat-icon mat-list-icon>home</mat-icon>
-                <h4 mat-line>HOME</h4>
-                <p mat-line>Return to home page</p>
-              </mat-list-item>
-          </mat-action-list>
-          
+            <mat-list-item routerLink="/truth-table-generator/set">
+              <mat-icon mat-list-icon>keyboard</mat-icon>
+              <h4 mat-line>Set</h4>
+              <p mat-line> A ⋃ B</p>
+            </mat-list-item>
+            <mat-divider></mat-divider>
+            <mat-list-item routerLink="/home">
+              <mat-icon mat-list-icon>home</mat-icon>
+              <h4 mat-line>HOME</h4>
+              <p mat-line>Return to home page</p>
+            </mat-list-item>
+        </mat-action-list>
+        <div>
+          <mat-divider></mat-divider>
+          <p>Developed by Fausto Gregorio <br>
+            fausto.g03@gmail.com</p>
+
+        </div>
+
+      </div>
+
+
     </div>
-    <div id="container-right" fxFlex="80%">
-    
+    <div id="container-right" fxFlex="80%" fxLayout="row wrap" fxLayoutAlign="center start">
+
+      <mat-form-field appearance="outline" floatLabel="always" [style.fontSize.px]="30" fxFlex="100%">
+        <mat-label>EXPRESSION</mat-label>
+        <textarea matInput
+                  [formControl]="expressionInput"
+                  cdkTextareaAutosize
+                  cdkAutosizeMinRows="1"
+                  cdkAutosizeMaxRows="20"
+                  autofocus></textarea>
+      </mat-form-field>
         <router-outlet></router-outlet>
+        <app-performed fxFlex="100%"></app-performed>
     </div>
 </div>

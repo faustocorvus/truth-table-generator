@@ -14,11 +14,18 @@ import { BooleanAlgebraComponent } from './components/truth-table/boolean-algebr
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
 import {MatListModule} from '@angular/material/list';
 import {MatDividerModule} from '@angular/material/divider';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
+import { PerformedComponent } from './components/truth-table/performed/performed.component';
+import {MatButtonModule} from '@angular/material/button';
+import {MatRippleModule} from '@angular/material/core';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,17 +36,23 @@ import {MatDividerModule} from '@angular/material/divider';
     SetComponent,
     MathematicalLogicComponent,
     BooleanAlgebraComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    PerformedComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     FlexLayoutModule,
+    ReactiveFormsModule,
     MatToolbarModule,
     MatIconModule,
     MatListModule,
     MatDividerModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule,
+    MatRippleModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
