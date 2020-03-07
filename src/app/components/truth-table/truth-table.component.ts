@@ -4,6 +4,7 @@ import { CdkTextareaAutosize } from '@angular/cdk/text-field';
 import { take } from 'rxjs/operators';
 import { FormControl, FormBuilder, Validators } from '@angular/forms';
 import { ExpressionInputService } from './expression-input.service';
+import { ParserService } from './parser.service';
 
 @Component({
   selector: 'app-truth-table',
@@ -14,11 +15,14 @@ export class TruthTableComponent implements OnInit {
   /*
   form control of expression input */
   expressionInput: FormControl;
+  /* current component: boolean algebra, set or mathematical logic */
+  currentComponent: string;
   constructor(
     private formBuilder: FormBuilder,
     private _expressionInput: ExpressionInputService,
+    private _parser: ParserService,
   ) {
-    this.expressionInput = this.formBuilder.control('', [Validators.required, Validators.pattern('^[a-nA-N\↔\→\˄\´\)\(\˅\⊕\-\⋂\⋃\+]+$')]);
+    this.expressionInput = this.formBuilder.control('', [Validators.required, Validators.pattern('^[a-zA-Z↔→˄´)(˅⊕⋂⋃+ -]+$')]);
   }
 
   ngOnInit(): void {
@@ -29,6 +33,7 @@ export class TruthTableComponent implements OnInit {
     );
     this._expressionInput.component.subscribe(
       (component: string) => {
+        this.currentComponent = component;
         this.refreshExpressionInput();
       }
     );
@@ -39,17 +44,22 @@ export class TruthTableComponent implements OnInit {
       case 'refresh':
         this.expressionInput.setValue('');
         break;
-        case 'backspace':
+      case 'backspace':
         this.expressionInput.setValue(this.expressionInput.value.slice(0, -1));
         break;
-        case 'solve':
-          if (this.expressionInput.valid) {
-            console.log('resolver: ', this.expressionInput.value);
-          }
-          break;
+      case 'solve':
+        if (this.expressionInput.valid) {
+          console.log('resolver: ', this.expressionInput.value);
+          this._parser.parseExpression(this.expressionInput.value.trim(), this.currentComponent);
+        }
+        break;
 
       default:
-        this.expressionInput.setValue(this.expressionInput.value + character);
+        this.expressionInput.setValue(
+          (this.expressionInput.value === '')
+            ? this.expressionInput.value + character
+            : this.expressionInput.value + ' ' + character
+        );
         break;
     }
   }

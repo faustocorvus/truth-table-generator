@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import {parse} from '../assets/js/truth-table-parser.js';
-//var parser = require('../assets/js/parser.js');
 
 @Component({
   selector: 'app-root',
@@ -12,11 +11,10 @@ export class AppComponent {
 
   prueba() {
     try {
-      let result = parse('p→(q´˄r˅p´)´');
+      let result = parse('B⊕(C-(C⋂F)´´)');
       console.log('result', result);
     } catch (error) {
       console.log('error', error.message);
     }
-    //console.log("prueba", parse('2+2/2^2').message ? 'mal' : 'bien');
   }
 }
