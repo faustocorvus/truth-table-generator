@@ -1,1 +1,30 @@
-<p>performed works!</p>
+
+<div class="container">
+
+  <cdk-virtual-scroll-viewport #scrollViewport itemSize="30" >
+    <table>
+      <thead>
+        <tr>
+          <th *ngFor="let variable of parsedExpression.variables.variables" [style.top]="inverseOfTranslation">
+            {{ variable }}
+          </th>
+          <th *ngFor="let expression of parsedExpression.expressions" [style.top]="inverseOfTranslation">
+            <span *ngIf="currentComponent==='booleanAlgebra'" style="color: #BF996B;">{{ expression.firstPart }}</span>
+            <span *ngIf="currentComponent==='mathematicalLogic'" style="color: #A68192;">{{ expression.firstPart }}</span>
+            <span *ngIf="currentComponent==='set'" style="color: #768C46;">{{ expression.firstPart }}</span>
+            <span >&#8194;{{ expression.operator}}&#8194;</span>
+            <span style="color: #595959;">{{ expression.secondPart }}</span>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *cdkVirtualFor="let row of rows">
+          <td style="text-align: center">{{row[0]}}</td>
+          <td style="text-align: center">{{row[1]}}</td>
+          <td style="text-align: center">{{row[2]}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </cdk-virtual-scroll-viewport>
+</div>
+

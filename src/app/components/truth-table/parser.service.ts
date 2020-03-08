@@ -14,9 +14,10 @@ export class ParserService {
     }
 
     try {
-      console.log(parse(expression));
+      return parse(expression);
     } catch (error) {
-      console.log(error.name);
+      console.log(error);
+      return {error: error};
     }
   }
 

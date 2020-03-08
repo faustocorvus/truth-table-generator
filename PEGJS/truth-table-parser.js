@@ -219,7 +219,7 @@ function peg$parse(input, options) {
                 secondPart: element[3]
                 };
               }
-              expressions.push(expressionResult);
+      checkBeforePushExpression(expressionResult);
               return {expressions,variables,...expressionResult};
             }, head);
           },
@@ -301,7 +301,7 @@ function peg$parse(input, options) {
                 secondPart: element[3]
                   };
                 }
-                expressions.push(expressionResult);
+      checkBeforePushExpression(expressionResult);
               return {expressions,variables,...expressionResult};
             }, head);
           },
@@ -421,7 +421,7 @@ function peg$parse(input, options) {
                 secondPart: element[3]
                 };
               }
-              expressions.push(expressionResult);
+      checkBeforePushExpression(expressionResult);
               return {expressions,variables,...expressionResult};
             }, head);
           },
@@ -511,7 +511,7 @@ function peg$parse(input, options) {
                 expression: result.expression + element[3].expression,
                 eval:result.eval +'&'+ element[3].eval,
                 firstPart: result.expression,
-                operator: element[1],
+                operator: "",
                 secondPart: element[3].expression
                 };
                 else
@@ -519,7 +519,7 @@ function peg$parse(input, options) {
                 expression: result + element[3].expression,
                 eval:result +'&'+ element[3].eval,
                 firstPart: result,
-                operator: element[1],
+                operator: "",
                 secondPart: element[3].expression
                 };
               }
@@ -529,7 +529,7 @@ function peg$parse(input, options) {
                 expression: result.expression + element[3],
                 eval:result.eval +'&'+ element[3],
                 firstPart: result.expression,
-                operator: element[1],
+                operator: "",
                 secondPart: element[3]
                 };
                 else
@@ -537,12 +537,11 @@ function peg$parse(input, options) {
                 expression: result + element[3],
                 eval:result +'&'+ element[3],
                 firstPart: result,
-                operator: element[1],
+                operator: "",
                 secondPart: element[3]
                 };
               }
-
-              expressions.push(expressionResult);
+      checkBeforePushExpression(expressionResult);
               return {expressions,variables,...expressionResult};
             }, head);
           },
@@ -568,7 +567,7 @@ function peg$parse(input, options) {
                 secondPart: ''
                 };
               }
-              expressions.push(expressionResult);
+              checkBeforePushExpression(expressionResult);
               return {expressions,variables,...expressionResult};
             }, head);
           },
@@ -589,7 +588,7 @@ function peg$parse(input, options) {
           if (!variables.variables.includes(text())){
           variables.variables.push(text());
           variables.dictionary[text()] = 0;
-          };
+          }
           return text();
         },
       peg$c36 = peg$otherExpectation("whitespace"),
@@ -1414,6 +1413,12 @@ function peg$parse(input, options) {
   	let expressions = [];
       let variables = {variables: [], dictionary: []};
       let expressionResult;
+
+      function checkBeforePushExpression(expressionResult) {
+      	if (!expressions.some(expression => expression.expression === expressionResult.expression)){
+            	expressions.push(expressionResult);
+            }
+      }
 
 
   peg$result = peg$startRuleFunction();

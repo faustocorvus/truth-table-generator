@@ -3,6 +3,12 @@
 	let expressions = [];
     let variables = {variables: [], dictionary: []};
     let expressionResult;
+
+    function checkBeforePushExpression(expressionResult) {
+    	if (!expressions.some(expression => expression.expression === expressionResult.expression)){
+          	expressions.push(expressionResult);
+          }
+    }
 }
 Expression
   = head:Conbi tail:(_ ("⊕" / "-") _ Conbi)* {
@@ -79,7 +85,7 @@ Expression
           secondPart: element[3]
           };
         }
-        expressions.push(expressionResult);
+checkBeforePushExpression(expressionResult);
         return {expressions,variables,...expressionResult};
       }, head);
     }
@@ -159,7 +165,7 @@ Conbi
           secondPart: element[3]
             };
           }
-          expressions.push(expressionResult);
+checkBeforePushExpression(expressionResult);
         return {expressions,variables,...expressionResult};
       }, head);
     }
@@ -275,7 +281,7 @@ Or
           secondPart: element[3]
           };
         }
-        expressions.push(expressionResult);
+checkBeforePushExpression(expressionResult);
         return {expressions,variables,...expressionResult};
       }, head);
     }
@@ -361,7 +367,7 @@ And
           expression: result.expression + element[3].expression,
           eval:result.eval +'&'+ element[3].eval,
           firstPart: result.expression,
-          operator: element[1],
+          operator: "",
           secondPart: element[3].expression
           };
           else
@@ -369,7 +375,7 @@ And
           expression: result + element[3].expression,
           eval:result +'&'+ element[3].eval,
           firstPart: result,
-          operator: element[1],
+          operator: "",
           secondPart: element[3].expression
           };
         }
@@ -379,7 +385,7 @@ And
           expression: result.expression + element[3],
           eval:result.eval +'&'+ element[3],
           firstPart: result.expression,
-          operator: element[1],
+          operator: "",
           secondPart: element[3]
           };
           else
@@ -387,12 +393,11 @@ And
           expression: result + element[3],
           eval:result +'&'+ element[3],
           firstPart: result,
-          operator: element[1],
+          operator: "",
           secondPart: element[3]
           };
         }
-
-        expressions.push(expressionResult);
+checkBeforePushExpression(expressionResult);
         return {expressions,variables,...expressionResult};
       }, head);
     }
@@ -418,7 +423,7 @@ Not
           secondPart: ''
           };
         }
-        expressions.push(expressionResult);
+        checkBeforePushExpression(expressionResult);
         return {expressions,variables,...expressionResult};
       }, head);
     }
@@ -436,7 +441,7 @@ Char "char"
     if (!variables.variables.includes(text())){
     variables.variables.push(text());
     variables.dictionary[text()] = 0;
-    };
+    }
     return text();
   }
 

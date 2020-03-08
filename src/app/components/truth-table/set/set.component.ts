@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { ExpressionInputService } from '../expression-input.service';
 
 @Component({
@@ -6,7 +6,7 @@ import { ExpressionInputService } from '../expression-input.service';
   templateUrl: './set.component.html',
   styleUrls: ['./set.component.scss']
 })
-export class SetComponent implements OnInit {
+export class SetComponent implements OnInit, AfterViewInit {
   /*
    mat-ripple*/
   centered: boolean = true;
@@ -19,6 +19,11 @@ export class SetComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+
+  }
+  ngAfterViewInit(): void {
+    //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
+    //Add 'implements AfterViewInit' to the class.
     this._expressionInput.updateComponent('set');
   }
 

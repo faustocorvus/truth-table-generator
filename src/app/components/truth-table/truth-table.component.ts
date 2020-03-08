@@ -1,10 +1,9 @@
-import { Component, OnInit, Output, EventEmitter, ViewChild, NgZone } from '@angular/core';
-import { MatSelectionListChange } from '@angular/material/list';
-import { CdkTextareaAutosize } from '@angular/cdk/text-field';
-import { take } from 'rxjs/operators';
+import { Component, OnInit, ViewChild, ViewContainerRef, ComponentFactoryResolver, ComponentRef } from '@angular/core';
 import { FormControl, FormBuilder, Validators } from '@angular/forms';
 import { ExpressionInputService } from './expression-input.service';
 import { ParserService } from './parser.service';
+import { PerformedComponent } from './performed/performed.component';
+import { startWith, tap, delay } from 'rxjs/operators';
 
 @Component({
   selector: 'app-truth-table',
@@ -16,13 +15,19 @@ export class TruthTableComponent implements OnInit {
   form control of expression input */
   expressionInput: FormControl;
   /* current component: boolean algebra, set or mathematical logic */
-  currentComponent: string;
+  currentComponent;
+
+  @ViewChild('truthTable', { read: ViewContainerRef }) truthTable: ViewContainerRef;
+  componentRef: ComponentRef<any>;
+
   constructor(
     private formBuilder: FormBuilder,
     private _expressionInput: ExpressionInputService,
     private _parser: ParserService,
+    private componentFactoryResolver: ComponentFactoryResolver,
   ) {
-    this.expressionInput = this.formBuilder.control('', [Validators.required, Validators.pattern('^[a-zA-Z↔→˄´)(˅⊕⋂⋃+ -]+$')]);
+    this.expressionInput = this.formBuilder.control('', [Validators.pattern('^[\na-zA-Z↔→˄´)(˅⊕⋂⋃+ -]+$')]);
+
   }
 
   ngOnInit(): void {
@@ -31,12 +36,28 @@ export class TruthTableComponent implements OnInit {
         this.addCharacterIntoExpressionInput(character);
       }
     );
-    this._expressionInput.component.subscribe(
+    this._expressionInput.component.pipe(delay(0)).subscribe(
       (component: string) => {
+        console.log('currentComponent: ', component)
         this.currentComponent = component;
         this.refreshExpressionInput();
       }
     );
+  }
+
+  getCurrentComponentExample() {
+    let currentExample = '';
+    switch (this.currentComponent) {
+      case 'booleanAlgebra':
+        currentExample = "A + B ( A B ) ´ A ´";
+        break;
+      case 'mathematicalLogic':
+        currentExample = "a ˅ b ˄ ( a → b ) ´ ↔ a ´";
+        break;
+      case 'set':
+        currentExample = "A ⋃ B ⋂ ( A - B ) ´ ⊕ A ´";
+    }
+    return currentExample;
   }
   addCharacterIntoExpressionInput(character: string) {
     console.log(this.expressionInput);
@@ -49,8 +70,8 @@ export class TruthTableComponent implements OnInit {
         break;
       case 'solve':
         if (this.expressionInput.valid) {
-          console.log('resolver: ', this.expressionInput.value);
-          this._parser.parseExpression(this.expressionInput.value.trim(), this.currentComponent);
+          let parsed = this._parser.parseExpression(this.expressionInput.value.trim(), this.currentComponent);
+          this.checkParsedResult(parsed);
         }
         break;
 
@@ -63,7 +84,25 @@ export class TruthTableComponent implements OnInit {
         break;
     }
   }
+
+  checkParsedResult(parsedExpression: any) {
+    if (parsedExpression.error) {
+      this.expressionInput.setErrors({ syntaxError: true });
+    } else {
+      this.addTruthTable(parsedExpression);
+    }
+  }
+
   refreshExpressionInput() {
     this.expressionInput.setValue('');
   }
+
+  addTruthTable(parsedExpression: any) {
+    //this.truthTable.clear();
+    let childComponent = this.componentFactoryResolver.resolveComponentFactory(PerformedComponent);
+    this.componentRef = this.truthTable.createComponent(childComponent, 0);
+    this.componentRef.instance.parsedExpression = parsedExpression;
+    this.componentRef.instance.currentComponent = this.currentComponent;
+  }
+
 }

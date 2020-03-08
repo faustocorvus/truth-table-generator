@@ -15,6 +15,7 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
 
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { ReactiveFormsModule } from '@angular/forms';
+import {ScrollingModule} from '@angular/cdk/scrolling';
 
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
@@ -25,6 +26,12 @@ import {MatInputModule} from '@angular/material/input';
 import { PerformedComponent } from './components/truth-table/performed/performed.component';
 import {MatButtonModule} from '@angular/material/button';
 import {MatRippleModule} from '@angular/material/core';
+import {MatTableModule} from '@angular/material/table';
+import {MatSidenavModule} from '@angular/material/sidenav';
+
+import { ParserService } from './components/truth-table/parser.service';
+import { SolveTruthTableService } from './components/truth-table/solve-truth-table.service';
+import { ExpressionInputService } from './components/truth-table/expression-input.service';
 
 @NgModule({
   declarations: [
@@ -45,6 +52,7 @@ import {MatRippleModule} from '@angular/material/core';
     BrowserAnimationsModule,
     FlexLayoutModule,
     ReactiveFormsModule,
+    ScrollingModule,
     MatToolbarModule,
     MatIconModule,
     MatListModule,
@@ -53,8 +61,17 @@ import {MatRippleModule} from '@angular/material/core';
     MatInputModule,
     MatButtonModule,
     MatRippleModule,
+    MatTableModule,
+    MatSidenavModule,
   ],
-  providers: [],
+  providers: [
+    ParserService,
+    SolveTruthTableService,
+    ExpressionInputService
+  ],
+  entryComponents: [
+    PerformedComponent
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
