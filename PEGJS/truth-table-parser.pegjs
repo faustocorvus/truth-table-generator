@@ -25,7 +25,7 @@ Expression
           else
           expressionResult = {
           expression: result+'⊕'+element[3].expression,
-          eval:result +'^'+ element[3].eval,
+          eval:'dictionary["'+result+'"]' +'^'+ element[3].eval,
           firstPart: result,
           operator: element[1],
           secondPart: element[3].expression
@@ -35,7 +35,7 @@ Expression
           if (result.expression)
           expressionResult = {
           expression: result.expression+'⊕'+element[3],
-          eval:result.eval +'^'+ element[3],
+          eval:result.eval +'^'+ 'dictionary["'+element[3]+'"]',
           firstPart: result.expression,
           operator: element[1],
           secondPart: element[3]
@@ -43,7 +43,7 @@ Expression
           else
           expressionResult = {
           expression: result+'⊕'+element[3],
-          eval:result +'^'+ element[3],
+          eval:'dictionary["'+result+'"]' +'^'+ 'dictionary["'+element[3]+'"]',
           firstPart: result,
           operator: element[1],
           secondPart: element[3]
@@ -61,7 +61,7 @@ Expression
           else
           expressionResult = {
           expression: result+'-'+element[3].expression,
-          eval:'diferencia('+result +','+ element[3].eval+')',
+          eval:'diferencia('+'dictionary["'+result+'"]' +','+ element[3].eval+')',
           firstPart: result,
           operator: element[1],
           secondPart: element[3].expression
@@ -71,7 +71,7 @@ Expression
           if (result.expression)
           expressionResult = {
           expression: result.expression+'-'+element[3],
-          eval:'diferencia('+result.eval +','+ element[3]+')',
+          eval:'diferencia('+result.eval +','+ 'dictionary["'+element[3]+'"]'+')',
           firstPart: result.expression,
           operator: element[1],
           secondPart: element[3]
@@ -79,7 +79,7 @@ Expression
           else
           expressionResult = {
           expression: result+'-'+element[3],
-          eval:'diferencia('+result +','+ element[3]+')',
+          eval:'diferencia('+'dictionary["'+result+'"]' +','+ 'dictionary["'+element[3]+'"]'+')',
           firstPart: result,
           operator: element[1],
           secondPart: element[3]
@@ -105,7 +105,7 @@ Conbi
             else
             expressionResult = {
             expression: result+'↔'+element[3].expression,
-            eval:'bicondicional('+result +','+ element[3].eval+')',
+            eval:'bicondicional('+'dictionary["'+result+'"]' +','+ element[3].eval+')',
           firstPart: result,
           operator: element[1],
           secondPart: element[3].expression
@@ -115,7 +115,7 @@ Conbi
             if (result.expression)
             expressionResult = {
             expression: result.expression+'↔'+element[3],
-            eval:'bicondicional('+result.eval +','+ element[3]+')',
+            eval:'bicondicional('+result.eval +','+ 'dictionary["'+element[3]+'"]'+')',
           firstPart: result.expression,
           operator: element[1],
           secondPart: element[3]
@@ -123,7 +123,7 @@ Conbi
             else
             expressionResult = {
             expression: result+'↔'+element[3],
-            eval:'bicondicional('+result +','+ element[3]+')',
+            eval:'bicondicional('+'dictionary["'+result+'"]' +','+ 'dictionary["'+element[3]+'"]'+')',
           firstPart: result,
           operator: element[1],
           secondPart: element[3]
@@ -141,7 +141,7 @@ Conbi
             else
             expressionResult = {
             expression: result+'→'+element[3].expression,
-            eval:'condicional('+result +','+ element[3].eval+')',
+            eval:'condicional('+'dictionary["'+result+'"]' +','+ element[3].eval+')',
           firstPart: result,
           operator: element[1],
           secondPart: element[3].expression
@@ -151,7 +151,7 @@ Conbi
             if (result.expression)
             expressionResult = {
             expression: result.expression+'→'+element[3],
-            eval:'condicional('+result.eval +','+ element[3]+')',
+            eval:'condicional('+result.eval +','+ 'dictionary["'+element[3]+'"]'+')',
           firstPart: result.expression,
           operator: element[1],
           secondPart: element[3]
@@ -159,7 +159,7 @@ Conbi
             else
             expressionResult = {
             expression: result+'→'+element[3],
-            eval:'condicional('+result +','+ element[3]+')',
+            eval:'condicional('+'dictionary["'+result+'"]' +','+ 'dictionary["'+element[3]+'"]'+')',
           firstPart: result,
           operator: element[1],
           secondPart: element[3]
@@ -185,7 +185,7 @@ Or
           else
           expressionResult = {
           expression: result +'˅'+ element[3].expression,
-          eval:result +'|'+ element[3].eval,
+          eval:'dictionary["'+result+'"]' +'|'+ element[3].eval,
           firstPart: result,
           operator: element[1],
           secondPart: element[3].expression
@@ -195,7 +195,7 @@ Or
           if (result.expression)
           expressionResult = {
           expression: result.expression +'˅'+ element[3],
-          eval:result.eval +'|'+ element[3],
+          eval:result.eval +'|'+ 'dictionary["'+element[3]+'"]',
           firstPart: result.expression,
           operator: element[1],
           secondPart: element[3]
@@ -203,7 +203,7 @@ Or
           else
           expressionResult = {
           expression: result +'˅'+ element[3],
-          eval:result +'|'+ element[3],
+          eval:'dictionary["'+result+'"]' +'|'+ 'dictionary["'+element[3]+'"]',
           firstPart: result,
           operator: element[1],
           secondPart: element[3]
@@ -221,7 +221,7 @@ Or
           else
           expressionResult = {
           expression: result +'⋃'+ element[3].expression,
-          eval:result +'|'+ element[3].eval,
+          eval:'dictionary["'+result+'"]' +'|'+ element[3].eval,
           firstPart: result,
           operator: element[1],
           secondPart: element[3].expression
@@ -231,7 +231,7 @@ Or
           if (result.expression)
           expressionResult = {
           expression: result.expression +'⋃'+ element[3],
-          eval:result.eval +'|'+ element[3],
+          eval:result.eval +'|'+ 'dictionary["'+element[3]+'"]',
           firstPart: result.expression,
           operator: element[1],
           secondPart: element[3]
@@ -239,7 +239,7 @@ Or
           else
           expressionResult = {
           expression: result +'⋃'+ element[3],
-          eval:result +'|'+ element[3],
+          eval:'dictionary["'+result+'"]' +'|'+ 'dictionary["'+element[3]+'"]',
           firstPart: result,
           operator: element[1],
           secondPart: element[3]
@@ -257,7 +257,7 @@ Or
           else
           expressionResult = {
           expression: result +'+'+ element[3].expression,
-          eval:result +'|'+ element[3].eval,
+          eval:'dictionary["'+result+'"]' +'|'+ element[3].eval,
           firstPart: result,
           operator: element[1],
           secondPart: element[3].expression
@@ -267,7 +267,7 @@ Or
           if (result.expression)
           expressionResult = {
           expression: result.expression +'+'+ element[3],
-          eval:result.eval +'|'+ element[3],
+          eval:result.eval +'|'+ 'dictionary["'+element[3]+'"]',
           firstPart: result.expression,
           operator: element[1],
           secondPart: element[3]
@@ -275,7 +275,7 @@ Or
           else
           expressionResult = {
           expression: result +'+'+ element[3],
-          eval:result +'|'+ element[3],
+          eval:'dictionary["'+result+'"]' +'|'+ 'dictionary["'+element[3]+'"]',
           firstPart: result,
           operator: element[1],
           secondPart: element[3]
@@ -301,7 +301,7 @@ And
           else
           expressionResult = {
           expression: result +'˄'+ element[3].expression,
-          eval:result +'&'+ element[3].eval,
+          eval:'dictionary["'+result+'"]' +'&'+ element[3].eval,
           firstPart: result,
           operator: element[1],
           secondPart: element[3].expression
@@ -311,7 +311,7 @@ And
           if (result.expression)
           expressionResult = {
           expression: result.expression +'˄'+ element[3],
-          eval:result.eval +'&'+ element[3],
+          eval:result.eval +'&'+ 'dictionary["'+element[3]+'"]',
           firstPart: result.expression,
           operator: element[1],
           secondPart: element[3]
@@ -319,7 +319,7 @@ And
           else
           expressionResult = {
           expression: result +'˄'+ element[3],
-          eval:result +'&'+ element[3],
+          eval:'dictionary["'+result+'"]' +'&'+ 'dictionary["'+element[3]+'"]',
           firstPart: result,
           operator: element[1],
           secondPart: element[3]
@@ -337,7 +337,7 @@ And
           else
           expressionResult = {
           expression: result +'⋂'+ element[3].expression,
-          eval:result +'&'+ element[3].eval,
+          eval:'dictionary["'+result+'"]' +'&'+ element[3].eval,
           firstPart: result,
           operator: element[1],
           secondPart: element[3].expression
@@ -347,7 +347,7 @@ And
           if (result.expression)
           expressionResult = {
           expression: result.expression +'⋂'+ element[3],
-          eval:result.eval +'&'+ element[3],
+          eval:result.eval +'&'+ 'dictionary["'+element[3]+'"]',
           firstPart: result.expression,
           operator: element[1],
           secondPart: element[3]
@@ -355,7 +355,7 @@ And
           else
           expressionResult = {
           expression: result +'⋂'+ element[3],
-          eval:result +'&'+ element[3],
+          eval:'dictionary["'+result+'"]' +'&'+ 'dictionary["'+element[3]+'"]',
           firstPart: result,
           operator: element[1],
           secondPart: element[3]
@@ -373,7 +373,7 @@ And
           else
           expressionResult = {
           expression: result + element[3].expression,
-          eval:result +'&'+ element[3].eval,
+          eval:'dictionary["'+result+'"]' +'&'+ element[3].eval,
           firstPart: result,
           operator: "",
           secondPart: element[3].expression
@@ -383,7 +383,7 @@ And
           if (result.expression)
           expressionResult = {
           expression: result.expression + element[3],
-          eval:result.eval +'&'+ element[3],
+          eval:result.eval +'&'+ 'dictionary["'+element[3]+'"]',
           firstPart: result.expression,
           operator: "",
           secondPart: element[3]
@@ -391,7 +391,7 @@ And
           else
           expressionResult = {
           expression: result + element[3],
-          eval:result +'&'+ element[3],
+          eval:'dictionary["'+result+'"]' +'&'+ 'dictionary["'+element[3]+'"]',
           firstPart: result,
           operator: "",
           secondPart: element[3]
@@ -417,7 +417,7 @@ Not
           else
           expressionResult = {
           expression: result +'´',
-          eval:'not('+result +')',
+          eval:'not('+'dictionary["'+result+'"]'+')',
           firstPart: result,
           operator: element[1],
           secondPart: ''
@@ -429,10 +429,12 @@ Not
     }
 Factor
   = "(" _ expr:Expression _ ")" {
-  if (expr.expression)
-  	return {expression: '('+expr.expression+')', eval: '('+expr.eval+')'};
-  else
-  	return {expression: '('+expr+')', eval: '('+expr+')'};
+    if (expr.expression){
+    	expressionResult = {expression: '('+expr.expression+')', eval: '('+expr.eval+')'};
+    } else {
+    	expressionResult = {expression: '('+expr+')', eval: '(dictionary["'+expr+'"])'};
+    }
+    return {expressions,variables,...expressionResult};
   }
   / Char
 

@@ -1,73 +1,4 @@
-<!-- <div fxFlex="100%" fxLayout="row">
-  <div class="container-left" fxFlex="20%" fxLayoutAlign="end">
-    <div fxLayout="column" fxLayoutAlign="space-between">
-      <mat-action-list>
-        <h3 mat-subheader>Truth Table Generator</h3>
-        <mat-divider></mat-divider>
-        <mat-list-item routerLink="/truth-table-generator/boolean-algebra">
-          <mat-icon mat-list-icon>keyboard</mat-icon>
-          <h4 mat-line>Boolean Algebra</h4>
-          <p mat-line>A + B</p>
-        </mat-list-item>
-        <mat-list-item routerLink="/truth-table-generator/mathematical-logic">
-          <mat-icon mat-list-icon>keyboard</mat-icon>
-          <h4 mat-line>Mathematical Logic</h4>
-          <p mat-line>a ˅ b</p>
-        </mat-list-item>
-        <mat-list-item routerLink="/truth-table-generator/set">
-          <mat-icon mat-list-icon>keyboard</mat-icon>
-          <h4 mat-line>Set</h4>
-          <p mat-line>A ⋃ B</p>
-        </mat-list-item>
-        <mat-divider></mat-divider>
-        <mat-list-item routerLink="/home">
-          <mat-icon mat-list-icon>home</mat-icon>
-          <h4 mat-line>HOME</h4>
-          <p mat-line>Return to home page</p>
-        </mat-list-item>
-      </mat-action-list>
-      <div>
-        <mat-divider></mat-divider>
-        <p>
-          Developed by Fausto Gregorio <br />
-          fausto.g03@gmail.com
-        </p>
-      </div>
-    </div>
-  </div>
-  <div
-    id="container-right"
-    fxFlex="80%"
-    fxLayout="row wrap"
-    fxLayoutAlign="center center"
-  >
-    <mat-form-field
-      appearance="outline"
-      floatLabel="always"
-      [style.fontSize.px]="30"
-      fxFlex="100%"
-    >
-      <mat-label>EXPRESSION</mat-label>
-      <textarea
-        matInput
-        [formControl]="expressionInput"
-        cdkTextareaAutosize
-        cdkAutosizeMinRows="1"
-        cdkAutosizeMaxRows="10"
-        autofocus
-      ></textarea>
-      <mat-hint>Example: {{ checkCurrentComponent() }} </mat-hint>
-      <mat-error *ngIf="expressionInput.hasError('pattern')">
-        Please enter a valid character
-      </mat-error>
-      <mat-error *ngIf="expressionInput.hasError('syntaxError')">
-        Please enter a valid expression
-      </mat-error>
-    </mat-form-field>
-    <router-outlet></router-outlet>
-    <div fxFlex="100%" #truthTable></div>
-  </div>
-</div> -->
+
 <mat-drawer-container class="container">
   <mat-drawer mode="side" opened>
     <div style="height: 100%;" fxLayout="column" fxLayoutAlign="space-between">
@@ -116,7 +47,8 @@
       appearance="outline"
       floatLabel="always"
       [style.fontSize.px]="30"
-      fxFlex="100%"
+      fxFlex="80%"
+      style="text-align: center;"
     >
       <mat-label>EXPRESSION</mat-label>
       <textarea

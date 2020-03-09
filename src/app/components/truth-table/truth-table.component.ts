@@ -63,7 +63,7 @@ export class TruthTableComponent implements OnInit {
     console.log(this.expressionInput);
     switch (character) {
       case 'refresh':
-        this.expressionInput.setValue('');
+        this.refreshExpressionInput();
         break;
       case 'backspace':
         this.expressionInput.setValue(this.expressionInput.value.slice(0, -1));
@@ -99,10 +99,14 @@ export class TruthTableComponent implements OnInit {
 
   addTruthTable(parsedExpression: any) {
     //this.truthTable.clear();
-    let childComponent = this.componentFactoryResolver.resolveComponentFactory(PerformedComponent);
-    this.componentRef = this.truthTable.createComponent(childComponent, 0);
-    this.componentRef.instance.parsedExpression = parsedExpression;
-    this.componentRef.instance.currentComponent = this.currentComponent;
+    if (parsedExpression.variables) {
+      this.refreshExpressionInput();
+      let childComponent = this.componentFactoryResolver.resolveComponentFactory(PerformedComponent);
+      this.componentRef = this.truthTable.createComponent(childComponent, 0);
+      this.componentRef.instance.parsedExpression = parsedExpression;
+      this.componentRef.instance.currentComponent = this.currentComponent;
+    }
+
   }
 
 }

@@ -1,8 +1,8 @@
 
 .container {
-  height: 360px;
+  height: 0px;
   width: calc(80vw - 40px);
-  padding: 20px;
+  padding: 0px 20px 0px 20px;
 
   cdk-virtual-scroll-viewport {
     height: 100%;
