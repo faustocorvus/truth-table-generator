@@ -143,129 +143,459 @@ function peg$parse(input, options) {
 
       peg$c0 = "\u2295",
       peg$c1 = peg$literalExpectation("\u2295", false),
-      peg$c2 = function(head, tail) {
+      peg$c2 = "-",
+      peg$c3 = peg$literalExpectation("-", false),
+      peg$c4 = function(head, tail) {
             return tail.reduce(function(result, element) {
             	if (element[3].expression && element[1] === "⊕" ) {
                 if (result.expression)
-                expressionResult = {expression: result.expression+'⊕'+element[3].expression, eval:'xor('+result.eval +','+ element[3].eval+')'}; 
+                expressionResult = {
+                expression: result.expression+'⊕'+element[3].expression,
+                eval:result.eval +'^'+ element[3].eval,
+                firstPart: result.expression,
+                operator: element[1],
+                secondPart: element[3].expression
+                };
                 else
-                expressionResult = {expression: result+'⊕'+element[3].expression, eval:'xor('+result +','+ element[3].eval+')'};
+                expressionResult = {
+                expression: result+'⊕'+element[3].expression,
+                eval:'dictionary["'+result+'"]' +'^'+ element[3].eval,
+                firstPart: result,
+                operator: element[1],
+                secondPart: element[3].expression
+                };
               }
               else if (element[1] === "⊕") {
                 if (result.expression)
-                expressionResult = {expression: result.expression+'⊕'+element[3], eval:'xor('+result.eval +','+ element[3]+')'}; 
+                expressionResult = {
+                expression: result.expression+'⊕'+element[3],
+                eval:result.eval +'^'+ 'dictionary["'+element[3]+'"]',
+                firstPart: result.expression,
+                operator: element[1],
+                secondPart: element[3]
+                };
                 else
-                expressionResult = {expression: result+'⊕'+element[3], eval:'xor('+result +','+ element[3]+')'};
+                expressionResult = {
+                expression: result+'⊕'+element[3],
+                eval:'dictionary["'+result+'"]' +'^'+ 'dictionary["'+element[3]+'"]',
+                firstPart: result,
+                operator: element[1],
+                secondPart: element[3]
+                };
               }
-              expressions.push(expressionResult);
-              return {expressions,...expressionResult};
+              else if (element[3].expression && element[1] === "-" ) {
+                if (result.expression)
+                expressionResult = {
+                expression: result.expression+'-'+element[3].expression,
+                eval:'diferencia('+result.eval +','+ element[3].eval+')',
+                firstPart: result.expression,
+                operator: element[1],
+                secondPart: element[3].expression
+                };
+                else
+                expressionResult = {
+                expression: result+'-'+element[3].expression,
+                eval:'diferencia('+'dictionary["'+result+'"]' +','+ element[3].eval+')',
+                firstPart: result,
+                operator: element[1],
+                secondPart: element[3].expression
+                };
+              }
+              else if (element[1] === "-") {
+                if (result.expression)
+                expressionResult = {
+                expression: result.expression+'-'+element[3],
+                eval:'diferencia('+result.eval +','+ 'dictionary["'+element[3]+'"]'+')',
+                firstPart: result.expression,
+                operator: element[1],
+                secondPart: element[3]
+                };
+                else
+                expressionResult = {
+                expression: result+'-'+element[3],
+                eval:'diferencia('+'dictionary["'+result+'"]' +','+ 'dictionary["'+element[3]+'"]'+')',
+                firstPart: result,
+                operator: element[1],
+                secondPart: element[3]
+                };
+              }
+      checkBeforePushExpression(expressionResult);
+              return {expressions,variables,...expressionResult};
             }, head);
           },
-      peg$c3 = "\u2194",
-      peg$c4 = peg$literalExpectation("\u2194", false),
-      peg$c5 = "\u2192",
-      peg$c6 = peg$literalExpectation("\u2192", false),
-      peg$c7 = function(head, tail) {
+      peg$c5 = "\u2194",
+      peg$c6 = peg$literalExpectation("\u2194", false),
+      peg$c7 = "\u2192",
+      peg$c8 = peg$literalExpectation("\u2192", false),
+      peg$c9 = function(head, tail) {
             return tail.reduce(function(result, element) {
               if (element[3].expression && element[1] === "↔" ) {
                   if (result.expression)
-                  expressionResult = {expression: result.expression+'↔'+element[3].expression, eval:'bicondicional('+result.eval +','+ element[3].eval+')'}; 
+                  expressionResult = {
+                  expression: result.expression+'↔'+element[3].expression,
+                  eval:'bicondicional('+result.eval +','+ element[3].eval+')',
+                firstPart: result.expression,
+                operator: element[1],
+                secondPart: element[3].expression
+                };
                   else
-                  expressionResult = {expression: result+'↔'+element[3].expression, eval:'bicondicional('+result +','+ element[3].eval+')'};
+                  expressionResult = {
+                  expression: result+'↔'+element[3].expression,
+                  eval:'bicondicional('+'dictionary["'+result+'"]' +','+ element[3].eval+')',
+                firstPart: result,
+                operator: element[1],
+                secondPart: element[3].expression
+                  };
                 }
                 else if (element[1] === "↔") {
                   if (result.expression)
-                  expressionResult = {expression: result.expression+'↔'+element[3], eval:'bicondicional('+result.eval +','+ element[3]+')'}; 
+                  expressionResult = {
+                  expression: result.expression+'↔'+element[3],
+                  eval:'bicondicional('+result.eval +','+ 'dictionary["'+element[3]+'"]'+')',
+                firstPart: result.expression,
+                operator: element[1],
+                secondPart: element[3]
+                  };
                   else
-                  expressionResult = {expression: result+'↔'+element[3], eval:'bicondicional('+result +','+ element[3]+')'};
+                  expressionResult = {
+                  expression: result+'↔'+element[3],
+                  eval:'bicondicional('+'dictionary["'+result+'"]' +','+ 'dictionary["'+element[3]+'"]'+')',
+                firstPart: result,
+                operator: element[1],
+                secondPart: element[3]
+                  };
                 }
                 else if (element[3].expression && element[1] === "→" ) {
                   if (result.expression)
-                  expressionResult = {expression: result.expression+'→'+element[3].expression, eval:'condicional('+result.eval +','+ element[3].eval+')'}; 
+                  expressionResult = {
+                  expression: result.expression+'→'+element[3].expression,
+                  eval:'condicional('+result.eval +','+ element[3].eval+')',
+                firstPart: result.expression,
+                operator: element[1],
+                secondPart: element[3].expression
+                };
                   else
-                  expressionResult = {expression: result+'→'+element[3].expression, eval:'condicional('+result +','+ element[3].eval+')'};
+                  expressionResult = {
+                  expression: result+'→'+element[3].expression,
+                  eval:'condicional('+'dictionary["'+result+'"]' +','+ element[3].eval+')',
+                firstPart: result,
+                operator: element[1],
+                secondPart: element[3].expression
+                  };
                 }
                 else if (element[1] === "→") {
                   if (result.expression)
-                  expressionResult = {expression: result.expression+'→'+element[3], eval:'condicional('+result.eval +','+ element[3]+')'}; 
+                  expressionResult = {
+                  expression: result.expression+'→'+element[3],
+                  eval:'condicional('+result.eval +','+ 'dictionary["'+element[3]+'"]'+')',
+                firstPart: result.expression,
+                operator: element[1],
+                secondPart: element[3]
+                  };
                   else
-                  expressionResult = {expression: result+'→'+element[3], eval:'condicional('+result +','+ element[3]+')'};
+                  expressionResult = {
+                  expression: result+'→'+element[3],
+                  eval:'condicional('+'dictionary["'+result+'"]' +','+ 'dictionary["'+element[3]+'"]'+')',
+                firstPart: result,
+                operator: element[1],
+                secondPart: element[3]
+                  };
                 }
-                expressions.push(expressionResult);
-              return {expressions,...expressionResult};
+      checkBeforePushExpression(expressionResult);
+              return {expressions,variables,...expressionResult};
             }, head);
           },
-      peg$c8 = "\u02C5",
-      peg$c9 = peg$literalExpectation("\u02C5", false),
-      peg$c10 = function(head, tail) {
+      peg$c10 = "\u02C5",
+      peg$c11 = peg$literalExpectation("\u02C5", false),
+      peg$c12 = "\u22C3",
+      peg$c13 = peg$literalExpectation("\u22C3", false),
+      peg$c14 = "+",
+      peg$c15 = peg$literalExpectation("+", false),
+      peg$c16 = function(head, tail) {
             return tail.reduce(function(result, element) {
             if (element[3].expression && element[1] === "˅" ) {
                 if (result.expression)
-                expressionResult = {expression: result.expression +'˅'+ element[3].expression, eval:result.eval +'+'+ element[3].eval};
+                expressionResult = {
+                expression: result.expression +'˅'+ element[3].expression,
+                eval:result.eval +'|'+ element[3].eval,
+                firstPart: result.expression,
+                operator: element[1],
+                secondPart: element[3].expression
+                };
                 else
-                expressionResult = {expression: result +'˅'+ element[3].expression, eval:result +'+'+ element[3].eval}
+                expressionResult = {
+                expression: result +'˅'+ element[3].expression,
+                eval:'dictionary["'+result+'"]' +'|'+ element[3].eval,
+                firstPart: result,
+                operator: element[1],
+                secondPart: element[3].expression
+                };
               }
               else if (element[1] === "˅") {
                 if (result.expression)
-                expressionResult = {expression: result.expression +'˅'+ element[3], eval:result.eval +'+'+ element[3]}
+                expressionResult = {
+                expression: result.expression +'˅'+ element[3],
+                eval:result.eval +'|'+ 'dictionary["'+element[3]+'"]',
+                firstPart: result.expression,
+                operator: element[1],
+                secondPart: element[3]
+                };
                 else
-                expressionResult = {expression: result +'˅'+ element[3], eval:result +'+'+ element[3]}
+                expressionResult = {
+                expression: result +'˅'+ element[3],
+                eval:'dictionary["'+result+'"]' +'|'+ 'dictionary["'+element[3]+'"]',
+                firstPart: result,
+                operator: element[1],
+                secondPart: element[3]
+                };
               }
-              expressions.push(expressionResult);
-              return {expressions,...expressionResult};
+              else if (element[3].expression && element[1] === "⋃" ) {
+                if (result.expression)
+                expressionResult = {
+                expression: result.expression +'⋃'+ element[3].expression,
+                eval:result.eval +'|'+ element[3].eval,
+                firstPart: result.expression,
+                operator: element[1],
+                secondPart: element[3].expression
+                };
+                else
+                expressionResult = {
+                expression: result +'⋃'+ element[3].expression,
+                eval:'dictionary["'+result+'"]' +'|'+ element[3].eval,
+                firstPart: result,
+                operator: element[1],
+                secondPart: element[3].expression
+                };
+              }
+              else if (element[1] === "⋃") {
+                if (result.expression)
+                expressionResult = {
+                expression: result.expression +'⋃'+ element[3],
+                eval:result.eval +'|'+ 'dictionary["'+element[3]+'"]',
+                firstPart: result.expression,
+                operator: element[1],
+                secondPart: element[3]
+                };
+                else
+                expressionResult = {
+                expression: result +'⋃'+ element[3],
+                eval:'dictionary["'+result+'"]' +'|'+ 'dictionary["'+element[3]+'"]',
+                firstPart: result,
+                operator: element[1],
+                secondPart: element[3]
+                };
+              }
+              else if (element[3].expression && element[1] === "+" ) {
+                if (result.expression)
+                expressionResult = {
+                expression: result.expression +'+'+ element[3].expression,
+                eval:result.eval +'|'+ element[3].eval,
+                firstPart: result.expression,
+                operator: element[1],
+                secondPart: element[3].expression
+                };
+                else
+                expressionResult = {
+                expression: result +'+'+ element[3].expression,
+                eval:'dictionary["'+result+'"]' +'|'+ element[3].eval,
+                firstPart: result,
+                operator: element[1],
+                secondPart: element[3].expression
+                };
+              }
+              else if (element[1] === "+") {
+                if (result.expression)
+                expressionResult = {
+                expression: result.expression +'+'+ element[3],
+                eval:result.eval +'|'+ 'dictionary["'+element[3]+'"]',
+                firstPart: result.expression,
+                operator: element[1],
+                secondPart: element[3]
+                };
+                else
+                expressionResult = {
+                expression: result +'+'+ element[3],
+                eval:'dictionary["'+result+'"]' +'|'+ 'dictionary["'+element[3]+'"]',
+                firstPart: result,
+                operator: element[1],
+                secondPart: element[3]
+                };
+              }
+      checkBeforePushExpression(expressionResult);
+              return {expressions,variables,...expressionResult};
             }, head);
           },
-      peg$c11 = "\u02C4",
-      peg$c12 = peg$literalExpectation("\u02C4", false),
-      peg$c13 = function(head, tail) {
+      peg$c17 = "\u02C4",
+      peg$c18 = peg$literalExpectation("\u02C4", false),
+      peg$c19 = "\u22C2",
+      peg$c20 = peg$literalExpectation("\u22C2", false),
+      peg$c21 = "*",
+      peg$c22 = peg$literalExpectation("*", false),
+      peg$c23 = function(head, tail) {
             return tail.reduce(function(result, element) {
             if (element[3].expression && element[1] === "˄" ) {
                 if (result.expression)
-                expressionResult = {expression: result.expression +'˄'+ element[3].expression, eval:result.eval +'*'+ element[3].eval};
+                expressionResult = {
+                expression: result.expression +'˄'+ element[3].expression,
+                eval:result.eval +'&'+ element[3].eval,
+                firstPart: result.expression,
+                operator: element[1],
+                secondPart: element[3].expression
+                };
                 else
-                expressionResult = {expression: result +'˄'+ element[3].expression, eval:result +'*'+ element[3].eval}
+                expressionResult = {
+                expression: result +'˄'+ element[3].expression,
+                eval:'dictionary["'+result+'"]' +'&'+ element[3].eval,
+                firstPart: result,
+                operator: element[1],
+                secondPart: element[3].expression
+                };
               }
               else if (element[1] === "˄") {
                 if (result.expression)
-                expressionResult = {expression: result.expression +'˄'+ element[3], eval:result.eval +'*'+ element[3]}
+                expressionResult = {
+                expression: result.expression +'˄'+ element[3],
+                eval:result.eval +'&'+ 'dictionary["'+element[3]+'"]',
+                firstPart: result.expression,
+                operator: element[1],
+                secondPart: element[3]
+                };
                 else
-                expressionResult = {expression: result +'˄'+ element[3], eval:result +'*'+ element[3]}
+                expressionResult = {
+                expression: result +'˄'+ element[3],
+                eval:'dictionary["'+result+'"]' +'&'+ 'dictionary["'+element[3]+'"]',
+                firstPart: result,
+                operator: element[1],
+                secondPart: element[3]
+                };
               }
-              expressions.push(expressionResult);
-              return {expressions,...expressionResult};
+              else if (element[3].expression && element[1] === "⋂" ) {
+                if (result.expression)
+                expressionResult = {
+                expression: result.expression +'⋂'+ element[3].expression,
+                eval:result.eval +'&'+ element[3].eval,
+                firstPart: result.expression,
+                operator: element[1],
+                secondPart: element[3].expression
+                };
+                else
+                expressionResult = {
+                expression: result +'⋂'+ element[3].expression,
+                eval:'dictionary["'+result+'"]' +'&'+ element[3].eval,
+                firstPart: result,
+                operator: element[1],
+                secondPart: element[3].expression
+                };
+              }
+              else if (element[1] === "⋂") {
+                if (result.expression)
+                expressionResult = {
+                expression: result.expression +'⋂'+ element[3],
+                eval:result.eval +'&'+ 'dictionary["'+element[3]+'"]',
+                firstPart: result.expression,
+                operator: element[1],
+                secondPart: element[3]
+                };
+                else
+                expressionResult = {
+                expression: result +'⋂'+ element[3],
+                eval:'dictionary["'+result+'"]' +'&'+ 'dictionary["'+element[3]+'"]',
+                firstPart: result,
+                operator: element[1],
+                secondPart: element[3]
+                };
+              }
+              else if (element[3].expression && element[1] === "*" ) {
+                if (result.expression)
+                expressionResult = {
+                expression: result.expression + element[3].expression,
+                eval:result.eval +'&'+ element[3].eval,
+                firstPart: result.expression,
+                operator: "",
+                secondPart: element[3].expression
+                };
+                else
+                expressionResult = {
+                expression: result + element[3].expression,
+                eval:'dictionary["'+result+'"]' +'&'+ element[3].eval,
+                firstPart: result,
+                operator: "",
+                secondPart: element[3].expression
+                };
+              }
+              else if (element[1] === "*") {
+                if (result.expression)
+                expressionResult = {
+                expression: result.expression + element[3],
+                eval:result.eval +'&'+ 'dictionary["'+element[3]+'"]',
+                firstPart: result.expression,
+                operator: "",
+                secondPart: element[3]
+                };
+                else
+                expressionResult = {
+                expression: result + element[3],
+                eval:'dictionary["'+result+'"]' +'&'+ 'dictionary["'+element[3]+'"]',
+                firstPart: result,
+                operator: "",
+                secondPart: element[3]
+                };
+              }
+      checkBeforePushExpression(expressionResult);
+              return {expressions,variables,...expressionResult};
             }, head);
           },
-      peg$c14 = "\xB4",
-      peg$c15 = peg$literalExpectation("\xB4", false),
-      peg$c16 = function(head, tail) {
+      peg$c24 = "\xB4",
+      peg$c25 = peg$literalExpectation("\xB4", false),
+      peg$c26 = function(head, tail) {
             return tail.reduce(function(result, element) {
             if (element[1] === "´") {
                 if (result.expression)
-                expressionResult = {expression: result.expression +'´', eval:'not('+result.eval +')'}
+                expressionResult = {
+                expression: result.expression +'´',
+                eval:'not('+result.eval +')',
+                firstPart: result.expression,
+                operator: element[1],
+                secondPart: ''
+                };
                 else
-                expressionResult = {expression: result +'´', eval:'not('+result +')'}
+                expressionResult = {
+                expression: result +'´',
+                eval:'not('+'dictionary["'+result+'"]'+')',
+                firstPart: result,
+                operator: element[1],
+                secondPart: ''
+                };
               }
-              expressions.push(expressionResult);
-              return {expressions,...expressionResult};
+              checkBeforePushExpression(expressionResult);
+              return {expressions,variables,...expressionResult};
             }, head);
           },
-      peg$c17 = "(",
-      peg$c18 = peg$literalExpectation("(", false),
-      peg$c19 = ")",
-      peg$c20 = peg$literalExpectation(")", false),
-      peg$c21 = function(expr) {
-        if (expr.expression)
-        	return {expression: '('+expr.expression+')', eval: expr.eval};
-        else
-        	return {expression: '('+expr+')', eval: expr};
+      peg$c27 = "(",
+      peg$c28 = peg$literalExpectation("(", false),
+      peg$c29 = ")",
+      peg$c30 = peg$literalExpectation(")", false),
+      peg$c31 = function(expr) {
+          if (expr.expression){
+          	expressionResult = {expression: '('+expr.expression+')', eval: '('+expr.eval+')'};
+          } else {
+          	expressionResult = {expression: '('+expr+')', eval: '(dictionary["'+expr+'"])'};
+          }
+          return {expressions,variables,...expressionResult};
         },
-      peg$c22 = peg$otherExpectation("char"),
-      peg$c23 = /^[a-z]/,
-      peg$c24 = peg$classExpectation([["a", "z"]], false, false),
-      peg$c25 = function() { return text(); },
-      peg$c26 = peg$otherExpectation("whitespace"),
-      peg$c27 = /^[ \t\n\r]/,
-      peg$c28 = peg$classExpectation([" ", "\t", "\n", "\r"], false, false),
+      peg$c32 = peg$otherExpectation("char"),
+      peg$c33 = /^[a-zA-Z\xF1\xD1]/,
+      peg$c34 = peg$classExpectation([["a", "z"], ["A", "Z"], "\xF1", "\xD1"], false, false),
+      peg$c35 = function() {
+          if (!variables.variables.includes(text())){
+          variables.variables.push(text());
+          variables.dictionary[text()] = 0;
+          }
+          return text();
+        },
+      peg$c36 = peg$otherExpectation("whitespace"),
+      peg$c37 = /^[ \t\n\r]/,
+      peg$c38 = peg$classExpectation([" ", "\t", "\n", "\r"], false, false),
 
       peg$currPos          = 0,
       peg$savedPos         = 0,
@@ -420,6 +750,15 @@ function peg$parse(input, options) {
           s5 = peg$FAILED;
           if (peg$silentFails === 0) { peg$fail(peg$c1); }
         }
+        if (s5 === peg$FAILED) {
+          if (input.charCodeAt(peg$currPos) === 45) {
+            s5 = peg$c2;
+            peg$currPos++;
+          } else {
+            s5 = peg$FAILED;
+            if (peg$silentFails === 0) { peg$fail(peg$c3); }
+          }
+        }
         if (s5 !== peg$FAILED) {
           s6 = peg$parse_();
           if (s6 !== peg$FAILED) {
@@ -455,6 +794,15 @@ function peg$parse(input, options) {
             s5 = peg$FAILED;
             if (peg$silentFails === 0) { peg$fail(peg$c1); }
           }
+          if (s5 === peg$FAILED) {
+            if (input.charCodeAt(peg$currPos) === 45) {
+              s5 = peg$c2;
+              peg$currPos++;
+            } else {
+              s5 = peg$FAILED;
+              if (peg$silentFails === 0) { peg$fail(peg$c3); }
+            }
+          }
           if (s5 !== peg$FAILED) {
             s6 = peg$parse_();
             if (s6 !== peg$FAILED) {
@@ -481,7 +829,7 @@ function peg$parse(input, options) {
       }
       if (s2 !== peg$FAILED) {
         peg$savedPos = s0;
-        s1 = peg$c2(s1, s2);
+        s1 = peg$c4(s1, s2);
         s0 = s1;
       } else {
         peg$currPos = s0;
@@ -506,19 +854,19 @@ function peg$parse(input, options) {
       s4 = peg$parse_();
       if (s4 !== peg$FAILED) {
         if (input.charCodeAt(peg$currPos) === 8596) {
-          s5 = peg$c3;
+          s5 = peg$c5;
           peg$currPos++;
         } else {
           s5 = peg$FAILED;
-          if (peg$silentFails === 0) { peg$fail(peg$c4); }
+          if (peg$silentFails === 0) { peg$fail(peg$c6); }
         }
         if (s5 === peg$FAILED) {
           if (input.charCodeAt(peg$currPos) === 8594) {
-            s5 = peg$c5;
+            s5 = peg$c7;
             peg$currPos++;
           } else {
             s5 = peg$FAILED;
-            if (peg$silentFails === 0) { peg$fail(peg$c6); }
+            if (peg$silentFails === 0) { peg$fail(peg$c8); }
           }
         }
         if (s5 !== peg$FAILED) {
@@ -550,19 +898,19 @@ function peg$parse(input, options) {
         s4 = peg$parse_();
         if (s4 !== peg$FAILED) {
           if (input.charCodeAt(peg$currPos) === 8596) {
-            s5 = peg$c3;
+            s5 = peg$c5;
             peg$currPos++;
           } else {
             s5 = peg$FAILED;
-            if (peg$silentFails === 0) { peg$fail(peg$c4); }
+            if (peg$silentFails === 0) { peg$fail(peg$c6); }
           }
           if (s5 === peg$FAILED) {
             if (input.charCodeAt(peg$currPos) === 8594) {
-              s5 = peg$c5;
+              s5 = peg$c7;
               peg$currPos++;
             } else {
               s5 = peg$FAILED;
-              if (peg$silentFails === 0) { peg$fail(peg$c6); }
+              if (peg$silentFails === 0) { peg$fail(peg$c8); }
             }
           }
           if (s5 !== peg$FAILED) {
@@ -591,7 +939,7 @@ function peg$parse(input, options) {
       }
       if (s2 !== peg$FAILED) {
         peg$savedPos = s0;
-        s1 = peg$c7(s1, s2);
+        s1 = peg$c9(s1, s2);
         s0 = s1;
       } else {
         peg$currPos = s0;
@@ -616,11 +964,29 @@ function peg$parse(input, options) {
       s4 = peg$parse_();
       if (s4 !== peg$FAILED) {
         if (input.charCodeAt(peg$currPos) === 709) {
-          s5 = peg$c8;
+          s5 = peg$c10;
           peg$currPos++;
         } else {
           s5 = peg$FAILED;
-          if (peg$silentFails === 0) { peg$fail(peg$c9); }
+          if (peg$silentFails === 0) { peg$fail(peg$c11); }
+        }
+        if (s5 === peg$FAILED) {
+          if (input.charCodeAt(peg$currPos) === 8899) {
+            s5 = peg$c12;
+            peg$currPos++;
+          } else {
+            s5 = peg$FAILED;
+            if (peg$silentFails === 0) { peg$fail(peg$c13); }
+          }
+          if (s5 === peg$FAILED) {
+            if (input.charCodeAt(peg$currPos) === 43) {
+              s5 = peg$c14;
+              peg$currPos++;
+            } else {
+              s5 = peg$FAILED;
+              if (peg$silentFails === 0) { peg$fail(peg$c15); }
+            }
+          }
         }
         if (s5 !== peg$FAILED) {
           s6 = peg$parse_();
@@ -651,11 +1017,29 @@ function peg$parse(input, options) {
         s4 = peg$parse_();
         if (s4 !== peg$FAILED) {
           if (input.charCodeAt(peg$currPos) === 709) {
-            s5 = peg$c8;
+            s5 = peg$c10;
             peg$currPos++;
           } else {
             s5 = peg$FAILED;
-            if (peg$silentFails === 0) { peg$fail(peg$c9); }
+            if (peg$silentFails === 0) { peg$fail(peg$c11); }
+          }
+          if (s5 === peg$FAILED) {
+            if (input.charCodeAt(peg$currPos) === 8899) {
+              s5 = peg$c12;
+              peg$currPos++;
+            } else {
+              s5 = peg$FAILED;
+              if (peg$silentFails === 0) { peg$fail(peg$c13); }
+            }
+            if (s5 === peg$FAILED) {
+              if (input.charCodeAt(peg$currPos) === 43) {
+                s5 = peg$c14;
+                peg$currPos++;
+              } else {
+                s5 = peg$FAILED;
+                if (peg$silentFails === 0) { peg$fail(peg$c15); }
+              }
+            }
           }
           if (s5 !== peg$FAILED) {
             s6 = peg$parse_();
@@ -683,7 +1067,7 @@ function peg$parse(input, options) {
       }
       if (s2 !== peg$FAILED) {
         peg$savedPos = s0;
-        s1 = peg$c10(s1, s2);
+        s1 = peg$c16(s1, s2);
         s0 = s1;
       } else {
         peg$currPos = s0;
@@ -708,11 +1092,29 @@ function peg$parse(input, options) {
       s4 = peg$parse_();
       if (s4 !== peg$FAILED) {
         if (input.charCodeAt(peg$currPos) === 708) {
-          s5 = peg$c11;
+          s5 = peg$c17;
           peg$currPos++;
         } else {
           s5 = peg$FAILED;
-          if (peg$silentFails === 0) { peg$fail(peg$c12); }
+          if (peg$silentFails === 0) { peg$fail(peg$c18); }
+        }
+        if (s5 === peg$FAILED) {
+          if (input.charCodeAt(peg$currPos) === 8898) {
+            s5 = peg$c19;
+            peg$currPos++;
+          } else {
+            s5 = peg$FAILED;
+            if (peg$silentFails === 0) { peg$fail(peg$c20); }
+          }
+          if (s5 === peg$FAILED) {
+            if (input.charCodeAt(peg$currPos) === 42) {
+              s5 = peg$c21;
+              peg$currPos++;
+            } else {
+              s5 = peg$FAILED;
+              if (peg$silentFails === 0) { peg$fail(peg$c22); }
+            }
+          }
         }
         if (s5 !== peg$FAILED) {
           s6 = peg$parse_();
@@ -743,11 +1145,29 @@ function peg$parse(input, options) {
         s4 = peg$parse_();
         if (s4 !== peg$FAILED) {
           if (input.charCodeAt(peg$currPos) === 708) {
-            s5 = peg$c11;
+            s5 = peg$c17;
             peg$currPos++;
           } else {
             s5 = peg$FAILED;
-            if (peg$silentFails === 0) { peg$fail(peg$c12); }
+            if (peg$silentFails === 0) { peg$fail(peg$c18); }
+          }
+          if (s5 === peg$FAILED) {
+            if (input.charCodeAt(peg$currPos) === 8898) {
+              s5 = peg$c19;
+              peg$currPos++;
+            } else {
+              s5 = peg$FAILED;
+              if (peg$silentFails === 0) { peg$fail(peg$c20); }
+            }
+            if (s5 === peg$FAILED) {
+              if (input.charCodeAt(peg$currPos) === 42) {
+                s5 = peg$c21;
+                peg$currPos++;
+              } else {
+                s5 = peg$FAILED;
+                if (peg$silentFails === 0) { peg$fail(peg$c22); }
+              }
+            }
           }
           if (s5 !== peg$FAILED) {
             s6 = peg$parse_();
@@ -775,7 +1195,7 @@ function peg$parse(input, options) {
       }
       if (s2 !== peg$FAILED) {
         peg$savedPos = s0;
-        s1 = peg$c13(s1, s2);
+        s1 = peg$c23(s1, s2);
         s0 = s1;
       } else {
         peg$currPos = s0;
@@ -800,11 +1220,11 @@ function peg$parse(input, options) {
       s4 = peg$parse_();
       if (s4 !== peg$FAILED) {
         if (input.charCodeAt(peg$currPos) === 180) {
-          s5 = peg$c14;
+          s5 = peg$c24;
           peg$currPos++;
         } else {
           s5 = peg$FAILED;
-          if (peg$silentFails === 0) { peg$fail(peg$c15); }
+          if (peg$silentFails === 0) { peg$fail(peg$c25); }
         }
         if (s5 !== peg$FAILED) {
           s6 = peg$parse_();
@@ -829,11 +1249,11 @@ function peg$parse(input, options) {
         s4 = peg$parse_();
         if (s4 !== peg$FAILED) {
           if (input.charCodeAt(peg$currPos) === 180) {
-            s5 = peg$c14;
+            s5 = peg$c24;
             peg$currPos++;
           } else {
             s5 = peg$FAILED;
-            if (peg$silentFails === 0) { peg$fail(peg$c15); }
+            if (peg$silentFails === 0) { peg$fail(peg$c25); }
           }
           if (s5 !== peg$FAILED) {
             s6 = peg$parse_();
@@ -855,7 +1275,7 @@ function peg$parse(input, options) {
       }
       if (s2 !== peg$FAILED) {
         peg$savedPos = s0;
-        s1 = peg$c16(s1, s2);
+        s1 = peg$c26(s1, s2);
         s0 = s1;
       } else {
         peg$currPos = s0;
@@ -874,11 +1294,11 @@ function peg$parse(input, options) {
 
     s0 = peg$currPos;
     if (input.charCodeAt(peg$currPos) === 40) {
-      s1 = peg$c17;
+      s1 = peg$c27;
       peg$currPos++;
     } else {
       s1 = peg$FAILED;
-      if (peg$silentFails === 0) { peg$fail(peg$c18); }
+      if (peg$silentFails === 0) { peg$fail(peg$c28); }
     }
     if (s1 !== peg$FAILED) {
       s2 = peg$parse_();
@@ -888,15 +1308,15 @@ function peg$parse(input, options) {
           s4 = peg$parse_();
           if (s4 !== peg$FAILED) {
             if (input.charCodeAt(peg$currPos) === 41) {
-              s5 = peg$c19;
+              s5 = peg$c29;
               peg$currPos++;
             } else {
               s5 = peg$FAILED;
-              if (peg$silentFails === 0) { peg$fail(peg$c20); }
+              if (peg$silentFails === 0) { peg$fail(peg$c30); }
             }
             if (s5 !== peg$FAILED) {
               peg$savedPos = s0;
-              s1 = peg$c21(s3);
+              s1 = peg$c31(s3);
               s0 = s1;
             } else {
               peg$currPos = s0;
@@ -926,37 +1346,22 @@ function peg$parse(input, options) {
   }
 
   function peg$parseChar() {
-    var s0, s1, s2, s3;
+    var s0, s1, s2;
 
     peg$silentFails++;
     s0 = peg$currPos;
     s1 = peg$parse_();
     if (s1 !== peg$FAILED) {
-      s2 = [];
-      if (peg$c23.test(input.charAt(peg$currPos))) {
-        s3 = input.charAt(peg$currPos);
+      if (peg$c33.test(input.charAt(peg$currPos))) {
+        s2 = input.charAt(peg$currPos);
         peg$currPos++;
       } else {
-        s3 = peg$FAILED;
-        if (peg$silentFails === 0) { peg$fail(peg$c24); }
-      }
-      if (s3 !== peg$FAILED) {
-        while (s3 !== peg$FAILED) {
-          s2.push(s3);
-          if (peg$c23.test(input.charAt(peg$currPos))) {
-            s3 = input.charAt(peg$currPos);
-            peg$currPos++;
-          } else {
-            s3 = peg$FAILED;
-            if (peg$silentFails === 0) { peg$fail(peg$c24); }
-          }
-        }
-      } else {
         s2 = peg$FAILED;
+        if (peg$silentFails === 0) { peg$fail(peg$c34); }
       }
       if (s2 !== peg$FAILED) {
         peg$savedPos = s0;
-        s1 = peg$c25();
+        s1 = peg$c35();
         s0 = s1;
       } else {
         peg$currPos = s0;
@@ -969,7 +1374,7 @@ function peg$parse(input, options) {
     peg$silentFails--;
     if (s0 === peg$FAILED) {
       s1 = peg$FAILED;
-      if (peg$silentFails === 0) { peg$fail(peg$c22); }
+      if (peg$silentFails === 0) { peg$fail(peg$c32); }
     }
 
     return s0;
@@ -980,35 +1385,42 @@ function peg$parse(input, options) {
 
     peg$silentFails++;
     s0 = [];
-    if (peg$c27.test(input.charAt(peg$currPos))) {
+    if (peg$c37.test(input.charAt(peg$currPos))) {
       s1 = input.charAt(peg$currPos);
       peg$currPos++;
     } else {
       s1 = peg$FAILED;
-      if (peg$silentFails === 0) { peg$fail(peg$c28); }
+      if (peg$silentFails === 0) { peg$fail(peg$c38); }
     }
     while (s1 !== peg$FAILED) {
       s0.push(s1);
-      if (peg$c27.test(input.charAt(peg$currPos))) {
+      if (peg$c37.test(input.charAt(peg$currPos))) {
         s1 = input.charAt(peg$currPos);
         peg$currPos++;
       } else {
         s1 = peg$FAILED;
-        if (peg$silentFails === 0) { peg$fail(peg$c28); }
+        if (peg$silentFails === 0) { peg$fail(peg$c38); }
       }
     }
     peg$silentFails--;
     if (s0 === peg$FAILED) {
       s1 = peg$FAILED;
-      if (peg$silentFails === 0) { peg$fail(peg$c26); }
+      if (peg$silentFails === 0) { peg$fail(peg$c36); }
     }
 
     return s0;
   }
 
 
-  	var expressions = [];
-  	let expressionResult;
+  	let expressions = [];
+      let variables = {variables: [], dictionary: []};
+      let expressionResult;
+
+      function checkBeforePushExpression(expressionResult) {
+      	if (!expressions.some(expression => expression.expression === expressionResult.expression)){
+            	expressions.push(expressionResult);
+            }
+      }
 
 
   peg$result = peg$startRuleFunction();
