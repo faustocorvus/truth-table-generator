@@ -439,7 +439,7 @@ Factor
   / Char
 
 Char "char"
-  = _ [a-zA-Z] {
+  = _ [a-zA-ZñÑ] {
     if (!variables.variables.includes(text())){
     variables.variables.push(text());
     variables.dictionary[text()] = 0;

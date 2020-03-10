@@ -584,8 +584,8 @@ function peg$parse(input, options) {
           return {expressions,variables,...expressionResult};
         },
       peg$c32 = peg$otherExpectation("char"),
-      peg$c33 = /^[a-zA-Z]/,
-      peg$c34 = peg$classExpectation([["a", "z"], ["A", "Z"]], false, false),
+      peg$c33 = /^[a-zA-Z\xF1\xD1]/,
+      peg$c34 = peg$classExpectation([["a", "z"], ["A", "Z"], "\xF1", "\xD1"], false, false),
       peg$c35 = function() {
           if (!variables.variables.includes(text())){
           variables.variables.push(text());
