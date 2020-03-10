@@ -1,4 +1,3 @@
-
 <mat-drawer-container class="container">
   <mat-drawer mode="side" opened>
     <div style="height: 100%;" fxLayout="column" fxLayoutAlign="space-between">
@@ -38,37 +37,45 @@
   </mat-drawer>
   <mat-drawer-content>
     <div
-    id="container-right"
-    fxFlex="100%"
-    fxLayout="row wrap"
-    fxLayoutAlign="center start"
-  >
-    <mat-form-field
-      appearance="outline"
-      floatLabel="always"
-      [style.fontSize.px]="30"
-      fxFlex="80%"
-      style="text-align: center;"
+      id="container-right"
+      fxFlex="100%"
+      fxLayout="column"
+      fxLayoutAlign="start"
+      fxLayoutGap="20px"
     >
-      <mat-label>EXPRESSION</mat-label>
-      <textarea
-        matInput
-        [formControl]="expressionInput"
-        cdkTextareaAutosize
-        cdkAutosizeMinRows="1"
-        cdkAutosizeMaxRows="10"
-        autofocus
-      ></textarea>
-      <mat-hint>Example: {{ getCurrentComponentExample() }} </mat-hint>
-      <mat-error *ngIf="expressionInput.hasError('pattern')">
-        Please enter a valid character
-      </mat-error>
-      <mat-error *ngIf="expressionInput.hasError('syntaxError')">
-        Please enter a valid expression
-      </mat-error>
-    </mat-form-field>
-    <router-outlet></router-outlet>
-    <div fxFlex="100%" #truthTable></div>
-  </div>
+      <div style="width: 100%;" fxLayoutAlign="center">
+        <mat-form-field
+          appearance="outline"
+          floatLabel="always"
+          [style.fontSize.px]="20"
+          fxFlex="80%"
+        >
+          <mat-label>EXPRESSION</mat-label>
+          <textarea
+            matInput
+            [formControl]="expressionInput"
+            cdkTextareaAutosize
+            #autosize="cdkTextareaAutosize"
+            cdkAutosizeMinRows="1"
+            cdkAutosizeMaxRows="10"
+            autofocus
+          ></textarea>
+          <mat-hint>Example: {{ currentExample }} </mat-hint>
+          <mat-error *ngIf="expressionInput.hasError('pattern')">
+            Please enter a valid character
+          </mat-error>
+          <mat-error *ngIf="expressionInput.hasError('syntaxError')">
+            Please enter a valid expression
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div style="width: 100%;" fxLayoutAlign="center">
+        <!-- <router-outlet></router-outlet> -->
+        <app-keyboard></app-keyboard>
+      </div>
+      <div style="width: 100%;" fxLayout="row wrap" fxLayoutAlign="center">
+        <div #truthTable></div>
+      </div>
+    </div>
   </mat-drawer-content>
 </mat-drawer-container>

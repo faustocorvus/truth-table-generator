@@ -8,9 +8,6 @@ import { HomeComponent } from './components/home/home.component';
 import { MenuComponent } from './components/menu/menu.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { TruthTableComponent } from './components/truth-table/truth-table.component';
-import { SetComponent } from './components/truth-table/set/set.component';
-import { MathematicalLogicComponent } from './components/truth-table/mathematical-logic/mathematical-logic.component';
-import { BooleanAlgebraComponent } from './components/truth-table/boolean-algebra/boolean-algebra.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -28,10 +25,12 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatRippleModule} from '@angular/material/core';
 import {MatTableModule} from '@angular/material/table';
 import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 import { ParserService } from './components/truth-table/parser.service';
 import { SolveTruthTableService } from './components/truth-table/solve-truth-table.service';
 import { ExpressionInputService } from './components/truth-table/expression-input.service';
+import { KeyboardComponent } from './components/truth-table/keyboard/keyboard.component';
 
 @NgModule({
   declarations: [
@@ -40,11 +39,9 @@ import { ExpressionInputService } from './components/truth-table/expression-inpu
     MenuComponent,
     FooterComponent,
     TruthTableComponent,
-    SetComponent,
-    MathematicalLogicComponent,
-    BooleanAlgebraComponent,
     PageNotFoundComponent,
-    PerformedComponent
+    PerformedComponent,
+    KeyboardComponent
   ],
   imports: [
     BrowserModule,
@@ -63,6 +60,7 @@ import { ExpressionInputService } from './components/truth-table/expression-inpu
     MatRippleModule,
     MatTableModule,
     MatSidenavModule,
+    MatProgressSpinnerModule,
   ],
   providers: [
     ParserService,

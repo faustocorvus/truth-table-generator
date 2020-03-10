@@ -9,10 +9,10 @@ import { SolveTruthTableService } from '../solve-truth-table.service';
 })
 export class PerformedComponent implements OnInit {
   @Input('parsedExpression') parsedExpression: any;
-  @Input('currentComponent') currentComponent: string;
 
   //items = Array.from({length: 131072}).map((_, i) => `Item #${i}`);
   truthTableHeight = '0px';
+  backgroundColor = '#BF996B';
 
   @ViewChild(CdkVirtualScrollViewport, { static: false })
   public viewPort: CdkVirtualScrollViewport;
@@ -32,30 +32,31 @@ export class PerformedComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log('ParsedExpression: ', this.parsedExpression);
-    console.log('currectComponent: ', this.currentComponent);
+
     this.setHeightTruthTableContainer();
     //let variablesValue = this.parsedExpression.variables.dictionary;
     this._solveTruthTable.setParsedExpression(this.parsedExpression);
     //this._solveTruthTable.getRow(8);
     this.rows = [];
-    for (let i = 0; i < Math.pow(2, this.parsedExpression.variables.variables.length); ++i) {
+    for (let i = 0; i < Math.pow(2, this.parsedExpression.variables.variables.length > 17 ? 17 : this.parsedExpression.variables.variables.length); ++i) {
       this.rows.push(this._solveTruthTable.getRow(i.toString(2)));
     }
+
   }
 
   setHeightTruthTableContainer() {
     let totalVariables = this.parsedExpression.variables.variables.length;
-    if (totalVariables === 1) {
-      this.truthTableHeight = '115px';
-    } else if (totalVariables === 2) {
-      this.truthTableHeight = '185px';
-    } else if (totalVariables === 3) {
-      this.truthTableHeight = '325px';
-    } else if (totalVariables === 4) {
-      this.truthTableHeight = '605px';
+    if (totalVariables === 1) {//115
+      this.truthTableHeight = '130px';
+    } else if (totalVariables === 2) {//185
+      this.truthTableHeight = '200px';
+    } else if (totalVariables === 3) {//325
+      this.truthTableHeight = '340px';
+    } else if (totalVariables === 4) {//605
+      this.truthTableHeight = '620px';
     } else {
-      this.truthTableHeight = '325px';
+      this.truthTableHeight = '340px';
     }
   }
+
 }

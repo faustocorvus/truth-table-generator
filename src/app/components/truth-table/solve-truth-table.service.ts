@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -8,6 +9,7 @@ export class SolveTruthTableService {
   private dictionary = [];
   private variables = [];
   private row = [];
+
   constructor() { }
 
   setParsedExpression(parsedExpression: any) {
@@ -27,7 +29,6 @@ export class SolveTruthTableService {
     /* para evaluacion directa declare las variables como dictionary[":variable"]
     ejemplo: expression: "A⋃B⋂(A-B)´⊕A´"
       eval: "dictionary["A"]|dictionary["B"]&not((diferencia(dictionary["A"],dictionary["B"])))^not(dictionary["A"])"*/
-    //this.evalExpressions(this.dictionary);
     this.evalExpressions(this.dictionary);
     return this.row;
   }
@@ -40,12 +41,10 @@ export class SolveTruthTableService {
     return binary;
   }
 
-  evalExpressions(dictionary) {
+  evalExpressions(dictionary): void {
     for (let index = 0; index < this.expressions.length; index++) {
-      //console.log('Expression: ', this.expressions[index].expression, 'Result: ', eval(this.expressions[index].eval));
       this.row.push(eval(this.expressions[index].eval));
     }
-    return this.row;
   }
 
 }

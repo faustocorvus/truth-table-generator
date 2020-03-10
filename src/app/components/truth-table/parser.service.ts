@@ -8,16 +8,13 @@ export class ParserService {
 
   constructor() { }
 
-  parseExpression(expression: string, component: string) {
-    if (component === 'booleanAlgebra') {
-      expression = this.addProductOperator(expression.replace(/ /g, ""));
-    }
-
+  parseExpression(expression: string) {
+    expression = this.addProductOperator(expression.replace(/ /g, ""));
     try {
       return parse(expression);
     } catch (error) {
       console.log(error);
-      return {error: error};
+      return { error: error };
     }
   }
 
@@ -27,17 +24,17 @@ export class ParserService {
     for (let index = 0; index < booleanExpression.length; index++) {
       if (booleanExpression[index + 1] && /\)/.test(booleanExpression[index]) && /\(/.test(booleanExpression[index + 1])) {
         booleanTransformed = `${booleanTransformed}${booleanExpression[index]}*`;
-      }else if (booleanExpression[index + 1] && /[a-zA-Z]/.test(booleanExpression[index]) && /[a-zA-Z]/.test(booleanExpression[index + 1])) {
+      } else if (booleanExpression[index + 1] && /[a-zA-ZñÑ]/.test(booleanExpression[index]) && /[a-zA-ZñÑ]/.test(booleanExpression[index + 1])) {
         booleanTransformed = `${booleanTransformed}${booleanExpression[index]}*`;
-      }else if (booleanExpression[index + 1] && /\)/.test(booleanExpression[index]) && /[a-zA-Z]/.test(booleanExpression[index + 1])) {
+      } else if (booleanExpression[index + 1] && /\)/.test(booleanExpression[index]) && /[a-zA-ZñÑ]/.test(booleanExpression[index + 1])) {
         booleanTransformed = `${booleanTransformed}${booleanExpression[index]}*`;
-      }else if (booleanExpression[index + 1] && /[a-zA-Z]/.test(booleanExpression[index]) && /\(/.test(booleanExpression[index + 1])) {
+      } else if (booleanExpression[index + 1] && /[a-zA-ZñÑ]/.test(booleanExpression[index]) && /\(/.test(booleanExpression[index + 1])) {
         booleanTransformed = `${booleanTransformed}${booleanExpression[index]}*`;
-      }else if (booleanExpression[index + 1] && /\´/.test(booleanExpression[index]) && /[a-zA-Z]/.test(booleanExpression[index + 1])) {
+      } else if (booleanExpression[index + 1] && /\´/.test(booleanExpression[index]) && /[a-zA-ZñÑ]/.test(booleanExpression[index + 1])) {
         booleanTransformed = `${booleanTransformed}${booleanExpression[index]}*`;
-      }else if (booleanExpression[index + 1] && /\´/.test(booleanExpression[index]) && /\(/.test(booleanExpression[index + 1])) {
+      } else if (booleanExpression[index + 1] && /\´/.test(booleanExpression[index]) && /\(/.test(booleanExpression[index + 1])) {
         booleanTransformed = `${booleanTransformed}${booleanExpression[index]}*`;
-      }else {
+      } else {
         booleanTransformed = `${booleanTransformed}${booleanExpression[index]}`;
       }
     }

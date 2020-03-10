@@ -1,13 +1,31 @@
-<div class="animated fadeInUp slow" style="padding-top: 20px;">
-  <p style="font-size: 18px;">{{ parsedExpression.expression }}</p>
+<div
+  class="animated fadeInUp slow"
+  style="width: calc(80vw - 40px);overflow: hidden;margin-left: 20px;margin-top: 20px;"
+  fxLayout="row wrap"
+>
+  <p
+    style="font-size: 18px;overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+"
+  >
+    {{ parsedExpression.expression }}
+  </p>
+  <mat-icon>chevron_right</mat-icon>
   <p style="font-size: 18px;">
     {{ parsedExpression.variables.variables.length }}
     {{
       parsedExpression.variables.variables.length > 1 ? "Variables" : "Variable"
     }}
   </p>
+  <mat-icon>chevron_right</mat-icon>
+
   <p style="font-size: 18px;">
-    {{ parsedExpression.expressions.length > 0 ? parsedExpression.expressions.length - 1 : 0 }}
+    {{
+      parsedExpression.expressions.length > 0
+        ? parsedExpression.expressions.length - 1
+        : 0
+    }}
     {{
       parsedExpression.expressions.length > 2 ||
       parsedExpression.expressions.length - 1 === 0 ||
@@ -22,7 +40,12 @@
   class="container animated slideInUp slow"
   [ngStyle]="{ height: truthTableHeight }"
 >
-  <cdk-virtual-scroll-viewport #scrollViewport itemSize="30">
+  <cdk-virtual-scroll-viewport
+    #scrollViewport
+    itemSize="30"
+    [style.border]="'solid 1px ' + backgroundColor"
+    [style.background-color]="backgroundColor"
+  >
     <table>
       <thead>
         <tr>
@@ -37,10 +60,9 @@
             [style.top]="inverseOfTranslation"
           >
             <span
-              *ngIf="currentComponent === 'booleanAlgebra'"
               style="color: #BF996B;"
               >{{ expression.firstPart }}</span
-            >
+            ><!--
             <span
               *ngIf="currentComponent === 'mathematicalLogic'"
               style="color: #A68192;"
@@ -48,9 +70,9 @@
             >
             <span *ngIf="currentComponent === 'set'" style="color: #768C46;">{{
               expression.firstPart
-            }}</span>
+            }}</span> -->
             <span>&#8194;{{ expression.operator }}&#8194;</span>
-            <span style="color: #595959;">{{ expression.secondPart }}</span>
+            <span>{{ expression.secondPart }}</span>
           </th>
         </tr>
       </thead>

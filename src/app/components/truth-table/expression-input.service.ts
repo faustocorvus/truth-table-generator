@@ -10,10 +10,6 @@ export class ExpressionInputService {
   private characterChange = new BehaviorSubject<string>('');
   character = this.characterChange.asObservable();
 
-  /*
-  component changed then refresh expression input */
-  private componentChange = new BehaviorSubject<string>('');
-  component = this.componentChange.asObservable();
 
   constructor() { }
 
@@ -21,7 +17,4 @@ export class ExpressionInputService {
     this.characterChange.next(character);
   }
 
-  updateComponent(component: string) {
-    this.componentChange.next(component);
-  }
 }

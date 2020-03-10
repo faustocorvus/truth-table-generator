@@ -1,9 +1,11 @@
-import { Component, OnInit, ViewChild, ViewContainerRef, ComponentFactoryResolver, ComponentRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ViewContainerRef, ComponentFactoryResolver, ComponentRef, NgZone } from '@angular/core';
 import { FormControl, FormBuilder, Validators } from '@angular/forms';
 import { ExpressionInputService } from './expression-input.service';
 import { ParserService } from './parser.service';
 import { PerformedComponent } from './performed/performed.component';
-import { startWith, tap, delay } from 'rxjs/operators';
+import { startWith, tap, delay, take } from 'rxjs/operators';
+import { CdkTextareaAutosize } from '@angular/cdk/text-field';
+import { SolveTruthTableService } from './solve-truth-table.service';
 
 @Component({
   selector: 'app-truth-table',
@@ -11,14 +13,17 @@ import { startWith, tap, delay } from 'rxjs/operators';
   styleUrls: ['./truth-table.component.scss']
 })
 export class TruthTableComponent implements OnInit {
+  /* autosize */
+  private _ngZone: NgZone;
+  @ViewChild('autosize') autosize: CdkTextareaAutosize;
   /*
   form control of expression input */
   expressionInput: FormControl;
-  /* current component: boolean algebra, set or mathematical logic */
-  currentComponent;
 
   @ViewChild('truthTable', { read: ViewContainerRef }) truthTable: ViewContainerRef;
   componentRef: ComponentRef<any>;
+
+  currentExample = '';
 
   constructor(
     private formBuilder: FormBuilder,
@@ -26,7 +31,7 @@ export class TruthTableComponent implements OnInit {
     private _parser: ParserService,
     private componentFactoryResolver: ComponentFactoryResolver,
   ) {
-    this.expressionInput = this.formBuilder.control('', [Validators.pattern('^[\na-zA-Z↔→˄´)(˅⊕⋂⋃+ -]+$')]);
+    this.expressionInput = this.formBuilder.control('', [Validators.pattern('^[\na-zA-ZñÑ↔→˄´)(˅⊕⋂⋃+ -]+$')]);
 
   }
 
@@ -36,28 +41,20 @@ export class TruthTableComponent implements OnInit {
         this.addCharacterIntoExpressionInput(character);
       }
     );
-    this._expressionInput.component.pipe(delay(0)).subscribe(
-      (component: string) => {
-        console.log('currentComponent: ', component)
-        this.currentComponent = component;
-        this.refreshExpressionInput();
-      }
-    );
+    this.getCurrentComponentExample();
   }
 
   getCurrentComponentExample() {
-    let currentExample = '';
-    switch (this.currentComponent) {
-      case 'booleanAlgebra':
-        currentExample = "A + B ( A B ) ´ A ´";
+    switch (Math.floor(Math.random() * 3)) {
+      case 0:
+        this.currentExample = "A + B ( A B ) ´ A ´";
         break;
-      case 'mathematicalLogic':
-        currentExample = "a ˅ b ˄ ( a → b ) ´ ↔ a ´";
+      case 1:
+        this.currentExample = "a ˅ b ˄ ( a → b ) ´ ↔ a ´";
         break;
-      case 'set':
-        currentExample = "A ⋃ B ⋂ ( A - B ) ´ ⊕ A ´";
+      case 2:
+        this.currentExample = "A ⋃ B ⋂ ( A - B ) ´ ⊕ A ´";
     }
-    return currentExample;
   }
   addCharacterIntoExpressionInput(character: string) {
     console.log(this.expressionInput);
@@ -70,7 +67,7 @@ export class TruthTableComponent implements OnInit {
         break;
       case 'solve':
         if (this.expressionInput.valid) {
-          let parsed = this._parser.parseExpression(this.expressionInput.value.trim(), this.currentComponent);
+          let parsed = this._parser.parseExpression(this.expressionInput.value.trim());
           this.checkParsedResult(parsed);
         }
         break;
@@ -89,6 +86,7 @@ export class TruthTableComponent implements OnInit {
     if (parsedExpression.error) {
       this.expressionInput.setErrors({ syntaxError: true });
     } else {
+
       this.addTruthTable(parsedExpression);
     }
   }
@@ -104,9 +102,14 @@ export class TruthTableComponent implements OnInit {
       let childComponent = this.componentFactoryResolver.resolveComponentFactory(PerformedComponent);
       this.componentRef = this.truthTable.createComponent(childComponent, 0);
       this.componentRef.instance.parsedExpression = parsedExpression;
-      this.componentRef.instance.currentComponent = this.currentComponent;
     }
 
+  }
+
+  triggerResize() {
+    // Wait for changes to be applied, then trigger textarea resize.
+    this._ngZone.onStable.pipe(take(1))
+        .subscribe(() => this.autosize.resizeToFitContent(true));
   }
 
 }
