@@ -1,17 +1,23 @@
 import { ChangeDetectionStrategy, Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
 import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
 import { SolveTruthTableService } from '../solve-truth-table.service';
+import { trigger, state, style, transition, animate } from '@angular/animations';
 
 @Component({
   selector: 'app-performed',
   templateUrl: './performed.component.html',
-  styleUrls: ['./performed.component.scss']
+  styleUrls: ['./performed.component.scss'],
+
 })
 export class PerformedComponent implements OnInit {
+
+
   @Input('parsedExpression') parsedExpression: any;
+  @ViewChild('tableContainer') table: ElementRef;
 
   //items = Array.from({length: 131072}).map((_, i) => `Item #${i}`);
   truthTableHeight = '0px';
+  truthTableWidth = '0px';
   backgroundColor = '#BF996B';
 
   @ViewChild(CdkVirtualScrollViewport, { static: false })
@@ -41,7 +47,11 @@ export class PerformedComponent implements OnInit {
     for (let i = 0; i < Math.pow(2, this.parsedExpression.variables.variables.length > 17 ? 17 : this.parsedExpression.variables.variables.length); ++i) {
       this.rows.push(this._solveTruthTable.getRow(i.toString(2)));
     }
+    setTimeout(_ => {
 
+      console.log('TABLE: ', this.table);
+      this.truthTableWidth = this.table.nativeElement.offsetWidth + 15 + 'px';
+    }, 0);
   }
 
   setHeightTruthTableContainer() {
@@ -55,8 +65,13 @@ export class PerformedComponent implements OnInit {
     } else if (totalVariables === 4) {//605
       this.truthTableHeight = '620px';
     } else {
-      this.truthTableHeight = '340px';
+      this.truthTableHeight = '620px';
     }
   }
 
+  getOutputs() {
+    return (this.parsedExpression.variables.variables.length <= 17)
+      ? Math.pow(2, this.parsedExpression.variables.variables.length)
+      : '131072 of ' + Math.pow(2, this.parsedExpression.variables.variables.length);
+  }
 }

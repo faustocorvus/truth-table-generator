@@ -1,52 +1,45 @@
 <div
-  class="animated fadeInUp slow"
-  style="width: calc(80vw - 40px);overflow: hidden;margin-left: 20px;margin-top: 20px;"
-  fxLayout="row wrap"
+  class="animated fadeInLeft slow"
+  style="overflow: hidden;margin-left: 20px;margin-top: 20px;"
+  [ngStyle]="{ width: truthTableWidth }"
+  fxLayout="row"
 >
   <p
-    style="font-size: 18px;overflow: hidden;
+    style="font-size: 14px;overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 "
   >
     {{ parsedExpression.expression }}
-  </p>
-  <mat-icon>chevron_right</mat-icon>
-  <p style="font-size: 18px;">
+    <b style="color: #BF996B;">></b>
     {{ parsedExpression.variables.variables.length }}
-    {{
-      parsedExpression.variables.variables.length > 1 ? "Variables" : "Variable"
-    }}
-  </p>
-  <mat-icon>chevron_right</mat-icon>
-
-  <p style="font-size: 18px;">
+    {{ parsedExpression.variables.variables.length > 1 ? "Inputs" : "Input" }}
+    <b style="color: #BF996B;">></b>
     {{
       parsedExpression.expressions.length > 0
-        ? parsedExpression.expressions.length - 1
+        ? parsedExpression.expressions.length
         : 0
     }}
     {{
-      parsedExpression.expressions.length > 2 ||
-      parsedExpression.expressions.length - 1 === 0 ||
+      parsedExpression.expressions.length > 1 ||
       parsedExpression.expressions.length === 0
-        ? "Sub-Expressions"
-        : "Sub-Expression"
+        ? "Outputs"
+        : "Output"
     }}
+    <b style="color: #BF996B;">></b>
+    {{ getOutputs() + " Possible States" }}
   </p>
 </div>
-
 <div
-  class="container animated slideInUp slow"
+  class="container animated fadeInLeft"
   [ngStyle]="{ height: truthTableHeight }"
 >
   <cdk-virtual-scroll-viewport
     #scrollViewport
     itemSize="30"
-    [style.border]="'solid 1px ' + backgroundColor"
-    [style.background-color]="backgroundColor"
+    [ngStyle]="{ width: truthTableWidth }"
   >
-    <table>
+    <table #tableContainer>
       <thead>
         <tr>
           <th
@@ -59,9 +52,7 @@
             *ngFor="let expression of parsedExpression.expressions"
             [style.top]="inverseOfTranslation"
           >
-            <span
-              style="color: #BF996B;"
-              >{{ expression.firstPart }}</span
+            <span style="color: #BF996B;">{{ expression.firstPart }}</span
             ><!--
             <span
               *ngIf="currentComponent === 'mathematicalLogic'"

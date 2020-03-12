@@ -13,7 +13,6 @@ export class ParserService {
     try {
       return parse(expression);
     } catch (error) {
-      console.log(error);
       return { error: error };
     }
   }

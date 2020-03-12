@@ -6,7 +6,8 @@
 html,
 body {
   height: 100%;
-
+  overflow-x: hidden;
+  background-image: repeating-linear-gradient(0deg, rgb(245, 245, 245) 0px, rgb(245, 245, 245) 1px,transparent 1px, transparent 21px),repeating-linear-gradient(90deg, rgb(245, 245, 245) 0px, rgb(245, 245, 245) 1px,transparent 1px, transparent 21px),linear-gradient(90deg, hsl(131,0%,98%),hsl(131,0%,98%));
 }
 body {
   margin: 0;

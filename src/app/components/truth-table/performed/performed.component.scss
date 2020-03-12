@@ -1,24 +1,29 @@
 
 .container {
-  height: 0px;
-  width: calc(80vw - 40px);
+ // height: 0px;
+  //width: calc(80vw - 40px);
+  max-width: calc(100vw - 40px);
   padding: 0px 20px 20px 20px;
-
 
   cdk-virtual-scroll-viewport {
     height: 100%;
+   // width: 0px;
+    max-width: calc(100vw - 55px);
+    background-color: transparent;
+    overflow: auto;
     table {
-      height: 100%;
-      width: 100%;
+      height: auto;
+      width: auto;
       border-collapse: separate;
       border-spacing: 0;
       color: #000000;
-      background-color: #f2f2f2;
-
+      background-color: #fafafa;
+      overflow-anchor: auto;
       thead tr th {
         height: 30px;
-        border-bottom: 1px solid #d0d0d0;
-        padding: 7px 20px 7px 7px;
+        border-bottom: 1px solid #ddd;
+        border-radius: 5px;
+        padding: 7px 20px 7px 27px;
         position: sticky;
         overflow: auto;
         text-overflow: ellipsis;
@@ -31,8 +36,14 @@
       tbody tr td {
         height: 20px;
         border-bottom: 1px solid #d0d0d0;
-        padding: 7px 20px 7px 7px;
-
+        border-left: 1px solid #ddd;
+        border-right: 1px solid #ddd;
+        padding: 7px 20px 7px 27px;
+        font-size: 16px;
+        color: #666666;
+      }
+      tr:nth-child(even){
+        background-color: #f2f2f2;
       }
     }
   }
