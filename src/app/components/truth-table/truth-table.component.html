@@ -11,6 +11,7 @@
       [style.fontSize.px]="20"
       style="margin-top: 20px;"
       fxFlex="66.66%"
+      fxFlex.lt-sm="99%"
     >
       <mat-label>TRUTH TABLE GENERATOR: ENTER AN EXPRESSION</mat-label>
       <textarea
@@ -34,12 +35,7 @@
   <div fxLayoutAlign="center">
     <app-keyboard></app-keyboard>
   </div>
-  <div
-
-    style="width: 100vw;"
-    fxLayout="row wrap"
-    fxLayoutAlign="start"
-  >
+  <div style="width: 100vw;" fxLayout="row wrap" fxLayoutAlign="start">
     <div #truthTable></div>
   </div>
 </div>

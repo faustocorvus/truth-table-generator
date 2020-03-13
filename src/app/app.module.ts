@@ -4,8 +4,6 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HomeComponent } from './components/home/home.component';
-import { MenuComponent } from './components/menu/menu.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { TruthTableComponent } from './components/truth-table/truth-table.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
@@ -35,8 +33,6 @@ import { KeyboardComponent } from './components/truth-table/keyboard/keyboard.co
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
-    MenuComponent,
     FooterComponent,
     TruthTableComponent,
     PageNotFoundComponent,

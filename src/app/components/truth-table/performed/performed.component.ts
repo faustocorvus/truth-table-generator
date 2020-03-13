@@ -1,7 +1,6 @@
-import { ChangeDetectionStrategy, Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
 import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
 import { SolveTruthTableService } from '../solve-truth-table.service';
-import { trigger, state, style, transition, animate } from '@angular/animations';
 
 @Component({
   selector: 'app-performed',
@@ -15,7 +14,6 @@ export class PerformedComponent implements OnInit {
   @Input('parsedExpression') parsedExpression: any;
   @ViewChild('tableContainer') table: ElementRef;
 
-  //items = Array.from({length: 131072}).map((_, i) => `Item #${i}`);
   truthTableHeight = '0px';
   truthTableWidth = '0px';
   backgroundColor = '#BF996B';
@@ -40,29 +38,25 @@ export class PerformedComponent implements OnInit {
   ngOnInit(): void {
 
     this.setHeightTruthTableContainer();
-    //let variablesValue = this.parsedExpression.variables.dictionary;
     this._solveTruthTable.setParsedExpression(this.parsedExpression);
-    //this._solveTruthTable.getRow(8);
     this.rows = [];
     for (let i = 0; i < Math.pow(2, this.parsedExpression.variables.variables.length > 17 ? 17 : this.parsedExpression.variables.variables.length); ++i) {
       this.rows.push(this._solveTruthTable.getRow(i.toString(2)));
     }
     setTimeout(_ => {
-
-      console.log('TABLE: ', this.table);
       this.truthTableWidth = this.table.nativeElement.offsetWidth + 15 + 'px';
     }, 0);
   }
 
   setHeightTruthTableContainer() {
     let totalVariables = this.parsedExpression.variables.variables.length;
-    if (totalVariables === 1) {//115
+    if (totalVariables === 1) {
       this.truthTableHeight = '130px';
-    } else if (totalVariables === 2) {//185
+    } else if (totalVariables === 2) {
       this.truthTableHeight = '200px';
-    } else if (totalVariables === 3) {//325
+    } else if (totalVariables === 3) {
       this.truthTableHeight = '340px';
-    } else if (totalVariables === 4) {//605
+    } else if (totalVariables === 4) {
       this.truthTableHeight = '620px';
     } else {
       this.truthTableHeight = '620px';

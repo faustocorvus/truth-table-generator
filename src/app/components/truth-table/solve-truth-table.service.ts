@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -23,8 +22,8 @@ export class SolveTruthTableService {
 
     if (binary.length < this.variables.length) binary = this.addMissingBits(binary, binary.length);
     for (let index = 0; index < this.variables.length; index++) {
-        this.dictionary[this.variables[index]] = binary[index];
-        this.row.push((binary[index]));
+      this.dictionary[this.variables[index]] = binary[index];
+      this.row.push((binary[index]));
     }
     /* para evaluacion directa declare las variables como dictionary[":variable"]
     ejemplo: expression: "A⋃B⋂(A-B)´⊕A´"
@@ -36,7 +35,7 @@ export class SolveTruthTableService {
   addMissingBits(binary, binaryLength) {
 
     for (let index = 0; index < this.variables.length - binaryLength; index++) {
-      binary = '0'+binary;
+      binary = '0' + binary;
     }
     return binary;
   }

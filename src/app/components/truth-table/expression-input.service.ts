@@ -6,7 +6,7 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class ExpressionInputService {
   /*
-  expression character change from components, boolean--algebra, set and mathematical-logic */
+  expression character change from component keyboard*/
   private characterChange = new BehaviorSubject<string>('');
   character = this.characterChange.asObservable();
 

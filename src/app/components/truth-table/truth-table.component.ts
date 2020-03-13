@@ -1,25 +1,16 @@
-import { Component, OnInit, ViewChild, ViewContainerRef, ComponentFactoryResolver, ComponentRef, NgZone, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ViewContainerRef, ComponentFactoryResolver, ComponentRef, ElementRef } from '@angular/core';
 import { FormControl, FormBuilder, Validators } from '@angular/forms';
 import { ExpressionInputService } from './expression-input.service';
 import { ParserService } from './parser.service';
 import { PerformedComponent } from './performed/performed.component';
-import { trigger, state, style, transition, animate } from '@angular/animations';
 
 @Component({
   selector: 'app-truth-table',
   templateUrl: './truth-table.component.html',
   styleUrls: ['./truth-table.component.scss'],
-  animations: [
-    trigger('EnterExit', [
-       state('*', style({transform: 'translateX(0%)'})),
-       transition(':enter', [style({transform: 'translateX(-50%)'}), animate('1000ms ease-in')]),
-       transition(':leave', [animate('1000ms ease-out', style({transform: 'translateX(50%)'}))])
- ]),
-]
 })
 export class TruthTableComponent implements OnInit {
-  /* autosize */
-  //@ViewChild('autosize') autosize: CdkTextareaAutosize;
+
   @ViewChild('autosize') textarea: ElementRef;
   /*
   form control of expression input */
@@ -102,11 +93,11 @@ export class TruthTableComponent implements OnInit {
       if (index > 0 && index < this.textarea.nativeElement.textLength) {
         let firstPart = this.expressionInput.value.slice(0, index);
         let secondPart = this.expressionInput.value.slice(index);
-        while(firstPart.length > 0 && firstPart[firstPart.length - 1] === ' ') {
-           firstPart= firstPart.slice(0, -1);
-           this.updateTextAreaSelectionStart(index--);
+        while (firstPart.length > 0 && firstPart[firstPart.length - 1] === ' ') {
+          firstPart = firstPart.slice(0, -1);
+          this.updateTextAreaSelectionStart(index--);
         }
-        this.expressionInput.setValue(firstPart.slice(0, -1)+secondPart);
+        this.expressionInput.setValue(firstPart.slice(0, -1) + secondPart);
         index--;
       } else {
         this.removeLastCharacter();
@@ -117,7 +108,7 @@ export class TruthTableComponent implements OnInit {
 
   }
   removeLastCharacter() {
-    while(this.expressionInput.value.length > 0 && this.expressionInput.value[this.expressionInput.value.length - 1] === ' ') {
+    while (this.expressionInput.value.length > 0 && this.expressionInput.value[this.expressionInput.value.length - 1] === ' ') {
       this.expressionInput.setValue(this.expressionInput.value.slice(0, -1));
     }
     this.expressionInput.setValue(this.expressionInput.value.slice(0, -1));
@@ -130,13 +121,13 @@ export class TruthTableComponent implements OnInit {
       if (this.textarea.nativeElement.selectionStart < this.textarea.nativeElement.textLength) {
         let firstPart = this.expressionInput.value.slice(0, index);
         let secondPart = this.expressionInput.value.slice(index);
-        if (firstPart[firstPart.length - 1] === ' ' && secondPart[0] === ' '){
+        if (firstPart[firstPart.length - 1] === ' ' && secondPart[0] === ' ') {
           this.expressionInput.setValue(`${firstPart}${character}${secondPart}`);
           index++;
         }
-        else if (firstPart[firstPart.length - 1] === ' ' && secondPart[0] !== ' '){
+        else if (firstPart[firstPart.length - 1] === ' ' && secondPart[0] !== ' ') {
           this.expressionInput.setValue(`${firstPart}${character} ${secondPart}`);
-        index++;
+          index++;
         }
         else if (firstPart[firstPart.length - 1] !== ' ' && secondPart[0] === ' ') {
           this.expressionInput.setValue(`${firstPart} ${character}${secondPart}`);
@@ -175,7 +166,6 @@ export class TruthTableComponent implements OnInit {
   }
 
   addTruthTable(parsedExpression: any) {
-    //this.truthTable.clear();
     if (parsedExpression.variables) {
       this.refreshExpressionInput();
       let childComponent = this.componentFactoryResolver.resolveComponentFactory(PerformedComponent);
