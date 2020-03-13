@@ -53,17 +53,53 @@
             [style.top]="inverseOfTranslation"
           >
             <span style="color: #BF996B;">{{ expression.firstPart }}</span>
-            <span>&#8194;{{ expression.operator }}&#8194;</span>
+            <span>{{ expression.operator }}</span>
             <span>{{ expression.secondPart }}</span>
           </th>
         </tr>
       </thead>
       <tbody>
-        <tr *cdkVirtualFor="let row of rows">
+        <ng-container *ngIf="radioButtons.format === '1'">
+          <tr  *cdkVirtualFor="let row of rows">
+            <td style="text-align: center" *ngFor="let value of row">
+                  {{ value }}
+            </td>
+          </tr>
+        </ng-container>
+        <ng-container *ngIf="radioButtons.format === '2'">
+          <tr  *cdkVirtualFor="let row of rows">
+            <td style="text-align: center" *ngFor="let value of row">
+                  {{ (value == '0') ? 'F' : 'T' }}
+            </td>
+          </tr>
+        </ng-container>
+        <ng-container *ngIf="radioButtons.format === '3'">
+          <tr  *cdkVirtualFor="let row of rows">
+            <td style="text-align: center" *ngFor="let value of row">
+                  {{ (value == '0') ? 'False' : 'True' }}
+            </td>
+          </tr>
+        </ng-container>
+
+        <!-- <tr *cdkVirtualFor="let row of rows">
           <td style="text-align: center" *ngFor="let value of row">
-            {{ value }}
+            <span [ngSwitch]="radioButtons.format">
+              <span *ngSwitchCase="'1'">
+                {{ value }}
+              </span>
+              <span *ngSwitchCase="'2'">
+                {{ value == 0 ? 'F' : 'V' }}
+              </span>
+              <span *ngSwitchCase="'3'">
+                {{ value == 0 ? 'false' : 'true' }}
+              </span>
+              <span *ngSwitchDefault>
+                {{ value }}
+              </span>
+            </span>
+
           </td>
-        </tr>
+        </tr> -->
       </tbody>
     </table>
   </cdk-virtual-scroll-viewport>

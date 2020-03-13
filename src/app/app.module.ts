@@ -24,11 +24,13 @@ import {MatRippleModule} from '@angular/material/core';
 import {MatTableModule} from '@angular/material/table';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {MatRadioModule} from '@angular/material/radio';
 
 import { ParserService } from './components/truth-table/parser.service';
 import { SolveTruthTableService } from './components/truth-table/solve-truth-table.service';
 import { ExpressionInputService } from './components/truth-table/expression-input.service';
 import { KeyboardComponent } from './components/truth-table/keyboard/keyboard.component';
+import { InfoTableComponent } from './components/truth-table/info-table/info-table.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +39,8 @@ import { KeyboardComponent } from './components/truth-table/keyboard/keyboard.co
     TruthTableComponent,
     PageNotFoundComponent,
     PerformedComponent,
-    KeyboardComponent
+    KeyboardComponent,
+    InfoTableComponent
   ],
   imports: [
     BrowserModule,
@@ -57,6 +60,7 @@ import { KeyboardComponent } from './components/truth-table/keyboard/keyboard.co
     MatTableModule,
     MatSidenavModule,
     MatProgressSpinnerModule,
+    MatRadioModule,
   ],
   providers: [
     ParserService,

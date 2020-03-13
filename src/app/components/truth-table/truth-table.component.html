@@ -4,38 +4,69 @@
   fxLayoutAlign="start"
   fxLayoutGap="20px"
 >
-  <div fxLayoutAlign="center">
-    <mat-form-field
-      appearance="outline"
-      floatLabel="always"
-      [style.fontSize.px]="20"
-      style="margin-top: 20px;"
-      fxFlex="66.66%"
-      fxFlex.lt-sm="99%"
+  <div style="width: 100vw;" fxLayout="row wrap" fxLayoutAlign="start">
+    <div fxFlex="100%" fxLayoutAlign="center">
+      <mat-form-field
+        appearance="outline"
+        floatLabel="always"
+        [style.fontSize.px]="20"
+        style="margin-top: 20px;"
+        fxFlex="66.66%"
+        fxFlex.lt-sm="99%"
+      >
+        <mat-label>TRUTH TABLE GENERATOR: ENTER AN EXPRESSION</mat-label>
+        <textarea
+          matInput
+          [formControl]="expressionInput"
+          cdkTextareaAutosize
+          #autosize
+          cdkAutosizeMinRows="1"
+          cdkAutosizeMaxRows="10"
+          autofocus
+        ></textarea>
+        <mat-hint>Example: {{ currentExample }} </mat-hint>
+        <mat-error *ngIf="expressionInput.hasError('pattern')">
+          Please enter a valid character
+        </mat-error>
+        <mat-error *ngIf="expressionInput.hasError('syntaxError')">
+          Please enter a valid expression
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div
+      fxFlex="100%"
+      fxLayoutAlign="center"
+      fxLayoutGap="40px"
+      fxLayoutGap.lt-sm="10px"
+      style="color: rgba(0, 0, 0, 0.6);"
+      [formGroup]="radioButtons"
+      fxLayout.lt-sm="row wrap"
     >
-      <mat-label>TRUTH TABLE GENERATOR: ENTER AN EXPRESSION</mat-label>
-      <textarea
-        matInput
-        [formControl]="expressionInput"
-        cdkTextareaAutosize
-        #autosize
-        cdkAutosizeMinRows="1"
-        cdkAutosizeMaxRows="10"
-        autofocus
-      ></textarea>
-      <mat-hint>Example: {{ currentExample }} </mat-hint>
-      <mat-error *ngIf="expressionInput.hasError('pattern')">
-        Please enter a valid character
-      </mat-error>
-      <mat-error *ngIf="expressionInput.hasError('syntaxError')">
-        Please enter a valid expression
-      </mat-error>
-    </mat-form-field>
+      <div>
+        <mat-label>FORMAT: </mat-label>
+        <mat-radio-group aria-label="Select an option" formControlName="format" fxLayoutGap="5px" color="primary">
+          <mat-radio-button value="1">1/0</mat-radio-button>
+          <mat-radio-button value="2">T/F</mat-radio-button>
+          <mat-radio-button value="3">True/False</mat-radio-button>
+        </mat-radio-group>
+      </div>
+      <div>
+        <mat-label>ORDER: </mat-label>
+        <mat-radio-group aria-label="Select an option" formControlName="order" fxLayoutGap="5px">
+          <mat-radio-button value="asc">asc</mat-radio-button>
+          <mat-radio-button value="desc">desc</mat-radio-button>
+
+        </mat-radio-group>
+      </div>
+    </div>
   </div>
   <div fxLayoutAlign="center">
     <app-keyboard></app-keyboard>
   </div>
   <div style="width: 100vw;" fxLayout="row wrap" fxLayoutAlign="start">
     <div #truthTable></div>
+  </div>
+  <div style="width: 100vw;" fxLayoutAlign="center">
+    <app-info-table></app-info-table>
   </div>
 </div>

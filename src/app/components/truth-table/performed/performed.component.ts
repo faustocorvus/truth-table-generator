@@ -12,6 +12,7 @@ export class PerformedComponent implements OnInit {
 
 
   @Input('parsedExpression') parsedExpression: any;
+  @Input('radioButtons') radioButtons: {format: string, order: string};
   @ViewChild('tableContainer') table: ElementRef;
 
   truthTableHeight = '0px';
@@ -36,16 +37,28 @@ export class PerformedComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
     this.setHeightTruthTableContainer();
     this._solveTruthTable.setParsedExpression(this.parsedExpression);
     this.rows = [];
-    for (let i = 0; i < Math.pow(2, this.parsedExpression.variables.variables.length > 17 ? 17 : this.parsedExpression.variables.variables.length); ++i) {
-      this.rows.push(this._solveTruthTable.getRow(i.toString(2)));
+
+    if (this.radioButtons.order === 'asc') {
+      this.ascOrder();
+    } else {
+      this.descOrder();
     }
     setTimeout(_ => {
       this.truthTableWidth = this.table.nativeElement.offsetWidth + 15 + 'px';
     }, 0);
+  }
+  descOrder() {
+    for (let i = Math.pow(2, this.parsedExpression.variables.variables.length > 17 ? 17 : this.parsedExpression.variables.variables.length) - 1; i >= 0 ; --i) {
+      this.rows.push(this._solveTruthTable.getRow(i.toString(2)));
+    }
+  }
+  ascOrder() {
+    for (let i = 0; i < Math.pow(2, this.parsedExpression.variables.variables.length > 17 ? 17 : this.parsedExpression.variables.variables.length); ++i) {
+      this.rows.push(this._solveTruthTable.getRow(i.toString(2)));
+    }
   }
 
   setHeightTruthTableContainer() {
@@ -58,6 +71,8 @@ export class PerformedComponent implements OnInit {
       this.truthTableHeight = '340px';
     } else if (totalVariables === 4) {
       this.truthTableHeight = '620px';
+    } else if (totalVariables === 5) {
+      this.truthTableHeight = '1180px';
     } else {
       this.truthTableHeight = '620px';
     }

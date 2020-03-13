@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, ViewContainerRef, ComponentFactoryResolver, ComponentRef, ElementRef } from '@angular/core';
-import { FormControl, FormBuilder, Validators } from '@angular/forms';
+import { FormControl, FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { ExpressionInputService } from './expression-input.service';
 import { ParserService } from './parser.service';
 import { PerformedComponent } from './performed/performed.component';
@@ -15,6 +15,7 @@ export class TruthTableComponent implements OnInit {
   /*
   form control of expression input */
   expressionInput: FormControl;
+  radioButtons: FormGroup;
 
   @ViewChild('truthTable', { read: ViewContainerRef }) truthTable: ViewContainerRef;
   componentRef: ComponentRef<any>;
@@ -27,6 +28,10 @@ export class TruthTableComponent implements OnInit {
     private componentFactoryResolver: ComponentFactoryResolver,
   ) {
     this.expressionInput = this.formBuilder.control('', [Validators.pattern('^[\na-zA-ZñÑ↔→˄´)(˅⊕⋂⋃+ -]+$')]);
+    this.radioButtons = this.formBuilder.group({
+      format: "1",
+      order: "asc",
+    });
 
   }
 
@@ -171,6 +176,7 @@ export class TruthTableComponent implements OnInit {
       let childComponent = this.componentFactoryResolver.resolveComponentFactory(PerformedComponent);
       this.componentRef = this.truthTable.createComponent(childComponent, 0);
       this.componentRef.instance.parsedExpression = parsedExpression;
+      this.componentRef.instance.radioButtons = this.radioButtons.value;
 
     }
 
