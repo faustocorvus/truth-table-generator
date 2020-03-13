@@ -23,7 +23,7 @@ describe('AppComponent', () => {
   it(`should have as title 'truth-tables'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('truth-tables');
+    expect(app.title).toEqual('truth-table-generator');
   });
 
   it('should render title', () => {
