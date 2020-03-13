@@ -9,9 +9,8 @@ export class ParserService {
   constructor() { }
 
   parseExpression(expression: string) {
-    expression = this.addProductOperator(expression.replace(/ /g, ""));
     try {
-      return parse(expression);
+      return parse(this.addProductOperator(expression.replace(/ /g, "")));
     } catch (error) {
       return { error: error };
     }
@@ -29,9 +28,9 @@ export class ParserService {
         booleanTransformed = `${booleanTransformed}${booleanExpression[index]}*`;
       } else if (booleanExpression[index + 1] && /[a-zA-ZñÑ]/.test(booleanExpression[index]) && /\(/.test(booleanExpression[index + 1])) {
         booleanTransformed = `${booleanTransformed}${booleanExpression[index]}*`;
-      } else if (booleanExpression[index + 1] && /\´/.test(booleanExpression[index]) && /[a-zA-ZñÑ]/.test(booleanExpression[index + 1])) {
+      } else if (booleanExpression[index + 1] && /\xb4/.test(booleanExpression[index]) && /[a-zA-ZñÑ]/.test(booleanExpression[index + 1])) {
         booleanTransformed = `${booleanTransformed}${booleanExpression[index]}*`;
-      } else if (booleanExpression[index + 1] && /\´/.test(booleanExpression[index]) && /\(/.test(booleanExpression[index + 1])) {
+      } else if (booleanExpression[index + 1] && /\xb4/.test(booleanExpression[index]) && /\(/.test(booleanExpression[index + 1])) {
         booleanTransformed = `${booleanTransformed}${booleanExpression[index]}*`;
       } else {
         booleanTransformed = `${booleanTransformed}${booleanExpression[index]}`;
