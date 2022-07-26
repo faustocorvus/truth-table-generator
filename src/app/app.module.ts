@@ -43,7 +43,7 @@ import { InfoTableComponent } from './components/truth-table/info-table/info-tab
     InfoTableComponent
   ],
   imports: [
-    BrowserModule,
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
     AppRoutingModule,
     BrowserAnimationsModule,
     FlexLayoutModule,
