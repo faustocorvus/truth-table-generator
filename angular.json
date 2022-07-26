@@ -125,7 +125,6 @@
       }
     }
   },
-  "defaultProject": "truth-tables",
   "cli": {
     "analytics": "2a7f91cd-0868-44e0-bd3e-00311ff2caa7"
   }
