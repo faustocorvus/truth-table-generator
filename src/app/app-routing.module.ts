@@ -5,8 +5,8 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
 
 
 const routes: Routes = [
-  { path: '', redirectTo: 'truth-table-generator', pathMatch: 'full' },
-  { path: 'truth-table-generator', component: TruthTableComponent},
+  { path: '', redirectTo: '', pathMatch: 'full' },
+  { path: '', component: TruthTableComponent},
   { path: '**', component: PageNotFoundComponent },
 
 
