@@ -5,7 +5,6 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
 
 
 const routes: Routes = [
-  { path: '', redirectTo: '', pathMatch: 'full' },
   { path: '', component: TruthTableComponent},
   { path: '**', component: PageNotFoundComponent },
 
