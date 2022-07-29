@@ -8,4 +8,4 @@ COPY ./ /app/
 RUN npm install
 RUN npm run build:ssr
 
-CMD [ "node", "dist/cuervu-ssr/server/main.js" ]
+CMD [ "node", "dist/truth-table/server/main.js" ]

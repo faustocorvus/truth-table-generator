@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "truth-tables": {
+    "truth-table": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/truth-tables/browser",
+            "outputPath": "dist/truth-table/browser",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -74,18 +74,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "truth-tables:build"
+            "browserTarget": "truth-table:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "truth-tables:build:production"
+              "browserTarget": "truth-table:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "truth-tables:build"
+            "browserTarget": "truth-table:build"
           }
         },
         "test": {
@@ -110,11 +110,11 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "truth-tables:serve"
+            "devServerTarget": "truth-table:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "truth-tables:serve:production"
+              "devServerTarget": "truth-table:serve:production"
             }
           }
         },
@@ -125,7 +125,7 @@
         "server": {
           "builder": "@angular-devkit/build-angular:server",
           "options": {
-            "outputPath": "dist/truth-tables/server",
+            "outputPath": "dist/truth-table/server",
             "main": "server.ts",
             "tsConfig": "tsconfig.server.json",
             "optimization": false,
@@ -152,12 +152,12 @@
           "builder": "@nguniversal/builders:ssr-dev-server",
           "configurations": {
             "development": {
-              "browserTarget": "truth-tables:build:development",
-              "serverTarget": "truth-tables:server:development"
+              "browserTarget": "truth-table:build:development",
+              "serverTarget": "truth-table:server:development"
             },
             "production": {
-              "browserTarget": "truth-tables:build:production",
-              "serverTarget": "truth-tables:server:production"
+              "browserTarget": "truth-table:build:production",
+              "serverTarget": "truth-table:server:production"
             }
           },
           "defaultConfiguration": "development"
@@ -171,12 +171,12 @@
           },
           "configurations": {
             "production": {
-              "browserTarget": "truth-tables:build:production",
-              "serverTarget": "truth-tables:server:production"
+              "browserTarget": "truth-table:build:production",
+              "serverTarget": "truth-table:server:production"
             },
             "development": {
-              "browserTarget": "truth-tables:build:development",
-              "serverTarget": "truth-tables:server:development"
+              "browserTarget": "truth-table:build:development",
+              "serverTarget": "truth-table:server:development"
             }
           },
           "defaultConfiguration": "production"

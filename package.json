@@ -1,5 +1,5 @@
 {
-  "name": "truth-table-generator",
+  "name": "truth-table",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
@@ -8,10 +8,10 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "dev:ssr": "ng run truth-tables:serve-ssr",
-    "serve:ssr": "node dist/truth-tables/server/main.js",
-    "build:ssr": "ng build && ng run truth-tables:server",
-    "prerender": "ng run truth-tables:prerender"
+    "dev:ssr": "ng run truth-table:serve-ssr",
+    "serve:ssr": "node dist/truth-table/server/main.js",
+    "build:ssr": "ng build && ng run truth-table:server",
+    "prerender": "ng run truth-table:prerender"
   },
   "private": true,
   "dependencies": {
