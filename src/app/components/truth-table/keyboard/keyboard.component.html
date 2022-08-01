@@ -5,6 +5,7 @@
   fxLayoutGap="10px"
 >
   <div fxLayoutGap="10px">
+    
     <button
       fxHide.lt-sm="true"
       (click)="setCharacter(alphabet[0])"
@@ -41,7 +42,30 @@
     >
       <span class="variable-size">{{ alphabet[2] }}</span>
     </button>
-
+    <button
+    fxHide.lt-sm="true"
+    (click)="setCharacter(alphabet[3])"
+    mat-fab
+    color="primary"
+    matRipple
+    [matRippleCentered]="centered"
+    [matRippleRadius]="radius"
+    [matRippleColor]="color"
+  >
+    <span class="variable-size">{{ alphabet[3] }}</span>
+  </button>
+  <button
+    fxHide.lt-sm="true"
+    (click)="setCharacter(alphabet[4])"
+    mat-fab
+    color="primary"
+    matRipple
+    [matRippleCentered]="centered"
+    [matRippleRadius]="radius"
+    [matRippleColor]="color"
+  >
+    <span class="variable-size">{{ alphabet[4] }}</span>
+  </button>
     <button
       (click)="setCharacter('refresh')"
       mat-fab
@@ -51,40 +75,9 @@
       [matRippleRadius]="radius"
       [matRippleColor]="actionColor"
     >
-      <mat-icon>refresh</mat-icon>
-    </button>
-    <button
-      (click)="setCharacter('⊕')"
-      mat-fab
-      color="accent"
-      matRipple
-      [matRippleCentered]="centered"
-      [matRippleRadius]="radius"
-      [matRippleColor]="operatorColor"
-    >
-      <span class="operator-size">⊕</span>
-    </button>
-    <button
-      (click)="setCharacter('→')"
-      mat-fab
-      color="accent"
-      matRipple
-      [matRippleCentered]="centered"
-      [matRippleRadius]="radius"
-      [matRippleColor]="operatorColor"
-    >
-      <span class="operator-size">→</span>
-    </button>
-    <button
-      (click)="setCharacter('↔')"
-      mat-fab
-      color="accent"
-      matRipple
-      [matRippleCentered]="centered"
-      [matRippleRadius]="radius"
-      [matRippleColor]="operatorColor"
-    >
-      <span class="operator-size">↔</span>
+      <mat-icon>
+        <span class="material-symbols-outlined">mop</span>
+      </mat-icon>
     </button>
 
     <button
@@ -97,35 +90,15 @@
       [matRippleRadius]="radius"
       [matRippleColor]="actionColor"
     >
-      <mat-icon>backspace</mat-icon>
+      <mat-icon class="material-symbols-outlined">keyboard_backspace</mat-icon>
     </button>
   </div>
 
+  <!-- row 2-->
+
   <div fxLayoutGap="10px">
-    <button
-      fxHide.lt-sm="true"
-      (click)="setCharacter(alphabet[3])"
-      mat-fab
-      color="primary"
-      matRipple
-      [matRippleCentered]="centered"
-      [matRippleRadius]="radius"
-      [matRippleColor]="color"
-    >
-      <span class="variable-size">{{ alphabet[3] }}</span>
-    </button>
-    <button
-      fxHide.lt-sm="true"
-      (click)="setCharacter(alphabet[4])"
-      mat-fab
-      color="primary"
-      matRipple
-      [matRippleCentered]="centered"
-      [matRippleRadius]="radius"
-      [matRippleColor]="color"
-    >
-      <span class="variable-size">{{ alphabet[4] }}</span>
-    </button>
+    
+    
     <button
       fxHide.lt-sm="true"
       (click)="setCharacter(alphabet[5])"
@@ -151,67 +124,6 @@
       <span class="variable-size">{{ alphabet[6] }}</span>
     </button>
     <button
-      (click)="setCharacter('-')"
-      mat-fab
-      color="accent"
-      matRipple
-      [matRippleCentered]="centered"
-      [matRippleRadius]="radius"
-      [matRippleColor]="operatorColor"
-    >
-      <span class="operator-size">-</span>
-    </button>
-    <button
-      (click)="setCharacter('+')"
-      mat-fab
-      color="accent"
-      matRipple
-      [matRippleCentered]="centered"
-      [matRippleRadius]="radius"
-      [matRippleColor]="operatorColor"
-    >
-      <span class="operator-size">+</span>
-    </button>
-    <button
-      fxHide.lt-sm="true"
-      (click)="setCharacter(alphabet[12])"
-      mat-fab
-      color="primary"
-      matRipple
-      [matRippleCentered]="centered"
-      [matRippleRadius]="radius"
-      [matRippleColor]="color"
-    >
-      <span class="variable-size">{{ alphabet[12] }}</span>
-    </button>
-    <button
-      fxHide.lt-sm="true"
-      (click)="setCharacter(alphabet[13])"
-      mat-fab
-      color="primary"
-      matRipple
-      [matRippleCentered]="centered"
-      [matRippleRadius]="radius"
-      [matRippleColor]="color"
-    >
-      <span class="variable-size">{{ alphabet[13] }}</span>
-    </button>
-    <button
-      fxHide.lt-sm="true"
-      (click)="setCharacter(alphabet[14])"
-      mat-fab
-      color="primary"
-      matRipple
-      [matRippleCentered]="centered"
-      [matRippleRadius]="radius"
-      [matRippleColor]="color"
-    >
-      <span class="variable-size">{{ alphabet[14] }}</span>
-    </button>
-  </div>
-
-  <div fxLayoutGap="10px">
-    <button
       fxHide.lt-sm="true"
       (click)="setCharacter(alphabet[7])"
       mat-fab
@@ -236,6 +148,46 @@
       <span class="variable-size">{{ alphabet[8] }}</span>
     </button>
     <button
+      (click)="setCharacter('→')"
+      mat-fab
+      color="accent"
+      matRipple
+      [matRippleCentered]="centered"
+      [matRippleRadius]="radius"
+      [matRippleColor]="operatorColor"
+    >
+      <span class="operator-size">→</span>
+    </button>
+    <button
+      (click)="setCharacter('↔')"
+      mat-fab
+      color="accent"
+      matRipple
+      [matRippleCentered]="centered"
+      [matRippleRadius]="radius"
+      [matRippleColor]="operatorColor"
+    >
+      <span class="operator-size">↔</span>
+    </button>
+    <button
+      (click)="setCharacter('´')"
+      mat-fab
+      color="accent"
+      matRipple
+      [matRippleCentered]="centered"
+      [matRippleRadius]="radius"
+      [matRippleColor]="operatorColor"
+    >
+      <span class="operator-size">´</span>
+    </button>
+  </div>
+
+  <!-- row 3-->
+
+  <div fxLayoutGap="10px">
+    
+    
+    <button
       fxHide.lt-sm="true"
       (click)="setCharacter(alphabet[9])"
       mat-fab
@@ -247,81 +199,6 @@
     >
       <span class="variable-size">{{ alphabet[9] }}</span>
     </button>
-
-    <button
-      (click)="setCharacter('⋂')"
-      mat-fab
-      color="accent"
-      matRipple
-      [matRippleCentered]="centered"
-      [matRippleRadius]="radius"
-      [matRippleColor]="operatorColor"
-    >
-      <span class="operator-size">⋂</span>
-    </button>
-    <button
-      (click)="setCharacter('⋃')"
-      mat-fab
-      color="accent"
-      matRipple
-      [matRippleCentered]="centered"
-      [matRippleRadius]="radius"
-      [matRippleColor]="operatorColor"
-    >
-      <span class="operator-size">⋃</span>
-    </button>
-
-    <button
-      fxHide.lt-sm="true"
-      (click)="setCharacter(alphabet[15])"
-      mat-fab
-      color="primary"
-      matRipple
-      [matRippleCentered]="centered"
-      [matRippleRadius]="radius"
-      [matRippleColor]="color"
-    >
-      <span class="variable-size">{{ alphabet[15] }}</span>
-    </button>
-    <button
-      fxHide.lt-sm="true"
-      (click)="setCharacter(alphabet[16])"
-      mat-fab
-      color="primary"
-      matRipple
-      [matRippleCentered]="centered"
-      [matRippleRadius]="radius"
-      [matRippleColor]="color"
-    >
-      <span class="variable-size">{{ alphabet[16] }}</span>
-    </button>
-    <button
-      fxHide.lt-sm="true"
-      (click)="setCharacter(alphabet[17])"
-      mat-fab
-      color="primary"
-      matRipple
-      [matRippleCentered]="centered"
-      [matRippleRadius]="radius"
-      [matRippleColor]="color"
-    >
-      <span class="variable-size">{{ alphabet[17] }}</span>
-    </button>
-    <button
-      fxHide.lt-sm="true"
-      (click)="setCharacter(alphabet[18])"
-      mat-fab
-      color="primary"
-      matRipple
-      [matRippleCentered]="centered"
-      [matRippleRadius]="radius"
-      [matRippleColor]="color"
-    >
-      <span class="variable-size">{{ alphabet[18] }}</span>
-    </button>
-  </div>
-
-  <div fxLayoutGap="10px">
     <button
       fxHide.lt-sm="true"
       (click)="setCharacter(alphabet[10])"
@@ -346,7 +223,116 @@
     >
       <span class="variable-size">{{ alphabet[11] }}</span>
     </button>
+    <button
+      fxHide.lt-sm="true"
+      (click)="setCharacter(alphabet[12])"
+      mat-fab
+      color="primary"
+      matRipple
+      [matRippleCentered]="centered"
+      [matRippleRadius]="radius"
+      [matRippleColor]="color"
+    >
+      <span class="variable-size">{{ alphabet[12] }}</span>
+    </button>
+    <button
+      (click)="setCharacter('⋃')"
+      mat-fab
+      color="accent"
+      matRipple
+      [matRippleCentered]="centered"
+      [matRippleRadius]="radius"
+      [matRippleColor]="operatorColor"
+    >
+      <span class="operator-size">⋃</span>
+    </button>
+    <button
+      (click)="setCharacter('⋂')"
+      mat-fab
+      color="accent"
+      matRipple
+      [matRippleCentered]="centered"
+      [matRippleRadius]="radius"
+      [matRippleColor]="operatorColor"
+    >
+      <span class="operator-size">⋂</span>
+    </button>
+    <button
+      (click)="setCharacter('+')"
+      mat-fab
+      color="accent"
+      matRipple
+      [matRippleCentered]="centered"
+      [matRippleRadius]="radius"
+      [matRippleColor]="operatorColor"
+    >
+      <span class="operator-size">+</span>
+    </button>
+  </div>
+  <!-- row 4-->
 
+  <div fxLayoutGap="10px">
+    
+    <button
+      fxHide.lt-sm="true"
+      (click)="setCharacter(alphabet[13])"
+      mat-fab
+      color="primary"
+      matRipple
+      [matRippleCentered]="centered"
+      [matRippleRadius]="radius"
+      [matRippleColor]="color"
+    >
+      <span class="variable-size">{{ alphabet[13] }}</span>
+    </button>
+    <button
+      fxHide.lt-sm="true"
+      (click)="setCharacter(alphabet[14])"
+      mat-fab
+      color="primary"
+      matRipple
+      [matRippleCentered]="centered"
+      [matRippleRadius]="radius"
+      [matRippleColor]="color"
+    >
+      <span class="variable-size">{{ alphabet[14] }}</span>
+    </button>
+    <button
+      fxHide.lt-sm="true"
+      (click)="setCharacter(alphabet[15])"
+      mat-fab
+      color="primary"
+      matRipple
+      [matRippleCentered]="centered"
+      [matRippleRadius]="radius"
+      [matRippleColor]="color"
+    >
+      <span class="variable-size">{{ alphabet[15] }}</span>
+    </button>
+    <button
+      fxHide.lt-sm="true"
+      (click)="setCharacter(alphabet[16])"
+      mat-fab
+      color="primary"
+      matRipple
+      [matRippleCentered]="centered"
+      [matRippleRadius]="radius"
+      [matRippleColor]="color"
+    >
+      <span class="variable-size">{{ alphabet[16] }}</span>
+    </button>
+    
+    <button
+      (click)="setCharacter('˅')"
+      mat-fab
+      color="accent"
+      matRipple
+      [matRippleCentered]="centered"
+      [matRippleRadius]="radius"
+      [matRippleColor]="operatorColor"
+    >
+      <span class="operator-size">˅</span>
+    </button>
     <button
       (click)="setCharacter('˄')"
       mat-fab
@@ -359,7 +345,7 @@
       <span class="operator-size">˄</span>
     </button>
     <button
-      (click)="setCharacter('˅')"
+      (click)="setCharacter('-')"
       mat-fab
       color="accent"
       matRipple
@@ -367,7 +353,35 @@
       [matRippleRadius]="radius"
       [matRippleColor]="operatorColor"
     >
-      <span class="operator-size">˅</span>
+      <span class="operator-size">-</span>
+    </button>
+  </div>
+  <!-- row 5-->
+
+  <div fxLayoutGap="10px">
+    <button
+      fxHide.lt-sm="true"
+      (click)="setCharacter(alphabet[17])"
+      mat-fab
+      color="primary"
+      matRipple
+      [matRippleCentered]="centered"
+      [matRippleRadius]="radius"
+      [matRippleColor]="color"
+    >
+      <span class="variable-size">{{ alphabet[17] }}</span>
+    </button>
+    <button
+      fxHide.lt-sm="true"
+      (click)="setCharacter(alphabet[18])"
+      mat-fab
+      color="primary"
+      matRipple
+      [matRippleCentered]="centered"
+      [matRippleRadius]="radius"
+      [matRippleColor]="color"
+    >
+      <span class="variable-size">{{ alphabet[18] }}</span>
     </button>
     <button
       fxHide.lt-sm="true"
@@ -393,6 +407,44 @@
     >
       <span class="variable-size">{{ alphabet[20] }}</span>
     </button>
+    
+    <button
+      (click)="setCharacter('(')"
+      mat-fab
+      color="accent"
+      matRipple
+      [matRippleCentered]="centered"
+      [matRippleRadius]="radius"
+      [matRippleColor]="operatorColor"
+    >
+      <span class="parentheses-size">(</span>
+    </button>
+    <button
+      (click)="setCharacter(')')"
+      mat-fab
+      color="accent"
+      matRipple
+      [matRippleCentered]="centered"
+      [matRippleRadius]="radius"
+      [matRippleColor]="operatorColor"
+    >
+      <span class="parentheses-size">)</span>
+    </button>
+    <button
+      (click)="setCharacter('⊕')"
+      mat-fab
+      color="accent"
+      matRipple
+      [matRippleCentered]="centered"
+      [matRippleRadius]="radius"
+      [matRippleColor]="operatorColor"
+    >
+      <span class="operator-size" style="display: grid">⊕</span>
+    </button>
+  </div>
+  <!-- row 6-->
+
+  <div fxLayoutGap="10px">
     <button
       fxHide.lt-sm="true"
       (click)="setCharacter(alphabet[21])"
@@ -429,65 +481,6 @@
     >
       <span class="variable-size">{{ alphabet[23] }}</span>
     </button>
-  </div>
-  <div class="row-container" fxLayoutGap="10px">
-    <button
-      fxHide.lt-sm="true"
-      (click)="capslock(alphabet[0])"
-      mat-fab
-      color="warn"
-      matRipple
-      [matRippleCentered]="centered"
-      [matRippleRadius]="radius"
-      [matRippleColor]="actionColor"
-    >
-      <mat-icon>keyboard_capslock</mat-icon>
-    </button>
-
-    <button
-      (click)="setCharacter('(')"
-      mat-fab
-      color="accent"
-      matRipple
-      [matRippleCentered]="centered"
-      [matRippleRadius]="radius"
-      [matRippleColor]="operatorColor"
-    >
-      <span class="parentheses-size">(</span>
-    </button>
-    <button
-      (click)="setCharacter(')')"
-      mat-fab
-      color="accent"
-      matRipple
-      [matRippleCentered]="centered"
-      [matRippleRadius]="radius"
-      [matRippleColor]="operatorColor"
-    >
-      <span class="parentheses-size">)</span>
-    </button>
-    <button
-      (click)="setCharacter('´')"
-      mat-fab
-      color="accent"
-      matRipple
-      [matRippleCentered]="centered"
-      [matRippleRadius]="radius"
-      [matRippleColor]="operatorColor"
-    >
-      <span class="operator-size">´</span>
-    </button>
-    <button
-      (click)="setCharacter('solve')"
-      mat-fab
-      color="warn"
-      matRipple
-      [matRippleCentered]="centered"
-      [matRippleRadius]="radius"
-      [matRippleColor]="actionColor"
-    >
-      <mat-icon>drag_handle</mat-icon>
-    </button>
     <button
       fxHide.lt-sm="true"
       (click)="setCharacter(alphabet[24])"
@@ -514,15 +507,27 @@
     </button>
     <button
       fxHide.lt-sm="true"
-      (click)="setCharacter(alphabet[26])"
+      (click)="capslock(alphabet[0])"
       mat-fab
-      color="primary"
+      color="warn"
       matRipple
       [matRippleCentered]="centered"
       [matRippleRadius]="radius"
-      [matRippleColor]="color"
+      [matRippleColor]="actionColor"
     >
-      <span class="variable-size">{{ alphabet[26] }}</span>
+      <mat-icon class="material-symbols-outlined">keyboard_capslock</mat-icon>
+    </button>
+
+    <button
+      (click)="setCharacter('solve')"
+      mat-fab
+      color="warn"
+      matRipple
+      [matRippleCentered]="centered"
+      [matRippleRadius]="radius"
+      [matRippleColor]="actionColor"
+    >
+      <mat-icon class="material-symbols-outlined">drag_handle</mat-icon>
     </button>
   </div>
 </div>

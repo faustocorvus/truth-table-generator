@@ -13,9 +13,12 @@
   color: whitesmoke;
 }
 
-button {
+/* button {
   width: 55px;
   height: 55px;
+} */
+.mat-icon-button {
+  vertical-align: bottom;
 }
 .mat-fab.mat-primary {
   background-color: #f2f2f2;
@@ -25,4 +28,7 @@ button {
 }
 .mat-fab.mat-warn {
   background-color: #bf996b;
+}
+span{
+  display: grid;
 }
