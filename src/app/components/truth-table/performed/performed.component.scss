@@ -1,45 +1,47 @@
-.container {
-  max-width: calc(100vw - 40px);
-  padding: 0px 20px 20px 20px;
+.truth-table {
+  max-width: calc(100vw - 10rem); // se restan los paddings
+  padding: 2rem;
+  margin-bottom: 2rem;
+  border-radius: 1rem;
+  background-color: white;
+  .container {
+    max-width: calc(100vw - 4rem);
 
-  cdk-virtual-scroll-viewport {
-    height: 100%;
-    max-width: calc(100vw - 55px);
-    background-color: transparent;
-    overflow: auto;
-    table {
-      height: auto;
-      width: auto;
-      border-collapse: separate;
-      border-spacing: 0;
-      color: #000000;
-      background-color: #fafafa;
-      overflow-anchor: auto;
-      thead tr th {
-        height: 30px;
-        border-bottom: 1px solid #ddd;
-        border-radius: 5px;
-        padding: 7px 20px 7px 27px;
-        position: sticky;
-        overflow: auto;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        color: #d9d9d9;
-        background-color: #262223;
-        font-weight: bold;
-      }
-
-      tbody tr td {
-        height: 20px;
-        border-bottom: 1px solid #d0d0d0;
-        border-left: 1px solid #ddd;
-        border-right: 1px solid #ddd;
-        padding: 7px 20px 7px 27px;
-        font-size: 16px;
-        color: #666666;
-      }
-      tr:nth-child(even) {
-        background-color: #f2f2f2;
+    cdk-virtual-scroll-viewport {
+      height: 100%;
+      width: 100%;
+      background-color: transparent;
+      overflow: auto;
+      table {
+        height: auto;
+        width: auto;
+        border-collapse: separate;
+        border-spacing: 0;
+        color: #000000;
+        background-color: white;
+        overflow-anchor: auto;
+        thead tr th {
+          border-bottom: 1px solid #ddd;
+          padding: 7px 20px 7px 27px;
+          position: sticky;
+          overflow: auto;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          color: #d9d9d9;
+          background-color: #262223;
+          font-weight: bold;
+        }
+        tbody tr td {
+          border-bottom: 1px solid #d0d0d0;
+          border-left: 1px solid #ddd;
+          border-right: 1px solid #ddd;
+          padding: 7px 20px 7px 27px;
+          font-size: 16px;
+          color: #666666;
+        }
+        tr:nth-child(even) {
+          background-color: #f2f2f2;
+        }
       }
     }
   }

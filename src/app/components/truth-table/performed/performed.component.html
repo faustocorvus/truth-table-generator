@@ -1,106 +1,95 @@
-<div
-  class="animated fadeInLeft slow"
-  style="overflow: hidden;margin-left: 20px;margin-top: 20px;"
-  [ngStyle]="{ width: truthTableWidth }"
-  fxLayout="row"
->
-  <p
-    style="font-size: 14px;overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-"
-  >
-    {{ applyWhitespace(parsedExpression.expression) }}
-    <b style="color: #BF996B;">></b>
-    {{ parsedExpression.variables.variables.length }}
-    {{ parsedExpression.variables.variables.length > 1 ? "Inputs" : "Input" }}
-    <b style="color: #BF996B;">></b>
-    {{
-      parsedExpression.expressions.length > 0
-        ? parsedExpression.expressions.length
-        : 0
-    }}
-    {{
-      parsedExpression.expressions.length > 1 ||
-      parsedExpression.expressions.length === 0
-        ? "Outputs"
-        : "Output"
-    }}
-    <b style="color: #BF996B;">></b>
-    {{ getOutputs() + " Possible States" }}
-  </p>
-</div>
-<div
-  class="container animated fadeInLeft"
-  [ngStyle]="{ height: truthTableHeight }"
->
-  <cdk-virtual-scroll-viewport
-    #scrollViewport
-    itemSize="30"
+<div class="truth-table mat-elevation-z1">
+  <div
+    class="animated fadeInLeft slow"
     [ngStyle]="{ width: truthTableWidth }"
+    fxLayout="column"
+    fxLayoutGap=".5rem"
   >
-    <table #tableContainer>
-      <thead>
-        <tr>
-          <th
-            *ngFor="let variable of parsedExpression.variables.variables.sort()"
-            [style.top]="inverseOfTranslation"
-          >
-            {{ variable }}
-          </th>
-          <th
-            *ngFor="let expression of parsedExpression.expressions"
-            [style.top]="inverseOfTranslation"
-          >
-            <span style="color: #BF996B;">{{ applyWhitespace(expression.firstPart) }}</span>
-            <span> {{ expression.operator }} </span>
-            <span>{{ applyWhitespace(expression.secondPart) }}</span>
-          </th>
-        </tr>
-      </thead>
-      <tbody>
-        <ng-container *ngIf="radioButtons.format === '1'">
-          <tr  *cdkVirtualFor="let row of rows">
-            <td style="text-align: center" *ngFor="let value of row">
-                  {{ value }}
-            </td>
-          </tr>
-        </ng-container>
-        <ng-container *ngIf="radioButtons.format === '2'">
-          <tr  *cdkVirtualFor="let row of rows">
-            <td style="text-align: center" *ngFor="let value of row">
-                  {{ (value == '0') ? 'F' : 'T' }}
-            </td>
-          </tr>
-        </ng-container>
-        <ng-container *ngIf="radioButtons.format === '3'">
-          <tr  *cdkVirtualFor="let row of rows">
-            <td style="text-align: center" *ngFor="let value of row">
-                  {{ (value == '0') ? 'False' : 'True' }}
-            </td>
-          </tr>
-        </ng-container>
+    <!-- <p style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap"> -->
+    <p class="mat-body-strong">
+      <b style="color: #bf996b">></b>
 
-        <!-- <tr *cdkVirtualFor="let row of rows">
-          <td style="text-align: center" *ngFor="let value of row">
-            <span [ngSwitch]="radioButtons.format">
-              <span *ngSwitchCase="'1'">
+      {{ applyWhitespace(parsedExpression.expression) }}
+    </p>
+    <p>
+      <b style="color: #bf996b">></b>
+      {{ parsedExpression.variables.variables.length }}
+      {{ parsedExpression.variables.variables.length > 1 ? "Inputs" : "Input" }}
+    </p>
+    <p>
+      <b style="color: #bf996b">></b>
+      {{
+        parsedExpression.expressions.length > 0
+          ? parsedExpression.expressions.length
+          : 0
+      }}
+      {{
+        parsedExpression.expressions.length > 1 ||
+        parsedExpression.expressions.length === 0
+          ? "Outputs"
+          : "Output"
+      }}
+    </p>
+    <p>
+      <b style="color: #bf996b">></b>
+      {{ getOutputs() + " Possible States" }}
+    </p>
+  </div>
+  <div
+    class="container animated fadeInLeft"
+    [ngStyle]="{ height: truthTableHeight }"
+  >
+    <cdk-virtual-scroll-viewport
+      #scrollViewport
+      itemSize="30"
+    >
+      <table #tableContainer>
+        <thead>
+          <tr>
+            <th
+              *ngFor="
+                let variable of parsedExpression.variables.variables.sort()
+              "
+              [style.top]="inverseOfTranslation"
+            >
+              {{ variable }}
+            </th>
+            <th
+              *ngFor="let expression of parsedExpression.expressions"
+              [style.top]="inverseOfTranslation"
+            >
+              <span style="color: #bf996b">{{
+                applyWhitespace(expression.firstPart)
+              }}</span>
+              <span> {{ expression.operator }} </span>
+              <span>{{ applyWhitespace(expression.secondPart) }}</span>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <ng-container *ngIf="radioButtons.format === '1'">
+            <tr *cdkVirtualFor="let row of rows">
+              <td style="text-align: center" *ngFor="let value of row">
                 {{ value }}
-              </span>
-              <span *ngSwitchCase="'2'">
-                {{ value == 0 ? 'F' : 'V' }}
-              </span>
-              <span *ngSwitchCase="'3'">
-                {{ value == 0 ? 'false' : 'true' }}
-              </span>
-              <span *ngSwitchDefault>
-                {{ value }}
-              </span>
-            </span>
-
-          </td>
-        </tr> -->
-      </tbody>
-    </table>
-  </cdk-virtual-scroll-viewport>
+              </td>
+            </tr>
+          </ng-container>
+          <ng-container *ngIf="radioButtons.format === '2'">
+            <tr *cdkVirtualFor="let row of rows">
+              <td style="text-align: center" *ngFor="let value of row">
+                {{ value == "0" ? "F" : "T" }}
+              </td>
+            </tr>
+          </ng-container>
+          <ng-container *ngIf="radioButtons.format === '3'">
+            <tr *cdkVirtualFor="let row of rows">
+              <td style="text-align: center" *ngFor="let value of row">
+                {{ value == "0" ? "False" : "True" }}
+              </td>
+            </tr>
+          </ng-container>
+        </tbody>
+      </table>
+    </cdk-virtual-scroll-viewport>
+  </div>
 </div>
