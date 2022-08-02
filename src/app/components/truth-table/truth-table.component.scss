@@ -1,10 +1,12 @@
 :host {
   padding: 2rem;
+  
   .container {
     width: 100%;
     .truth-table-generator {
       padding: 2rem;
       border-radius: 1rem;
+      background-color: white;
     }
   }
   .truth-table {

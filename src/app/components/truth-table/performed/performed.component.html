@@ -10,7 +10,7 @@
   white-space: nowrap;
 "
   >
-    {{ parsedExpression.expression }}
+    {{ applyWhitespace(parsedExpression.expression) }}
     <b style="color: #BF996B;">></b>
     {{ parsedExpression.variables.variables.length }}
     {{ parsedExpression.variables.variables.length > 1 ? "Inputs" : "Input" }}
@@ -52,9 +52,9 @@
             *ngFor="let expression of parsedExpression.expressions"
             [style.top]="inverseOfTranslation"
           >
-            <span style="color: #BF996B;">{{ expression.firstPart }}</span>
-            <span>{{ expression.operator }}</span>
-            <span>{{ expression.secondPart }}</span>
+            <span style="color: #BF996B;">{{ applyWhitespace(expression.firstPart) }}</span>
+            <span> {{ expression.operator }} </span>
+            <span>{{ applyWhitespace(expression.secondPart) }}</span>
           </th>
         </tr>
       </thead>

@@ -93,7 +93,7 @@ $my-custom-typography: mat.define-typography-config(
   $body-2:
     mat.define-typography-level(
       $font-weight: 700,
-      $font-size: 1.8rem,
+      $font-size: 1.75rem,
     ),
 );
 
@@ -102,30 +102,15 @@ $my-custom-typography: mat.define-typography-config(
 :root {
   font-family: "PT Sans Narrow", sans-serif;
   font-size: 8px;
+  --color-primary: #262223;
+  --color-accent: #bf996b;
 }
 
-html,
-body {
-  height: 100%;
-  overflow-x: hidden;
-  background-image: repeating-linear-gradient(
-      0deg,
-      rgb(245, 245, 245) 0px,
-      rgb(245, 245, 245) 1px,
-      transparent 1px,
-      transparent 21px
-    ),
-    repeating-linear-gradient(
-      90deg,
-      rgb(245, 245, 245) 0px,
-      rgb(245, 245, 245) 1px,
-      transparent 1px,
-      transparent 21px
-    ),
-    linear-gradient(90deg, hsl(131, 0%, 98%), hsl(131, 0%, 98%));
-}
+
 body {
   margin: 0;
+  background-color: whitesmoke;
+  overflow-x: hidden;
 }
 a {
   text-decoration: none;
