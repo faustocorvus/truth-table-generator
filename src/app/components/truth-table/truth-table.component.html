@@ -1,18 +1,23 @@
 <div
   class="container"
-  fxLayout="column"
-  fxLayoutAlign="start"
-  fxLayoutGap="20px"
+  fxLayout="row wrap"
+  fxLayoutAlign="center"
+  fxLayoutGap="2rem"
 >
-  <div style="width: 100vw;" fxLayout="row wrap" fxLayoutAlign="start">
-    <div fxFlex="100%" fxLayoutAlign="center">
+  <div
+    class="truth-table-generator mat-elevation-z1"
+    fxLayoutAlign="center center"
+  >
+    <div
+      class="display"
+      fxLayout="column"
+      fxLayoutAlign="start"
+      fxLayoutGap="2rem"
+    >
       <mat-form-field
         appearance="outline"
         floatLabel="always"
         [style.fontSize.px]="20"
-        style="margin-top: 20px;"
-        fxFlex="66.66%"
-        fxFlex.lt-sm="99%"
       >
         <mat-label>TRUTH TABLE GENERATOR: ENTER AN EXPRESSION</mat-label>
         <textarea
@@ -32,41 +37,50 @@
           Please enter a valid expression
         </mat-error>
       </mat-form-field>
-    </div>
-    <div
-      fxFlex="100%"
-      fxLayoutAlign="center"
-      fxLayoutGap="40px"
-      fxLayoutGap.lt-sm="10px"
-      style="color: rgba(0, 0, 0, 0.6);"
-      [formGroup]="radioButtons"
-      fxLayout.lt-sm="row wrap"
-    >
-      <div>
-        <mat-label>FORMAT: </mat-label>
-        <mat-radio-group aria-label="Select an option" formControlName="format" fxLayoutGap="5px" color="primary">
-          <mat-radio-button value="1">1/0</mat-radio-button>
-          <mat-radio-button value="2">T/F</mat-radio-button>
-          <mat-radio-button value="3">True/False</mat-radio-button>
-        </mat-radio-group>
-      </div>
-      <div>
-        <mat-label>ORDER: </mat-label>
-        <mat-radio-group aria-label="Select an option" formControlName="order" fxLayoutGap="5px">
-          <mat-radio-button value="asc">asc</mat-radio-button>
-          <mat-radio-button value="desc">desc</mat-radio-button>
 
-        </mat-radio-group>
+      <div
+        fxLayoutAlign="center"
+        fxLayoutGap="2rem"
+        fxLayoutGap.lt-sm="1rem"
+        style="color: rgba(0, 0, 0, 0.6)"
+        [formGroup]="radioButtons"
+        fxLayout.lt-sm="row wrap"
+      >
+        <div fxLayoutGap="1rem">
+          <mat-label><span class="mat-body-strong">FORMAT:</span> </mat-label>
+          <mat-radio-group
+            aria-label="Select an option"
+            formControlName="format"
+            fxLayoutGap="1rem"
+            color="primary"
+          >
+            <mat-radio-button value="1">1/0</mat-radio-button>
+            <mat-radio-button value="2">T/F</mat-radio-button>
+            <mat-radio-button value="3">True/False</mat-radio-button>
+          </mat-radio-group>
+        </div>
+        <div fxLayoutGap="1rem">
+          <mat-label>ORDER: </mat-label>
+          <mat-radio-group
+            aria-label="Select an option"
+            formControlName="order"
+            fxLayoutGap="1rem"
+          >
+            <mat-radio-button value="asc">asc</mat-radio-button>
+            <mat-radio-button value="desc">desc</mat-radio-button>
+          </mat-radio-group>
+        </div>
       </div>
+
+      <app-keyboard></app-keyboard>
     </div>
   </div>
-  <div fxLayoutAlign="center">
-    <app-keyboard></app-keyboard>
-  </div>
-  <div style="width: 100vw;" fxLayout="row wrap" fxLayoutAlign="start">
-    <div #truthTable></div>
-  </div>
-  <div style="width: 100vw;" fxLayoutAlign="center">
-    <app-info-table></app-info-table>
-  </div>
+  <app-info-table></app-info-table>
+</div>
+<div
+  class="truth-table"
+  fxLayout="row wrap"
+  fxLayoutAlign="start"
+>
+  <div #truthTable></div>
 </div>

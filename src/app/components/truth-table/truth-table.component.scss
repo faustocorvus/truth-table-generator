@@ -1,6 +1,15 @@
-.container {
-  width: 100vw;
-  overflow-x: hidden;
+:host {
+  padding: 2rem;
+  .container {
+    width: 100%;
+    .truth-table-generator {
+      padding: 2rem;
+      border-radius: 1rem;
+    }
+  }
+  .truth-table {
+      width: 100%;
+  }
 }
 /* ::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
   color: transparent;
