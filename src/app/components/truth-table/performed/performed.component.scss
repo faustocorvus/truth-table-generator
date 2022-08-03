@@ -13,8 +13,8 @@
       background-color: transparent;
       overflow: auto;
       table {
-        height: auto;
-        width: auto;
+        height: 100%;
+        width: 100%;
         border-collapse: separate;
         border-spacing: 0;
         color: #000000;
@@ -22,7 +22,7 @@
         overflow-anchor: auto;
         thead tr th {
           border-bottom: 1px solid #ddd;
-          padding: 7px 20px 7px 27px;
+          padding: 1rem 2rem;
           position: sticky;
           overflow: auto;
           text-overflow: ellipsis;
@@ -35,8 +35,8 @@
           border-bottom: 1px solid #d0d0d0;
           border-left: 1px solid #ddd;
           border-right: 1px solid #ddd;
-          padding: 7px 20px 7px 27px;
-          font-size: 16px;
+          padding: 1rem 2rem;
+          font-size: 1.75rem;
           color: #666666;
         }
         tr:nth-child(even) {
