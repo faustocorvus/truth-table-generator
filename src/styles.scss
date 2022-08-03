@@ -2,7 +2,7 @@
 
 @include mat.core();
 
-$md-prueba: (
+$accent: (
   50: #f7f3ed,
   100: #ece0d3,
   200: #dfccb5,
@@ -34,7 +34,7 @@ $md-prueba: (
     A700: #000000,
   ),
 );
-$md-accent: (
+$primary: (
   50: #e5e4e5,
   100: #bebdbd,
   200: #939191,
@@ -70,8 +70,8 @@ $md-accent: (
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://material.io/design/color/
-$truth-table-primary: mat.define-palette($md-prueba);
-$truth-table-accent: mat.define-palette($md-accent, 500);
+$truth-table-primary: mat.define-palette($primary, 600);
+$truth-table-accent: mat.define-palette($accent, 400);
 
 // The warn palette is optional (defaults to red).
 $truth-table-warn: mat.define-palette(mat.$red-palette);
@@ -88,7 +88,7 @@ $truth-table-theme: mat.define-light-theme(
   )
 );
 
-@include mat.core-theme($truth-table-theme);
+@include mat.all-component-themes($truth-table-theme);
 
 $my-custom-typography: mat.define-typography-config(
   $font-family: "PT Sans Narrow",
@@ -104,8 +104,9 @@ $my-custom-typography: mat.define-typography-config(
 :root {
   font-family: "PT Sans Narrow", sans-serif;
   font-size: 8px;
-  --color-primary: #262223;
-  --color-accent: #bf996b;
+  --color-primary: #221e1f;
+  --color-accent: #c9a881;
+  --color-complementary: #81a1c9;
 }
 
 

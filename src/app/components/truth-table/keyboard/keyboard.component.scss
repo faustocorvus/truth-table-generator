@@ -1,20 +1,16 @@
-#container {
-  /* border: 1px solid black;
-  padding: 30px;
-  border-radius: 10px; */
-}
+
 .variable-size {
-  font-size: 18px;
+  font-size: 2rem;
   color: #262223;
 }
 
 .operator-size {
-  font-size: 18px;
+  font-size: 2rem;
   color: whitesmoke;
 }
 
 .parentheses-size {
-  font-size: 18px;
+  font-size: 2rem;
   color: whitesmoke;
 }
 
@@ -26,13 +22,14 @@
   vertical-align: bottom;
 }
 .mat-fab.mat-primary {
-  background-color: #f2f2f2;
+  background-color: #f5f5f5;
 }
 .mat-fab.mat-accent {
-  background-color: #262223;
+  background-color: var(--color-primary);
 }
 .mat-fab.mat-warn {
-  background-color: #bf996b;
+  background-color: var(--color-accent);
+  color: black;
 }
 span{
   display: grid;
