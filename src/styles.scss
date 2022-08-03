@@ -1,6 +1,8 @@
 @use "@angular/material" as mat;
+
 @include mat.core();
-$md-primary: (
+
+$md-prueba: (
   50: #f7f3ed,
   100: #ece0d3,
   200: #dfccb5,
@@ -68,7 +70,7 @@ $md-accent: (
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://material.io/design/color/
-$truth-table-primary: mat.define-palette($md-primary, 500);
+$truth-table-primary: mat.define-palette($md-prueba);
 $truth-table-accent: mat.define-palette($md-accent, 500);
 
 // The warn palette is optional (defaults to red).
