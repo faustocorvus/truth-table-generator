@@ -5,9 +5,11 @@
   border-radius: 1rem;
   background-color: white;
   .container {
+    width: 100%;
     max-width: calc(100vw - 4rem);
-
+    overflow: auto;
     cdk-virtual-scroll-viewport {
+      background-color: red;
       height: 100%;
       width: 100%;
       background-color: transparent;
@@ -18,6 +20,7 @@
         border-spacing: 0;
         color: #000000;
         background-color: white;
+        overflow-anchor: auto;
         thead tr th {
           height: 30px;
           border-bottom: 1px solid #ddd;
@@ -39,7 +42,7 @@
 
         }
         tr:nth-child(even) {
-          background-color: #f2f2f2;
+          background-color: #f1f1f1;
         }
       }
     }
