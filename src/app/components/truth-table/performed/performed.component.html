@@ -5,19 +5,20 @@
     fxLayout="column"
     fxLayoutGap=".5rem"
   >
-    <!-- <p style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap"> -->
-    <p class="mat-body-strong">
-      <b style="color: #bf996b">></b>
+    <div style="max-width: calc(100vw - 10rem)">
+      <p style="margin: 0" class="mat-body-strong">
+        <b style="color: #9b6b3c">></b>
 
-      {{ applyWhitespace(parsedExpression.expression) }}
-    </p>
-    <p>
-      <b style="color: #bf996b">></b>
+        {{ applyWhitespace(parsedExpression.expression) }}
+      </p>
+    </div>
+    <p class="mat-body">
+      <b style="color: #9b6b3c">></b>
       {{ parsedExpression.variables.variables.length }}
       {{ parsedExpression.variables.variables.length > 1 ? "Inputs" : "Input" }}
     </p>
-    <p>
-      <b style="color: #bf996b">></b>
+    <p class="mat-body">
+      <b style="color: #9b6b3c">></b>
       {{
         parsedExpression.expressions.length > 0
           ? parsedExpression.expressions.length
@@ -30,8 +31,8 @@
           : "Output"
       }}
     </p>
-    <p>
-      <b style="color: #bf996b">></b>
+    <p class="mat-body">
+      <b style="color: #9b6b3c">></b>
       {{ getTotalPossibleStates() + " Possible States" }}
     </p>
   </div>
@@ -39,10 +40,7 @@
     class="container animated fadeInLeft"
     [ngStyle]="{ height: truthTableHeight }"
   >
-    <cdk-virtual-scroll-viewport
-      #scrollViewport
-      itemSize="30"
-    >
+    <cdk-virtual-scroll-viewport #scrollViewport itemSize="30">
       <table #tableContainer>
         <thead>
           <tr>
@@ -61,7 +59,9 @@
               <span style="color: var(--color-accent)">{{
                 applyWhitespace(expression.firstPart)
               }}</span>
-              <span style="color: var(--color-complementary);"> {{ expression.operator }} </span>
+              <span style="color: var(--color-complementary)">
+                {{ expression.operator }}
+              </span>
               <span>{{ applyWhitespace(expression.secondPart) }}</span>
             </th>
           </tr>

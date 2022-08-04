@@ -1,17 +1,33 @@
 :host {
   padding: 2rem;
-  
-  .container {
+  .tittle {
     width: 100%;
+    padding: 2rem 0rem;
+    border-radius: 1rem;
+    background-color: #d2b897;
+    margin-bottom: 2rem;
+    h1 {
+      margin: 0;
+      font-size: 3rem;
+      color: var(--color-primary);
+    }
+  }
+  .display-info-container {
+    width: 100%;
+    
     .truth-table-generator {
       padding: 2rem;
       border-radius: 1rem;
       background-color: white;
+      margin-bottom: 2rem;
+    }
+    .info {
+      margin-bottom: 2rem;
     }
   }
   .truth-tables {
       width: 100%;
-      padding: 2rem;
+      padding: 0rem 2rem 2rem 2rem;
   }
 }
 /* ::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
@@ -33,3 +49,9 @@
   color: rgba(0, 0, 0, 0.6);
 }
  */
+
+/*  @media screen and (min-width: 600px) and (max-width: 959px) {
+  :host {
+    background-color: pink;
+  }
+ } */

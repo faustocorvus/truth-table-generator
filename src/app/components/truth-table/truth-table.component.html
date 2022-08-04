@@ -1,12 +1,18 @@
+<div class="tittle mat-elevation-z1">
+  <h1 align="center">Truth Table Generator</h1>
+</div>
 <div
-  class="container"
-  fxLayout="row wrap"
+  class="display-info-container"
+  fxLayout="row"
+  fxLayout.lt-md="column"
   fxLayoutAlign="center"
+  fxLayoutAlign.lt-md="start center"
   fxLayoutGap="2rem"
 >
   <div
     class="truth-table-generator mat-elevation-z1"
     fxLayoutAlign="center center"
+    fxFlexOrder.lt-md="2"
   >
     <div
       class="display"
@@ -20,9 +26,7 @@
         [style.fontSize.px]="20"
       >
         <mat-label
-          ><span style="font-weight: 700"
-            >TRUTH TABLE GENERATOR: ENTER AN EXPRESSION</span
-          ></mat-label
+          ><span style="font-weight: 700">ENTER AN EXPRESSION</span></mat-label
         >
         <textarea
           matInput
@@ -81,8 +85,13 @@
       <app-keyboard></app-keyboard>
     </div>
   </div>
-  <app-info-table></app-info-table>
+  <app-info-table class="info" fxFlexOrder.lt-md="1"></app-info-table>
 </div>
-<div class="truth-tables" fxLayout="row wrap" fxLayoutAlign="start" fxLayoutGap="2rem">
+<div
+  class="truth-tables"
+  fxLayout="row wrap"
+  fxLayoutAlign="center start"
+  fxLayoutGap="2rem"
+>
   <div #truthTable></div>
 </div>
