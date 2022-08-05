@@ -24,6 +24,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatRadioModule } from '@angular/material/radio';
+import { MatDialogModule } from '@angular/material/dialog';
 
 import { ParserService } from './components/truth-table/parser.service';
 import { SolveTruthTableService } from './components/truth-table/solve-truth-table.service';
@@ -60,6 +61,7 @@ import { InfoTableComponent } from './components/truth-table/info-table/info-tab
     MatSidenavModule,
     MatProgressSpinnerModule,
     MatRadioModule,
+    MatDialogModule,
   ],
   providers: [
     ParserService,

@@ -1,6 +1,8 @@
 import { Component, OnInit, ViewChild, ViewContainerRef, ComponentFactoryResolver, ComponentRef, ElementRef } from '@angular/core';
 import { FormControl, FormBuilder, Validators, FormGroup } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { ExpressionInputService } from './expression-input.service';
+import { InfoTableComponent } from './info-table/info-table.component';
 import { ParserService } from './parser.service';
 import { PerformedComponent } from './performed/performed.component';
 
@@ -26,6 +28,7 @@ export class TruthTableComponent implements OnInit {
     private _expressionInput: ExpressionInputService,
     private _parser: ParserService,
     private componentFactoryResolver: ComponentFactoryResolver,
+    private _dialog: MatDialog
   ) {
     this.expressionInput = this.formBuilder.control('', [Validators.pattern('^[\na-zA-ZñÑ↔→˄´)(˅⊕⋂⋃+ -]+$')]);
     this.radioButtons = this.formBuilder.group({
@@ -181,5 +184,8 @@ export class TruthTableComponent implements OnInit {
     }
 
   }
-
+  openDialog() {
+    this._dialog.open(InfoTableComponent, {
+    });
+  }
 }

@@ -4,9 +4,7 @@
 <div
   class="display-info-container"
   fxLayout="row"
-  fxLayout.lt-md="column"
   fxLayoutAlign="center"
-  fxLayoutAlign.lt-md="start center"
   fxLayoutGap="2rem"
 >
   <div
@@ -17,7 +15,7 @@
     <div
       class="display"
       fxLayout="column"
-      fxLayoutAlign="start"
+      fxLayoutAlign="center"
       fxLayoutGap="2rem"
     >
       <mat-form-field
@@ -35,8 +33,15 @@
           #autosize
           cdkAutosizeMinRows="1"
           cdkAutosizeMaxRows="10"
-          autofocus
         ></textarea>
+        <mat-icon
+          matSuffix
+          class="material-symbols-outlined"
+          style="font-size: 3.2rem; cursor: pointer"
+          (click)="openDialog()"
+          id="info-icon"
+          >info</mat-icon
+        >
         <mat-hint
           ><span style="font-weight: 700">Example: </span>{{ currentExample }}
         </mat-hint>
@@ -87,11 +92,6 @@
   </div>
   <app-info-table class="info" fxFlexOrder.lt-md="1"></app-info-table>
 </div>
-<div
-  class="truth-tables"
-  fxLayout="row wrap"
-  fxLayoutAlign="center start"
-  fxLayoutGap="2rem"
->
+<div class="truth-tables" fxLayout="row wrap" fxLayoutGap="2rem">
   <div #truthTable></div>
 </div>
