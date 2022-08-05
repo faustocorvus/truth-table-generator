@@ -4,6 +4,9 @@
   margin-bottom: 2rem;
   border-radius: 1rem;
   background-color: white;
+  .animated {
+    max-width: calc(100vw - 10rem);
+  }
   .container {
     width: 100%;
     max-width: calc(100vw - 4rem);
