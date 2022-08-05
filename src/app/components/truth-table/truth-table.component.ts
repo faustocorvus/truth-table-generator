@@ -64,7 +64,7 @@ export class TruthTableComponent implements OnInit {
     switch (character) {
       case 'refresh':
         this.refreshExpressionInput();
-        this.textareaFocused();
+        /* this.textareaFocused(); */
         break;
       case 'backspace':
         if (this.textarea.nativeElement.selectionStart > 0) this.removeCharacter();
@@ -82,11 +82,11 @@ export class TruthTableComponent implements OnInit {
         break;
     }
   }
-  textareaFocused() {
+  /* textareaFocused() {
     setTimeout(_ => {
       this.textarea.nativeElement.focus();
     }, 0);
-  }
+  } */
 
   updateTextAreaSelectionStart(index) {
     setTimeout(_ => {
@@ -110,7 +110,7 @@ export class TruthTableComponent implements OnInit {
       } else {
         this.removeLastCharacter();
       }
-      this.textareaFocused();
+      /* this.textareaFocused(); */
       this.updateTextAreaSelectionStart(index);
     }, 0);
 
@@ -155,7 +155,7 @@ export class TruthTableComponent implements OnInit {
         );
         index = index + 2;
       }
-      this.textareaFocused();
+      /* this.textareaFocused(); */
       this.updateTextAreaSelectionStart(index);
     }, 0);
   }
