@@ -10,7 +10,6 @@ export class KeyboardComponent implements OnInit {
   /*
      mat-ripple*/
   centered: boolean = true;
-  radius: number = 37;
   color: string = 'rgba(191, 153, 107,0.5)';
   operatorColor: string = 'rgba(242, 242, 242,0.5)';
   actionColor: string = 'rgba(0,0,0,0.5)';

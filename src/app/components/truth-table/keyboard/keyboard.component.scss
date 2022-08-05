@@ -14,10 +14,11 @@
   color: whitesmoke;
 }
 
-/* button {
-  width: 30px;
-  height: 30px;
-} */
+button {
+  width: 7rem;
+  height: 7rem;
+}
+
 .mat-icon-button {
   vertical-align: bottom;
 }
@@ -33,4 +34,21 @@
 }
 span{
   display: grid;
+}
+
+@media screen and (max-width: 599px) {
+  :host {
+    .container {
+      div {
+        display: flex;
+        button {
+          width: 5rem;
+          height: 5rem;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+      }
+    }
+  }
 }
