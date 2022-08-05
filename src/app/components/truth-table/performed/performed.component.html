@@ -56,13 +56,13 @@
               *ngFor="let expression of parsedExpression.expressions"
               [style.top]="inverseOfTranslation"
             >
-              <span style="color: var(--color-accent)">{{
+              <span >{{
                 applyWhitespace(expression.firstPart)
               }}</span>
               <span style="color: var(--color-complementary)">
                 {{ expression.operator }}
               </span>
-              <span>{{ applyWhitespace(expression.secondPart) }}</span>
+              <span style="color: var(--color-accent)">{{ applyWhitespace(expression.secondPart) }}</span>
             </th>
           </tr>
         </thead>
