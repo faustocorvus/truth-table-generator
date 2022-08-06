@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { ExpressionInputService } from '../expression-input.service';
 
 @Component({
@@ -12,8 +12,8 @@ export class KeyboardComponent implements OnInit {
   centered: boolean = true;
   color: string = 'rgba(191, 153, 107,0.5)';
   operatorColor: string = 'rgba(242, 242, 242,0.5)';
-  actionColor: string = 'rgba(0,0,0,0.5)';
-
+  actionColor: string = 'rgba(0,0,0,0.3)';
+  getScreenWidth: any;
   uppercase = [
     'A',
     'B',
@@ -76,9 +76,13 @@ export class KeyboardComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-
+    this.getScreenWidth = window.innerWidth;
   }
-
+  @HostListener('window:resize', ['$event'])
+  onWindowResize() {
+    this.getScreenWidth = window.innerWidth;
+    console.log('SCREEN WIDTH: ', this.getScreenWidth);
+  }
   setCharacter(character: string) {
     this._expressionInput.updateCharacter(character);
   }

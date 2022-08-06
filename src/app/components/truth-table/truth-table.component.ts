@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild, ViewContainerRef, ComponentFactoryResolver, ComponentRef, ElementRef } from '@angular/core';
 import { FormControl, FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { ExpressionInputService } from './expression-input.service';
 import { InfoTableComponent } from './info-table/info-table.component';
 import { ParserService } from './parser.service';
@@ -28,7 +29,8 @@ export class TruthTableComponent implements OnInit {
     private _expressionInput: ExpressionInputService,
     private _parser: ParserService,
     private componentFactoryResolver: ComponentFactoryResolver,
-    private _dialog: MatDialog
+    private _dialog: MatDialog,
+    private _snackbar: MatSnackBar
   ) {
     this.expressionInput = this.formBuilder.control('', [Validators.pattern('^[\na-zA-ZñÑ↔→˄´)(˅⊕⋂⋃+ -]+$')]);
     this.radioButtons = this.formBuilder.group({
@@ -162,7 +164,11 @@ export class TruthTableComponent implements OnInit {
 
   checkParsedResult(parsedExpression: any) {
     if (parsedExpression.error) {
+      this._snackbar.open('Please enter a valid expression', 'Okay',{ duration: 10 * 1000 });
       this.expressionInput.setErrors({ syntaxError: true });
+      /*       */
+      console.log('EXPRESSION VALID: ', this.expressionInput.valid);
+
     } else {
 
       this.addTruthTable(parsedExpression);
