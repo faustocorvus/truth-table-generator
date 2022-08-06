@@ -5,9 +5,7 @@
   fxLayoutGap="1rem"
 >
   <div fxLayoutGap="1rem">
-    
     <button
-      
       (click)="setCharacter(alphabet[0])"
       mat-fab
       color="primary"
@@ -20,7 +18,6 @@
       <span class="variable-size">{{ alphabet[0] }}</span>
     </button>
     <button
-      
       (click)="setCharacter(alphabet[1])"
       mat-fab
       color="primary"
@@ -33,13 +30,11 @@
       <span class="variable-size">{{ alphabet[1] }}</span>
     </button>
     <button
-      
       (click)="setCharacter(alphabet[2])"
       mat-fab
       color="primary"
       matRipple
       [matRippleCentered]="centered"
-      
       [matRippleColor]="color"
       [matRippleRadius]="getScreenWidth <= 599 ? 22 : 30"
       type="button"
@@ -47,40 +42,35 @@
       <span class="variable-size">{{ alphabet[2] }}</span>
     </button>
     <button
-    
-    (click)="setCharacter(alphabet[3])"
-    mat-fab
-    color="primary"
-    matRipple
-    [matRippleCentered]="centered"
-    
-    [matRippleColor]="color"
-    [matRippleRadius]="getScreenWidth <= 599 ? 22 : 30"
-    type="button"
-  >
-    <span class="variable-size">{{ alphabet[3] }}</span>
-  </button>
-  <button
-    
-    (click)="setCharacter(alphabet[4])"
-    mat-fab
-    color="primary"
-    matRipple
-    [matRippleCentered]="centered"
-    
-    [matRippleColor]="color"
-    [matRippleRadius]="getScreenWidth <= 599 ? 22 : 30"
-    type="button"
-  >
-    <span class="variable-size">{{ alphabet[4] }}</span>
-  </button>
+      (click)="setCharacter(alphabet[3])"
+      mat-fab
+      color="primary"
+      matRipple
+      [matRippleCentered]="centered"
+      [matRippleColor]="color"
+      [matRippleRadius]="getScreenWidth <= 599 ? 22 : 30"
+      type="button"
+    >
+      <span class="variable-size">{{ alphabet[3] }}</span>
+    </button>
+    <button
+      (click)="setCharacter(alphabet[4])"
+      mat-fab
+      color="primary"
+      matRipple
+      [matRippleCentered]="centered"
+      [matRippleColor]="color"
+      [matRippleRadius]="getScreenWidth <= 599 ? 22 : 30"
+      type="button"
+    >
+      <span class="variable-size">{{ alphabet[4] }}</span>
+    </button>
     <button
       (click)="setCharacter('refresh')"
       mat-fab
       color="warn"
       matRipple
       [matRippleCentered]="centered"
-      
       [matRippleColor]="actionColor"
       [matRippleRadius]="getScreenWidth <= 599 ? 22 : 30"
       type="button"
@@ -91,13 +81,11 @@
     </button>
 
     <button
-      
       (click)="setCharacter('backspace')"
       mat-fab
       color="warn"
       matRipple
       [matRippleCentered]="centered"
-      
       [matRippleColor]="actionColor"
       [matRippleRadius]="getScreenWidth <= 599 ? 22 : 30"
       type="button"
@@ -109,16 +97,12 @@
   <!-- row 2-->
 
   <div fxLayoutGap="1rem">
-    
-    
     <button
-      
       (click)="setCharacter(alphabet[5])"
       mat-fab
       color="primary"
       matRipple
       [matRippleCentered]="centered"
-      
       [matRippleColor]="color"
       [matRippleRadius]="getScreenWidth <= 599 ? 22 : 30"
       type="button"
@@ -126,13 +110,11 @@
       <span class="variable-size">{{ alphabet[5] }}</span>
     </button>
     <button
-      
       (click)="setCharacter(alphabet[6])"
       mat-fab
       color="primary"
       matRipple
       [matRippleCentered]="centered"
-      
       [matRippleColor]="color"
       [matRippleRadius]="getScreenWidth <= 599 ? 22 : 30"
       type="button"
@@ -140,13 +122,11 @@
       <span class="variable-size">{{ alphabet[6] }}</span>
     </button>
     <button
-      
       (click)="setCharacter(alphabet[7])"
       mat-fab
       color="primary"
       matRipple
       [matRippleCentered]="centered"
-      
       [matRippleColor]="color"
       [matRippleRadius]="getScreenWidth <= 599 ? 22 : 30"
       type="button"
@@ -154,13 +134,11 @@
       <span class="variable-size">{{ alphabet[7] }}</span>
     </button>
     <button
-      
       (click)="setCharacter(alphabet[8])"
       mat-fab
       color="primary"
       matRipple
       [matRippleCentered]="centered"
-      
       [matRippleColor]="color"
       [matRippleRadius]="getScreenWidth <= 599 ? 22 : 30"
       type="button"
@@ -173,7 +151,6 @@
       color="accent"
       matRipple
       [matRippleCentered]="centered"
-      
       [matRippleColor]="operatorColor"
       [matRippleRadius]="getScreenWidth <= 599 ? 22 : 30"
       type="button"
@@ -186,7 +163,6 @@
       color="accent"
       matRipple
       [matRippleCentered]="centered"
-      
       [matRippleColor]="operatorColor"
       [matRippleRadius]="getScreenWidth <= 599 ? 22 : 30"
       type="button"
@@ -199,7 +175,6 @@
       color="accent"
       matRipple
       [matRippleCentered]="centered"
-      
       [matRippleColor]="operatorColor"
       [matRippleRadius]="getScreenWidth <= 599 ? 22 : 30"
       type="button"
@@ -211,16 +186,12 @@
   <!-- row 3-->
 
   <div fxLayoutGap="1rem">
-    
-    
     <button
-      
       (click)="setCharacter(alphabet[9])"
       mat-fab
       color="primary"
       matRipple
       [matRippleCentered]="centered"
-      
       [matRippleColor]="color"
       [matRippleRadius]="getScreenWidth <= 599 ? 22 : 30"
       type="button"
@@ -228,13 +199,11 @@
       <span class="variable-size">{{ alphabet[9] }}</span>
     </button>
     <button
-      
       (click)="setCharacter(alphabet[10])"
       mat-fab
       color="primary"
       matRipple
       [matRippleCentered]="centered"
-      
       [matRippleColor]="color"
       [matRippleRadius]="getScreenWidth <= 599 ? 22 : 30"
       type="button"
@@ -242,13 +211,11 @@
       <span class="variable-size">{{ alphabet[10] }}</span>
     </button>
     <button
-      
       (click)="setCharacter(alphabet[11])"
       mat-fab
       color="primary"
       matRipple
       [matRippleCentered]="centered"
-      
       [matRippleColor]="color"
       [matRippleRadius]="getScreenWidth <= 599 ? 22 : 30"
       type="button"
@@ -256,13 +223,11 @@
       <span class="variable-size">{{ alphabet[11] }}</span>
     </button>
     <button
-      
       (click)="setCharacter(alphabet[12])"
       mat-fab
       color="primary"
       matRipple
       [matRippleCentered]="centered"
-      
       [matRippleColor]="color"
       [matRippleRadius]="getScreenWidth <= 599 ? 22 : 30"
       type="button"
@@ -275,7 +240,6 @@
       color="accent"
       matRipple
       [matRippleCentered]="centered"
-      
       [matRippleColor]="operatorColor"
       [matRippleRadius]="getScreenWidth <= 599 ? 22 : 30"
       type="button"
@@ -288,7 +252,6 @@
       color="accent"
       matRipple
       [matRippleCentered]="centered"
-      
       [matRippleColor]="operatorColor"
       [matRippleRadius]="getScreenWidth <= 599 ? 22 : 30"
       type="button"
@@ -301,7 +264,6 @@
       color="accent"
       matRipple
       [matRippleCentered]="centered"
-      
       [matRippleColor]="operatorColor"
       [matRippleRadius]="getScreenWidth <= 599 ? 22 : 30"
       type="button"
@@ -312,15 +274,12 @@
   <!-- row 4-->
 
   <div fxLayoutGap="1rem">
-    
     <button
-      
       (click)="setCharacter(alphabet[13])"
       mat-fab
       color="primary"
       matRipple
       [matRippleCentered]="centered"
-      
       [matRippleColor]="color"
       [matRippleRadius]="getScreenWidth <= 599 ? 22 : 30"
       type="button"
@@ -328,13 +287,11 @@
       <span class="variable-size">{{ alphabet[13] }}</span>
     </button>
     <button
-      
       (click)="setCharacter(alphabet[14])"
       mat-fab
       color="primary"
       matRipple
       [matRippleCentered]="centered"
-      
       [matRippleColor]="color"
       [matRippleRadius]="getScreenWidth <= 599 ? 22 : 30"
       type="button"
@@ -342,13 +299,11 @@
       <span class="variable-size">{{ alphabet[14] }}</span>
     </button>
     <button
-      
       (click)="setCharacter(alphabet[15])"
       mat-fab
       color="primary"
       matRipple
       [matRippleCentered]="centered"
-      
       [matRippleColor]="color"
       [matRippleRadius]="getScreenWidth <= 599 ? 22 : 30"
       type="button"
@@ -356,27 +311,24 @@
       <span class="variable-size">{{ alphabet[15] }}</span>
     </button>
     <button
-      
       (click)="setCharacter(alphabet[16])"
       mat-fab
       color="primary"
       matRipple
       [matRippleCentered]="centered"
-      
       [matRippleColor]="color"
       [matRippleRadius]="getScreenWidth <= 599 ? 22 : 30"
       type="button"
     >
       <span class="variable-size">{{ alphabet[16] }}</span>
     </button>
-    
+
     <button
       (click)="setCharacter('˅')"
       mat-fab
       color="accent"
       matRipple
       [matRippleCentered]="centered"
-      
       [matRippleColor]="operatorColor"
       [matRippleRadius]="getScreenWidth <= 599 ? 22 : 30"
       type="button"
@@ -389,7 +341,6 @@
       color="accent"
       matRipple
       [matRippleCentered]="centered"
-      
       [matRippleColor]="operatorColor"
       [matRippleRadius]="getScreenWidth <= 599 ? 22 : 30"
       type="button"
@@ -402,7 +353,6 @@
       color="accent"
       matRipple
       [matRippleCentered]="centered"
-      
       [matRippleColor]="operatorColor"
       [matRippleRadius]="getScreenWidth <= 599 ? 22 : 30"
       type="button"
@@ -414,13 +364,11 @@
 
   <div fxLayoutGap="1rem">
     <button
-      
       (click)="setCharacter(alphabet[17])"
       mat-fab
       color="primary"
       matRipple
       [matRippleCentered]="centered"
-      
       [matRippleColor]="color"
       [matRippleRadius]="getScreenWidth <= 599 ? 22 : 30"
       type="button"
@@ -428,13 +376,11 @@
       <span class="variable-size">{{ alphabet[17] }}</span>
     </button>
     <button
-      
       (click)="setCharacter(alphabet[18])"
       mat-fab
       color="primary"
       matRipple
       [matRippleCentered]="centered"
-      
       [matRippleColor]="color"
       [matRippleRadius]="getScreenWidth <= 599 ? 22 : 30"
       type="button"
@@ -442,13 +388,11 @@
       <span class="variable-size">{{ alphabet[18] }}</span>
     </button>
     <button
-      
       (click)="setCharacter(alphabet[19])"
       mat-fab
       color="primary"
       matRipple
       [matRippleCentered]="centered"
-      
       [matRippleColor]="color"
       [matRippleRadius]="getScreenWidth <= 599 ? 22 : 30"
       type="button"
@@ -456,27 +400,24 @@
       <span class="variable-size">{{ alphabet[19] }}</span>
     </button>
     <button
-      
       (click)="setCharacter(alphabet[20])"
       mat-fab
       color="primary"
       matRipple
       [matRippleCentered]="centered"
-      
       [matRippleColor]="color"
       [matRippleRadius]="getScreenWidth <= 599 ? 22 : 30"
       type="button"
     >
       <span class="variable-size">{{ alphabet[20] }}</span>
     </button>
-    
+
     <button
       (click)="setCharacter('(')"
       mat-fab
       color="accent"
       matRipple
       [matRippleCentered]="centered"
-      
       [matRippleColor]="operatorColor"
       [matRippleRadius]="getScreenWidth <= 599 ? 22 : 30"
       type="button"
@@ -489,7 +430,6 @@
       color="accent"
       matRipple
       [matRippleCentered]="centered"
-      
       [matRippleColor]="operatorColor"
       [matRippleRadius]="getScreenWidth <= 599 ? 22 : 30"
       type="button"
@@ -502,7 +442,6 @@
       color="accent"
       matRipple
       [matRippleCentered]="centered"
-      
       [matRippleColor]="operatorColor"
       [matRippleRadius]="getScreenWidth <= 599 ? 22 : 30"
       type="button"
@@ -514,13 +453,11 @@
 
   <div fxLayoutGap="1rem">
     <button
-      
       (click)="setCharacter(alphabet[21])"
       mat-fab
       color="primary"
       matRipple
       [matRippleCentered]="centered"
-      
       [matRippleColor]="color"
       [matRippleRadius]="getScreenWidth <= 599 ? 22 : 30"
       type="button"
@@ -528,13 +465,11 @@
       <span class="variable-size">{{ alphabet[21] }}</span>
     </button>
     <button
-      
       (click)="setCharacter(alphabet[22])"
       mat-fab
       color="primary"
       matRipple
       [matRippleCentered]="centered"
-      
       [matRippleColor]="color"
       [matRippleRadius]="getScreenWidth <= 599 ? 22 : 30"
       type="button"
@@ -542,13 +477,11 @@
       <span class="variable-size">{{ alphabet[22] }}</span>
     </button>
     <button
-      
       (click)="setCharacter(alphabet[23])"
       mat-fab
       color="primary"
       matRipple
       [matRippleCentered]="centered"
-      
       [matRippleColor]="color"
       [matRippleRadius]="getScreenWidth <= 599 ? 22 : 30"
       type="button"
@@ -556,13 +489,11 @@
       <span class="variable-size">{{ alphabet[23] }}</span>
     </button>
     <button
-      
       (click)="setCharacter(alphabet[24])"
       mat-fab
       color="primary"
       matRipple
       [matRippleCentered]="centered"
-      
       [matRippleColor]="color"
       [matRippleRadius]="getScreenWidth <= 599 ? 22 : 30"
       type="button"
@@ -570,13 +501,11 @@
       <span class="variable-size">{{ alphabet[24] }}</span>
     </button>
     <button
-      
       (click)="setCharacter(alphabet[25])"
       mat-fab
       color="primary"
       matRipple
       [matRippleCentered]="centered"
-      
       [matRippleColor]="color"
       [matRippleRadius]="getScreenWidth <= 599 ? 22 : 30"
       type="button"
@@ -584,13 +513,11 @@
       <span class="variable-size">{{ alphabet[25] }}</span>
     </button>
     <button
-      
       (click)="capslock(alphabet[0])"
       mat-fab
       color="warn"
       matRipple
       [matRippleCentered]="centered"
-      
       [matRippleColor]="actionColor"
       [matRippleRadius]="getScreenWidth <= 599 ? 22 : 30"
       type="button"
@@ -605,9 +532,8 @@
       matRipple
       [matRippleCentered]="centered"
       [matRippleRadius]="getScreenWidth <= 599 ? 22 : 30"
-      
       [matRippleColor]="actionColor"
-      style="background-color: var(--color-complementary);"
+      style="background-color: var(--color-complementary)"
       type="button"
     >
       <mat-icon class="material-symbols-outlined">drag_handle</mat-icon>

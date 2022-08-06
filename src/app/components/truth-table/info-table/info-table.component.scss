@@ -1,14 +1,14 @@
 :host {
-    table {
-        border-radius: 1rem;
-        width: 50rem;
-    }
+  table {
+    border-radius: 1rem;
+    width: 50rem;
+  }
 }
 
 @media screen and (max-width: 599px) {
-    :host {
-        table {
-            width: 30rem;
-        }
+  :host {
+    table {
+      width: 30rem;
     }
+  }
 }

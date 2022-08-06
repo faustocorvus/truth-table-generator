@@ -164,11 +164,8 @@ export class TruthTableComponent implements OnInit {
 
   checkParsedResult(parsedExpression: any) {
     if (parsedExpression.error) {
-      this._snackbar.open('Please enter a valid expression', 'Okay',{ duration: 10 * 1000 });
+      this._snackbar.open('Please enter a valid expression', 'Okay', { duration: 10 * 1000 });
       this.expressionInput.setErrors({ syntaxError: true });
-      /*       */
-      console.log('EXPRESSION VALID: ', this.expressionInput.valid);
-
     } else {
 
       this.addTruthTable(parsedExpression);
