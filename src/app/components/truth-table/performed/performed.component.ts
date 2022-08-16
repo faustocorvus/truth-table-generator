@@ -90,7 +90,7 @@ export class PerformedComponent implements OnInit {
       : '131072 of ' + Math.pow(2, this.parsedExpression.variables.variables.length);
   }
 
-  applyWhitespace(expression: string): string {
+  /* applyWhitespace(expression: string): string {
     return expression.split("").join(" ");
-  }
+  } */
 }

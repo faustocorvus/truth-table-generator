@@ -81,7 +81,6 @@ export class KeyboardComponent implements OnInit {
   @HostListener('window:resize', ['$event'])
   onWindowResize() {
     this.getScreenWidth = window.innerWidth;
-    console.log('SCREEN WIDTH: ', this.getScreenWidth);
   }
   setCharacter(character: string) {
     this._expressionInput.updateCharacter(character);

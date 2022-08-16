@@ -24,6 +24,8 @@ export class TruthTableComponent implements OnInit {
   componentRef: ComponentRef<any>;
 
   currentExample = '';
+  selectionStart: number = 0;
+  selectionEnd: number = 0;
   constructor(
     private formBuilder: FormBuilder,
     private _expressionInput: ExpressionInputService,
@@ -43,7 +45,9 @@ export class TruthTableComponent implements OnInit {
   ngOnInit(): void {
     this._expressionInput.character.subscribe(
       (character: string) => {
-        this.addCharacterIntoExpressionInput(character);
+        if (character !== null && character !== '') {
+          this.addCharacterIntoExpressionInput(character);
+        }
       }
     );
     this.getCurrentComponentExample();
@@ -53,118 +57,71 @@ export class TruthTableComponent implements OnInit {
   getCurrentComponentExample() {
     switch (Math.floor(Math.random() * 3)) {
       case 0:
-        this.currentExample = "A + B ( A B ) ´ C ´";
+        this.currentExample = "A+B(AB)´C´";
         break;
       case 1:
-        this.currentExample = "a ˅ b ˄ ( a → b ) ´ ↔ c ´";
+        this.currentExample = "a˅b˄(a→b)´↔c´";
         break;
       case 2:
-        this.currentExample = "A ⋃ B ⋂ ( A - B ) ´ ⊕ C ´";
+        this.currentExample = "A⋃B⋂(A-B)´⊕C´";
     }
   }
   addCharacterIntoExpressionInput(character: string) {
     switch (character) {
       case 'refresh':
         this.refreshExpressionInput();
-        /* this.textareaFocused(); */
         break;
       case 'backspace':
-        if (this.textarea.nativeElement.selectionStart > 0) this.removeCharacter();
-
+        if (this.selectionStart > 0) this.removeCharacter();
         break;
       case 'solve':
         if (this.expressionInput.valid) {
-          let parsed = this._parser.parseExpression(this.expressionInput.value.trim());
+          const expression = this.expression.replace(/[\r\n]/gm, ''); // remove all line breaks from string
+          const parsed = this._parser.parseExpression(expression.trim());
           this.checkParsedResult(parsed);
         }
         break;
-
       default:
         this.updateExpressionValue(character);
         break;
     }
   }
-  /* textareaFocused() {
-    setTimeout(_ => {
-      this.textarea.nativeElement.focus();
-    }, 0);
-  } */
 
-  updateTextAreaSelectionStart(index) {
-    setTimeout(_ => {
-      this.textarea.nativeElement.selectionStart = index;
-      this.textarea.nativeElement.selectionEnd = index;
-    }, 0);
+  setCurrentTextAreaSelection() {
+    this.selectionStart = this.textarea?.nativeElement.selectionStart;
+    this.selectionEnd = this.textarea?.nativeElement.selectionEnd;
   }
   removeCharacter() {
-
-    setTimeout(_ => {
-      let index = this.textarea.nativeElement.selectionStart;
-      if (index > 0 && index < this.textarea.nativeElement.textLength) {
-        let firstPart = this.expressionInput.value.slice(0, index);
-        let secondPart = this.expressionInput.value.slice(index);
-        while (firstPart.length > 0 && firstPart[firstPart.length - 1] === ' ') {
-          firstPart = firstPart.slice(0, -1);
-          this.updateTextAreaSelectionStart(index--);
-        }
-        this.expressionInput.setValue(firstPart.slice(0, -1) + secondPart);
-        index--;
-      } else {
-        this.removeLastCharacter();
-      }
-      /* this.textareaFocused(); */
-      this.updateTextAreaSelectionStart(index);
-    }, 0);
-
+    this.selectionStart = this.selectionStart - 1; // Se resta uno para eliminar el carácter
+    const expressionSlicedStart = this.expression.slice(0, this.selectionStart);
+    const expressionSlicedEnd = this.expression.slice(this.selectionEnd);
+    this.expressionInput.setValue(`${expressionSlicedStart}${expressionSlicedEnd}`);
+    this.selectionStart = this.selectionEnd = this.selectionStart;
   }
-  removeLastCharacter() {
-    while (this.expressionInput.value.length > 0 && this.expressionInput.value[this.expressionInput.value.length - 1] === ' ') {
-      this.expressionInput.setValue(this.expressionInput.value.slice(0, -1));
-    }
-    this.expressionInput.setValue(this.expressionInput.value.slice(0, -1));
+
+  get expression(): string {
+    return this.expressionInput.value;
   }
 
   updateExpressionValue(character: string) {
-
-    setTimeout(_ => {
-      let index = this.textarea.nativeElement.selectionStart;
-      if (this.textarea.nativeElement.selectionStart < this.textarea.nativeElement.textLength) {
-        let firstPart = this.expressionInput.value.slice(0, index);
-        let secondPart = this.expressionInput.value.slice(index);
-        if (firstPart[firstPart.length - 1] === ' ' && secondPart[0] === ' ') {
-          this.expressionInput.setValue(`${firstPart}${character}${secondPart}`);
-          index++;
-        }
-        else if (firstPart[firstPart.length - 1] === ' ' && secondPart[0] !== ' ') {
-          this.expressionInput.setValue(`${firstPart}${character} ${secondPart}`);
-          index++;
-        }
-        else if (firstPart[firstPart.length - 1] !== ' ' && secondPart[0] === ' ') {
-          this.expressionInput.setValue(`${firstPart} ${character}${secondPart}`);
-          index = index + 2;
-
-        }
-        else if (firstPart[firstPart.length - 1] !== ' ' && secondPart[0] !== ' ') {
-          this.expressionInput.setValue(`${firstPart} ${character} ${secondPart}`);
-          index = index + 2;
-        }
-
-      } else {
-        this.expressionInput.setValue(
-          (this.expressionInput.value === '')
-            ? this.expressionInput.value + character
-            : this.expressionInput.value + ' ' + character
-        );
-        index = index + 2;
-      }
-      /* this.textareaFocused(); */
-      this.updateTextAreaSelectionStart(index);
-    }, 0);
+    const textLength: number = this.expression.length;
+    if (textLength === 0) {
+      this.expressionInput.setValue(`${character}`);
+      this.selectionStart = this.selectionEnd = 1;
+    } else if (this.selectionStart === textLength) {
+      this.expressionInput.setValue(`${this.expression}${character}`);
+      this.selectionStart = this.selectionEnd = this.expression.length;
+    } else {
+      const expressionSlicedStart = this.expression.slice(0, this.selectionStart);
+      const expressionSlicedEnd = this.expression.slice(this.selectionEnd);
+      this.expressionInput.setValue(`${expressionSlicedStart}${character}${expressionSlicedEnd}`);
+      this.selectionStart = this.selectionEnd = this.selectionStart + 1;
+    }
   }
 
   checkParsedResult(parsedExpression: any) {
     if (parsedExpression.error) {
-      this._snackbar.open('Please enter a valid expression', 'Okay', { duration: 10 * 1000 });
+      this._snackbar.open('Please enter a valid expression', 'Done', { duration: 10 * 1000 });
       this.expressionInput.setErrors({ syntaxError: true });
     } else {
 
@@ -174,6 +131,7 @@ export class TruthTableComponent implements OnInit {
 
   refreshExpressionInput() {
     this.expressionInput.setValue('');
+    this.selectionStart = this.selectionEnd = 0;
   }
 
   addTruthTable(parsedExpression: any) {

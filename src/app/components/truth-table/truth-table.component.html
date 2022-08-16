@@ -33,6 +33,8 @@
           #autosize
           cdkAutosizeMinRows="1"
           cdkAutosizeMaxRows="10"
+          (click)="setCurrentTextAreaSelection()"
+          (change)="setCurrentTextAreaSelection()"
         ></textarea>
         <mat-icon
           matSuffix

@@ -9,7 +9,7 @@
       <p style="margin: 0" class="mat-body-strong">
         <b style="color: #9b6b3c">></b>
 
-        {{ applyWhitespace(parsedExpression.expression) }}
+        {{ parsedExpression.expression }}
       </p>
     </div>
     <p class="mat-body">
@@ -57,12 +57,12 @@
               [style.top]="inverseOfTranslation"
             >
               <span >{{
-                applyWhitespace(expression.firstPart)
+                expression.firstPart
               }}</span>
               <span style="color: var(--color-complementary)">
                 {{ expression.operator }}
               </span>
-              <span style="color: var(--color-accent)">{{ applyWhitespace(expression.secondPart) }}</span>
+              <span style="color: var(--color-accent)">{{ expression.secondPart }}</span>
             </th>
           </tr>
         </thead>
