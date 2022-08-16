@@ -92,11 +92,18 @@ export class TruthTableComponent implements OnInit {
     this.selectionEnd = this.textarea?.nativeElement.selectionEnd;
   }
   removeCharacter() {
-    this.selectionStart = this.selectionStart - 1; // Se resta uno para eliminar el carácter
+    if (this.selectionStart !== this.selectionEnd) {
+      const expressionSlicedStart = this.expression.slice(0, this.selectionStart);
+      const expressionSlicedEnd = this.expression.slice(this.selectionEnd);
+      this.expressionInput.setValue(`${expressionSlicedStart}${expressionSlicedEnd}`);
+    } else {
+      this.selectionStart = this.selectionStart - 1; // Se resta uno para eliminar el carácter
     const expressionSlicedStart = this.expression.slice(0, this.selectionStart);
     const expressionSlicedEnd = this.expression.slice(this.selectionEnd);
     this.expressionInput.setValue(`${expressionSlicedStart}${expressionSlicedEnd}`);
+    }
     this.selectionStart = this.selectionEnd = this.selectionStart;
+    
   }
 
   get expression(): string {
